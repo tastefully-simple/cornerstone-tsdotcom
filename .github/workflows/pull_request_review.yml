@@ -6,9 +6,9 @@ name: Theme Bundling Test
 
 on:
   pull_request:
-    branches: [ master, main ]
+    branches: [ master ]
   push:
-    branches: [ master, main ]
+    branches: [ master ]
 
 jobs:
   build:
