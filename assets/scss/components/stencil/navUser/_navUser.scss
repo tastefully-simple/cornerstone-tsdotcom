@@ -39,8 +39,9 @@
         box-shadow: container("dropShadow");
         position: absolute;
 
+        // scss-lint:disable NestingDepth
         &.is-open {
-            &::before {
+            &:before {
                 @include css-triangle(
                     $triangle-direction: "bottom",
                     $triangle-size: 10px,
@@ -51,7 +52,7 @@
                 position: absolute;
             }
 
-            &::after {
+            &:after {
                 @include css-triangle(
                     $triangle-direction: "bottom",
                     $triangle-size: 8px,
@@ -72,7 +73,7 @@
 }
 
 .navUser-action {
-    color: stencilColor("navUser-color");
+    color: #fff;
     font-weight: fontWeight("bold");
     padding: spacing("base") spacing("half");
     text-decoration: none;
@@ -80,12 +81,14 @@
 
     &:hover,
     &.is-open {
-        color: stencilColor("navUser-color-hover");
+        color: #fff;
 
+        // scss-lint:disable NestingDepth
         svg {
-            fill: stencilColor("navUser-color-hover");
-            stroke: stencilColor("navUser-color-hover");
+            fill: #12484c;
+            stroke: #12484c;
         }
+        // scss-lint:enable NestingDepth
     }
 
     .icon {
@@ -94,20 +97,21 @@
     }
 
     svg {
-        fill: stencilColor("navUser-color");
-        stroke: stencilColor("navUser-color");
+        fill: #12484c;
+        stroke: #12484c;
         transition: all 0.15s ease;
     }
 }
 
-.navUser-action--currencySelector + .dropdown-menu,
-.navUser-action--channelSelector + .dropdown-menu {
-    &::before {
+.navUser-action--currencySelector + .dropdown-menu {
+    &:before {
+        // scss-lint:disable ImportantRule
         left: auto !important; // 6
         right: spacing("half"); // 6
     }
 
-    &::after {
+    &:after {
+        // scss-lint:disable ImportantRule
         left: auto !important; // 6
         right: spacing("half") + remCalc(2px); // 6
     }
@@ -117,11 +121,13 @@
     max-width: remCalc(300px);
     padding: spacing("single");
 
-    &::before {
+    &:before {
+        // scss-lint:disable ImportantRule
         left: remCalc(140px) !important; // 3
     }
 
-    &::after {
+    &:after {
+        // scss-lint:disable ImportantRule
         left: remCalc(142px) !important; // 3
     }
 }
@@ -164,38 +170,40 @@
     }
 
     .navUser-action {
-        color: stencilColor("navUser-color");
+        color: #12484c;
 
+        // scss-lint:disable NestingDepth
         &:hover,
         &.is-open {
-            color: stencilColor("navUser-color-hover");
+            color: #12484c;
         }
     }
 
     .dropdown-menu {
         max-width: remCalc(320px);
 
+        // scss-lint:disable NestingDepth
         &.is-open {
+            top: auto !important; // 7
             left: auto !important; // 7
             right: remCalc(5px); // 7
-            top: auto !important; // 7
             @include breakpoint("medium") {
                 right: 0; // 7
             }
 
-            &::before,
-            &::after {
+            &:before,
+            &:after {
                 left: auto;
             }
 
-            &::before {
+            &:before {
                 right: spacing("half") - remCalc(5px); // 8
                 @include breakpoint("medium") {
                     right: spacing("half"); // 8
                 }
             }
 
-            &::after {
+            &:after {
                 right: spacing("half") - remCalc(3px); // 8
                 @include breakpoint("medium") {
                     right: spacing("half") + remCalc(2px); // 8
@@ -222,7 +230,10 @@
 }
 
 .navUser-item--account {
+
     .navUser-or {
+
+        // scss-lint:disable NestingDepth
         + .navUser-action {
             margin-right: -0.5rem; // 1
         }
@@ -234,7 +245,7 @@
 }
 
 .navUser-or {
-    color: stencilColor("navUser-color");
+    color: #12484c;
     cursor: default;
     display: inline-block;
     margin: 0 remCalc(-12px);
@@ -251,10 +262,12 @@
 // -----------------------------------------------------------------------------
 
 .navUser-action--quickSearch {
+
     &.is-open {
         position: relative;
 
-        &::before {
+        // scss-lint:disable NestingDepth
+        &:before {
             @include css-triangle(
                 $triangle-direction: "bottom",
                 $triangle-size: 10px,
@@ -270,15 +283,16 @@
 
 .dropdown--quickSearch {
     background-color: $dropdown--quickSearch-backgroundColor;
-    display: none;
     padding: spacing("single") 0;
+    display: none;
 
     @include breakpoint("small") {
         padding: spacing("double");
     }
 
     &.is-open {
-        display: block;
+        display: initial;
+        // scss-lint:disable ImportantRule
         left: 0 !important; // 1
         outline: none;
         right: 0 !important; // 1
