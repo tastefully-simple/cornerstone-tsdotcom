@@ -1,0 +1,389 @@
+.recipe-container {
+    overflow: hidden;
+    margin-bottom: 0;
+    .container {
+        padding: 0;
+    }
+}
+
+#recipe-page {
+    .videoGallery-main {
+        padding-bottom: 56.3%;
+        @media only screen and (max-width:800px)  {
+            padding-bottom: 48.5% !important;
+        }
+    }
+    .productView {
+        width: 100vw;
+        margin: 0;
+    }
+
+    .productView-recipe-description {
+        text-align: center;
+        font-weight: 600;
+        font-size: 17px;
+        margin-left: 10%;
+        margin-right: 10%;
+        display: block;
+    }
+
+    .recipe-top {
+        align-items: center;
+        display: flex;
+        background-color: $cream;
+        .recipe-top-left, .recipe-top-right {
+            width: 50%;
+            align-items: center;
+        }
+        .productView-rating {
+            text-align: center;
+        }
+        .recipe-top-left {
+            display: flex;
+            flex-direction: column;
+            .productView-title {
+                text-align: center;
+            }
+            .productView-details {
+                width: unset;
+                padding: 0;
+                .sharethis_toolbox {
+                    margin-top: 1rem;
+                    .socialLinks-title {
+                        top: -18px;
+                        .socialLinks-titleText {
+                            background-color: $cream;
+                        }
+                    }
+                }
+            }
+        }
+        .recipe-top-right {
+            .productView-images {
+                margin-bottom: 0;
+                padding-right: 0;
+                padding-left: 0;
+                width: 100%;
+                .productView-thumbnails {
+                    .slick-list {
+                        margin: 0;
+                    }
+                    img {
+                        width: 100%;
+                        max-height: 410px
+                    }
+                }
+                .slick-slider {
+                    display: flex;
+                    margin-bottom: 0;
+                }
+                .slick-slide {
+                    display: flex;
+                }
+                .slick-dots {
+                    bottom: -30px;
+                    margin-bottom: 0;
+                    position: absolute;
+                    li {
+                        button {
+                            background-color: $gainsboro;
+                            border-color: $gainsboro;
+                        }
+                        &.slick-active {
+                            button {
+                                &::before {
+                                    background-color: $burgundy;
+                                    border-color: $burgundy;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .recipe-main {
+        margin-top: 2rem;
+        .quick-info {
+            border-bottom: 1px solid;
+            border-top: 1px solid;
+            display:flex;
+            justify-content: space-between;
+            margin: 4vw auto 0;
+            max-width: 80%;
+            padding: 1.5rem 1rem;
+            span {
+                margin: 0 auto;
+            }
+            strong {
+                color: $burgundy;
+                font-weight: 800;
+                margin-left: .5rem;
+            }
+        }
+        .info {
+            margin: auto;
+            width: 60%;
+            h2 {
+                text-align: center;
+            }
+            #ingredients {
+                ul {
+                    list-style-type: none;
+                }
+                a {
+                    align-items: center;
+                    color: $burgundy;
+                    display: flex;
+                    font-size: 16px;
+                    text-decoration: none;
+                    /* Hide the icon entirely for now
+                    &::after {
+                        content: '';
+                        margin-left: 1ch;
+                        @extend .icon-system-addtocart;
+                    }
+                    */
+                }
+                a.product-link {
+                    font-weight: 900;
+                }
+
+                a.recipe-link {
+                    display: inline-block;
+                    font-style: italic;
+                }
+            }
+            #directions {
+                a.ingredients-link {
+                    align-items: center;
+                    color: $burgundy;
+                    font-size: 16px;
+                    font-weight: 900;
+                    text-decoration: none;
+                }
+                .directions-list {
+                    .direction-item {
+                        b {
+                            font-weight: 900;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .productReviews {
+        margin: auto;
+        width: 75%;
+        .review-sep {
+            background-color: $wan-white;
+            left: 0;
+            margin-bottom: 2rem;
+            position: absolute;
+            width: 100vw;
+            .review-sep-inner {
+                align-items: center;
+                display: flex;
+                margin: auto;
+                padding: 1rem 2rem;
+                width: 80%;
+            }
+            h2 {
+                margin: 0;
+            }
+            .toggle-title {
+                margin-bottom: 0;
+                margin-left: 1rem;
+            }
+            .button-primary {
+                margin: 0 0 0 auto;
+            }
+        }
+        .productReviews-list {
+            margin-top: 5rem;
+        }
+        .productReview {
+            &::after {
+                border-bottom: 2px solid $gainsboro;
+                content: '';
+                display: block;
+                margin: auto auto 2rem;
+                width: 99%;
+            }
+            .productReview-author {
+                margin-bottom: 0;
+                @extend .frame-subhead;
+            }
+            .rating-title {
+                align-items: center;
+                display: flex;
+                .productReview-title {
+                    margin-left: 1ch;
+                }
+                .productReview-rating {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width:540px) {
+    #recipe-page {
+        .productView {
+            margin-left: 0;
+        }
+    }
+}
+@media only screen and (min-width: 1921px) {
+    #recipe-page {
+        .productView {
+            width: 100%;
+        }
+        .productReviews {
+            .review-sep {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width:540px) {
+    #productReviews-content {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    #recipe-page {
+        .recipe-top {
+            flex-direction: column;
+            .recipe-top-left, .recipe-top-right {
+                width: 100%;
+            }
+            .recipe-top-left {
+                .productView-title {
+                    margin-top: 1rem;
+                    text-align: center;
+                }
+            }
+        }
+        .recipe-main {
+            .quick-info {
+                flex-direction: column;
+                span {
+                    display: block;
+                }
+            }
+            .info {
+                width: 90%;
+                #ingredients {
+                    ul {
+                        columns: 1;
+                        margin: auto;
+                        list-style-position: inside;
+                    }
+                }
+            }
+        }
+        .productReviews {
+            width: 100%;
+            .review-sep {
+                position: relative;
+                .review-sep-inner {
+                    flex-direction: column;
+                    justify-content: center;
+                    width: auto;
+                    .button-primary {
+                        margin: 1rem auto auto;
+                    }
+                }
+            }
+            .productReviews-list {
+                margin-top: 1rem;
+            }
+        }
+    }
+}
+#ingredients {
+    .product-link {
+        display: inline-block !important;
+    }
+}
+
+#cost-per-saving {
+    display: none;
+    text-align: center;
+    span {
+        color: $COLOR_SECONDARY_200;
+        font-weight: 900;
+    }
+}
+
+.recipe-print-layer {
+    display: none;
+}
+
+@media print {
+    .header, .footer, #consent-manager-update-banner, #consent-manager,
+    .sharethis_toolbox, .productView-rating, .footer, .productView, #main-content, .partybar, nav, iframe#launcher, iframe#SmileUIPromptContainer, iframe#smile-ui-container, iframe.smile-launcher-frame {
+        display: none;
+    }
+
+    .recipe-print-layer {
+        .productView-description {
+            font-size: 14px;
+        }
+        display: block;
+        h1 {
+            font-size: 30px;
+            color: $text-gray;
+            margin-top: 0;
+        }
+        h2 {
+            font-size: 20px;
+        }
+        ul, ol, dl {
+            margin-bottom: 5px;
+        }
+        img {
+            max-width: 20%;
+            float: right;
+            margin-left: 20px;
+        }
+        #ingredients-list {
+            list-style: none;
+            list-style-type: none;
+        }
+        .recipe-print-body {
+            padding-top: 10px;
+            display: block;
+            clear: both;
+        }
+        .productView-description {
+            padding: 0 !important;
+        }
+        .product-link {
+            color: $burgundy;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .quick-info {
+            clear: both;
+            margin-top: 20px;
+            border-bottom: 1px solid;
+            border-top: 1px solid;
+            display:flex;
+            justify-content: space-between;
+            margin: 4vw auto 0;
+            max-width: 100%;
+            padding: 10px 10px;
+            span {
+                margin: 0 auto;
+            }
+            strong {
+                color: $burgundy;
+                font-weight: 800;
+                margin-left: .5rem;
+            }
+        }
+    }
+}

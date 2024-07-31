@@ -1,0 +1,127 @@
+// =============================================================================
+// Tastefully Simple Cart Styles
+// =============================================================================
+
+.cart {
+    .cart-affiliate {
+        align-items:center;
+        background-color: $cream;
+        display:flex;
+        flex-direction: column;
+        justify-content:center;
+        margin-top:5.5rem;
+        min-height:120px;
+        padding:.5rem 0 0;
+        &+.body {
+            margin-top:0;
+        }
+        .cart-affiliate-consultant {
+            display: flex;
+            margin-bottom: 1rem;
+            .cart-affiliate-img {
+                border-radius: 2px;
+                padding: .15rem;
+                background-color: white;
+                font-size: 12px;
+                margin: 0.5rem;
+                max-width: 83px;
+                height: 83px;
+                width: auto;
+            }
+            .cart-affiliate-info {
+                align-items:center;
+                display:flex;
+                margin:0 .5rem;
+                .cart-affiliate-name {
+                    margin-bottom:0;
+                    .affiliate-name {
+                        @extend .frameheading-1;
+                    }
+                .cart-affiliate-btn.framelink-md {
+                    font-weight: 700;
+                }
+                }
+            }
+        }
+        .cart-affiliate-party {
+            background-color: $green-apple;
+            color: white;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+
+            p {
+                margin: 0.5rem 0;
+            }
+        }
+    }
+    .cart-total {
+        .shipping-estimator {
+            .form-select {
+                height: auto;
+                padding: 0.4rem 0.75rem;
+            }
+        }
+    }
+    .cart-actions {
+        .button {
+            text-transform:lowercase;
+            &.button--tertiary {
+                background-color: $white;
+            }
+        }
+        .button--primary {
+            outline: none !important;
+        }
+    }
+}
+
+@media only screen and (min-width:801px) {
+    .cart {
+        .cart-affiliate {
+            margin-top:0;
+            min-height:0;
+            .cart-affiliate-info {
+                .cart-affiliate-name {
+                    br {
+                        display:none;
+                    }
+                }
+            }
+            .partybar {
+                width: 100%;
+            }
+            .cart-affiliate-party {
+                display: none;
+            }
+        }
+    }
+
+    #marketplace-popup {
+        p {
+            font-size: 12px;
+        }
+
+        .marketplace-modal-body {
+            background: $white;
+            padding-left: 40px !important;
+            padding-right: 40px !important;
+        }
+
+        .marketplace-modal-footer, .party-palooza-header {
+            text-align: center !important;
+            background-color: $white !important;
+        }
+    }
+}
+
+// Cart Preview (cart icon)
+// TST-279 Hide 'checkout now' button
+.previewCartAction {
+    .previewCartAction-checkout {
+        display: none;
+    }
+    .previewCartAction-viewCart {
+        width: 100%;
+    }
+}
