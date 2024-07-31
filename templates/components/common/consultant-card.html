@@ -1,0 +1,45 @@
+<div
+    class="consultant-card result-card"
+    data-cid="{consultant-id}"
+    data-afid="{consultant-afid}"
+    data-name="{consultant-name}"
+    data-copenparty="{consultant-hasopenparty}"
+    >
+    <div class="consultant-header">
+        <span class="ts-circle"></span>
+        <div class="vertical-center">
+            <span class="frame-caption selection-title">Select</span>
+        </div>
+    </div>
+    <div class="selected-header">
+         <span class="ts-circle"></span>
+         </span>
+         <div class="vertical-center">
+             <span class="frame-caption selection-title">Selected</span>
+         </div>
+    </div>
+    <div class="consultant-info">
+        <div class="consultant-info-col consultant-image">
+            <img src="{consultant-imagesrc}" onerror="this.onerror=null;this.src='https://consultant.api.tastefullysimple.com/image/profile/noconsultantphoto.png';">
+        </div>
+        <div class="consultant-info-col consultant-basic-info">
+            <p class="subhead-14 consultant-name">{consultant-name}</p>
+            <p class="frame-caption">{consultant-title}</p>
+            <p class="frame-caption">{consultant-location}</p>
+        </div>
+        <div class="consultant-info-col consultant-contact">
+            <div class="consultant-phone">
+                <span class="icon-system-phone"></span>
+                <div class="vertical-center">
+                    <span class="frame-caption">{consultant-phone}</span>
+                </div>
+            </div>
+            <div class="consultant-email">
+                <span class="icon-system-envelope"> </span>
+                <div class="vertical-center">
+                    <span>{consultant-email}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
