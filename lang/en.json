@@ -39,20 +39,26 @@
     "cart": {
         "nav_aria_label": "Cart with 0 items",
         "continue_shopping": "Click here to continue shopping",
+        "shop_more": {
+         "button": "Continue Shopping",
+         "title": "Click here to continue shopping"
+        },
         "login_to_checkout": "Login to proceed to checkout",
+	"title": "Click here to continue shopping",
         "items": "{NUM, plural, =0{(0 items)} one {(# item)} other {(# items)}}",
         "checkout": {
             "address": {
                 "multiple": "check out with multiple addresses",
                 "or": "or"
             },
-            "button": "Check out",
+            "button": "Select Option Above To Checkout",
             "empty_cart": "Your cart is empty",
             "title": "Click here to proceed to checkout",
             "item": "Item",
             "price": "Price",
             "quantity": "Quantity",
             "total": "Total",
+            "change": "Change",
             "subtotal": "Subtotal",
             "enter_code": "Coupon code / Gift certificate",
             "gift_wrapping": "Gift wrapping",
@@ -71,12 +77,13 @@
         "invalid_entry_message": "[ENTRY] is not a valid entry",
         "coupon_code": "Coupon Code",
         "discount": "Discount",
+	"gift_certificate": "Gift Certificate",
         "included_in_total": " Included in Total",
         "remove_file": "Remove this file",
         "freeshipping": "Free Shipping",
         "reconfigure_product": "Configure '{name}'",
         "shipping_peritem": "Per Item Shipping",
-        "remove_item": "Remove {name} from cart",
+        "remove_item": "Remove item from cart",
         "confirm_delete": "Are you sure you want to delete this item?",
         "coupons": {
             "apply_coupon": "Apply coupon",
@@ -96,6 +103,7 @@
             "gift_certificate": "Gift Certificate",
             "code_label": "Gift Certificate ({code})",
             "cert_code": "Enter your certificate code",
+            "empty_error": "Please enter your valid certificate code.",
             "remove": "Remove"
         },
         "shipping_estimator": {
@@ -135,13 +143,17 @@
             "continue_shopping": "Continue Shopping",
             "view_or_edit_cart": "View or edit your cart",
             "you_might_also_like": "You may also like"
+    },
+    "find_affiliate": {
+      "modal_title": "Change independent consultant",
+      "button": "edit"
         }
     },
     "common": {
         "store_credit": "You have <strong>{store_credit}</strong> of store credit. To use it, simply place your order and you will be able to choose store credit as the payment method when it comes time to pay for your order.",
         "store_credit_overview": "{credit} Store Credit",
         "generic_error": "Oops! Something went wrong.",
-        "currency": "Currency: {code}",
+        "currency": "Select Currency: {code}",
         "currency_switch_promotion" : "Promotions and gift certificates that don't apply to the new currency will be removed from your cart. Are you sure you want to continue?",
         "channel": "Store: {code}",
         "channel_switch_warning" : "Warning text for store switching",
@@ -152,6 +164,7 @@
         "required": "Required",
         "optional": "Optional",
         "email_address": "Email Address",
+	    "carousel_slide_number": "Slide number {slide_number}",
         "edit": "Edit",
         "not_applicable": "N/A",
         "no": "No",
@@ -168,7 +181,7 @@
         "sign_up": "Register",
         "login": "Sign in",
         "login_for_pricing": "Log in for pricing",
-        "logout": "Sign out",
+        "logout": "Logout",
         "account": "Account",
         "cart": "Cart",
         "search": "Search",
@@ -266,7 +279,7 @@
         "heading": "New Account",
         "created": {
             "heading": "Your account has been created",
-            "intro": "Thank you for creating your account at {store_name}. Your account details have been emailed to {email}",
+            "intro": "Thank you for creating your account at {store_name}. Your account details have been emailed to <strong>{email}</strong>",
             "continue": "Continue Shopping"
         },
         "recaptcha_title": "Google recaptcha"
@@ -284,7 +297,7 @@
             "fact2": "Save multiple shipping addresses",
             "fact3": "Access your order history",
             "fact4": "Track new orders",
-            "fact5": "Save items to your Wish List",
+            "fact5": "Save items to your Favorite",
             "create_account": "Create Account"
         }
     },
@@ -296,18 +309,22 @@
         "breadcrumb": "Your Account",
         "nav": {
             "overview": "Overview",
-            "orders": "Orders",
+            "orders": "Order History",
             "returns": "Returns",
             "messages": "Messages ({num_new_messages})",
-            "wishlists": "Wish Lists",
+            "wishlists": "Favorite Lists",
+      	    "your_favorites": "Favorite Lists",
+      	    "view_favorite": "View Favorite",
             "recently_viewed": "Recently Viewed",
-            "settings": "Account Settings",
+            "settings": "Account Profile",
             "addresses": "Addresses",
-            "payment_methods": "Payment Methods"
+	      "payment_methods": "Payment Methods",
+	      "preferences": "Communication Preferences",
+	      "manage_subscriptions": "Manage Autoship"
         },
         "mobile_nav": {
             "messages": "Messages",
-            "wishlists": "Wish Lists"
+            "wishlists": "Favorite Lists"
         },
         "addresses": {
             "heading": "Addresses",
@@ -323,7 +340,7 @@
             "merchant_said": "{store_name} said:"
         },
         "orders": {
-            "heading": "Orders",
+            "heading": "Order History",
             "none": "You haven't placed any orders with us. When you do, their status will appear on this page.",
             "return": {
                 "already_returned": "This order contains no products that can be returned. Have you already returned all of the items within this order?",
@@ -410,6 +427,7 @@
                 "credit_card": "Credit Card",
                 "dankort": "Dankort",
                 "diners_club": "Diners Club",
+                "diners": "Diners Club",
                 "discover": "Discover",
                 "jcb": "JCB",
                 "maestro": "Maestro",
@@ -430,6 +448,9 @@
               "choose_country": "Choose a Country",
               "zip_postcode": "Zip/Postcode"
             }
+    },
+    "preferences": {
+      "heading": "Communication Preferences"
         },
         "returns": {
             "heading": "Returns",
@@ -462,7 +483,7 @@
             }
         },
         "settings": {
-            "heading": "Account Settings",
+            "heading": "Account Profile",
             "first_name": "First Name",
             "last_name": "Last Name",
             "email": "Email Address",
@@ -478,29 +499,31 @@
             "no_items": "The items you've recently looked at on our site will appear below."
         },
         "wishlists": {
-            "heading": "Wish Lists",
-            "tag_line": "Fill in the form below to create a new Wish List. Click the \"Create Wish List\" button when you're done.",
-            "new": "New Wish List",
-            "you_have_none": "You have no Wish Lists, add one now.",
-            "empty_wishlist": "Your Wish List is empty. When you add items to your Wish List they will appear here.",
+            "heading": "Favorite Lists",
+            "tag_line": "Fill in the form below to create a new Favorite. Click the \"Create Favorite\" button when you're done.",
+            "new": "New Favorite List",
+            "you_have_none": "You have no Favorites, add one now.",
+            "empty_wishlist": "Your Favorite is empty. When you add items to your Favorite they will appear here.",
             "num_items": "Items",
-            "add_item": "Add to Wish List",
+            "add_item": "Add to Favorite",
             "remove_item": "Remove Item",
-            "name": "Wish List Name",
+            "name": "Favorite List Name",
             "shared": "Shared",
             "action": "Action",
-            "add": "Add Wish List",
+            "add": "Add Favorite",
             "delete_all": "Delete All",
-            "edit": "Edit Wish List",
-            "view_heading": "Wish List: {name}",
-            "share_intro": "Share this Wish List with friends:",
+            "edit": "Edit Favorite",
+            "view_heading": "Favorite List: {name}",
+            "share_intro": "Share this Favorite List with friends:",
             "num_products": "{num_products, plural, one {1 product} other {# products}}",
-            "create": "Create Wish List",
-            "save": "Save Wish List",
-            "delete_alert": "Are you sure you want to delete your Wish List(s)? This action cannot be undone.",
-            "create_new": "Create New Wish List",
-            "add_to_default": "Add to My Wish List",
-            "enter_wishlist_name_error": "You must enter a wishlist name."
+            "create": "Create Favorite",
+            "save": "Save Favorite",
+            "delete_alert": "Are you sure you want to delete your Favorite(s)? This action cannot be undone.",
+            "create_new": "Create New Favorite",
+            "add_to_default": "Add to My Favorite",
+            "enter_wishlist_name_error": "You must enter a Favorite name.",
+      	     "copy_link": "Copy Link",
+      	    "link_copied": "Copied!"
         }
     },
     "page": {
@@ -660,11 +683,13 @@
             },
             "refine": "Refine Search",
             "brand": "Brands",
-            "searchsubs": "Automatically search sub categories"
+            "searchsubs": "Automatically search sub categories",
+	        "tabs_accesibility_hint": "Use left and right arrows to navigate between tabs.",
+            "tabs_accessibility_hint": "Use left and right arrows to navigate between tabs."
         },
         "wishlist": {
-            "name": "Wish List Name:",
-            "public": "Share Wish List?"
+            "name": "Favorite Name:",
+            "public": "Share Favorite?"
         },
         "validate": {
             "account": {
@@ -672,7 +697,8 @@
                     "password": "You must enter your current password.",
                     "first_name": "You must enter a first name.",
                     "last_name": "You must enter a last name.",
-                    "phone": "You must enter a phone number."
+                    "phone": "You must enter a phone number.",
+		    "phonezeroes": "You cannot enter all zeroes for a phone number."
                 },
                 "reorder": {
                     "select_item": "Please select one or more items to reorder."
@@ -687,7 +713,8 @@
                 "name": "You must enter your name.",
                 "password": "You must enter a password.",
                 "password_match": "Your passwords do not match.",
-                "email_address": "Please use a valid email address, such as user@example.com."
+                "email_address": "Please use a valid email address, such as user@example.com.",
+		"valid_email": "You must enter a valid email."
             },
             "contact": {
                 "email_address": "Please use a valid email address, such as user@example.com.",
@@ -699,7 +726,8 @@
                 "from_name": "You must enter your name.",
                 "from_email": "You must enter a valid email.",
                 "cert_theme": "You must select a gift certificate theme.",
-                "agree_terms": "You must agree to these terms."
+                "agree_terms": "You must agree to these terms.",
+                "amount": "You must enter a gift certificate amount."
             },
             "payment_method": {
                 "credit_card_number": "You must enter a valid credit card number.",
@@ -714,23 +742,73 @@
             }
         }
     },
+  "subscriptions": {
+    "add_to_next_delivery": "Add to next delivery",
+    "one_time_delivery_message1": "Want to save on shipping but just need this once?",
+    "one_time_delivery_message2": "Add one time only to your next autoship delivery.",
+    "future_deliveries_message1": "you have TS to You Autoship!",
+    "future_deliveries_message2": "Want to add this item to your subscription?",
+    "add_to_future_deliveries": "Add to Future Deliveries",
+    "next_order": "Next order:",
+    "products": "Products in this delivery",
+    "subscription": "Subscription",
+    "cancel": "Cancel",
+    "continue": "Continue",
+    "recurring_products": "Recurring products in this delivery",
+    "one_time": "One time only product added to this delivery",
+    "one_time_description": "One time only products will not be sent in future deliveries in this subscription",
+    "product_added": "Product added to delivery",
+    "next_order_message": "This product will be added to the next scheduled order",
+    "done": "Done",
+    "current_consultant": "Your current TS to You Autoship consultant is:",
+    "change_consultant": "Change my consultant",
+    "consultant": "Your TS to You consultant earns commission on your TS to You Autoship subscriptions.",
+    "consultant_title": "What is a TS to You consultant?",
+    "consultant_selected": "You selected a new TS to You consultant. Please confirm your choice.",
+    "modals": {
+      "sign_in_message": "Sign in or create an account to purchase TS to You Autoship subscription products.",
+      "sign_in": "Sign in",
+      "account_alert": "Account Alert",
+      "ready": "Ready for TS to You Autoship?",
+      "choose_tstu_consultant": "Choose your TS to You Consultant",
+      "create_account": "Create an account to save and manage your subscriptions. You'll also be able to check-out quicker and have the ability to save a wish list just by creating a FREE account with us.",
+      "consultant_message_1": "It looks like you are a Tastefully Simple consultant. Please, use TS Central Orders to place your Autoship Order.",
+      "consultant_message_2": "Please return to your cart to remove your subscription products.",
+      "return": "Return to Cart",
+      "choose_consultant": "Thanks for being a TS to You Autoship member with #consultant-name. Subscriptions may only be linked to one consultant. Select one below:",
+      "current_consultant": "Your current TS to You consultant:",
+      "new_consultant": "The TS to You consultant you selected:",
+      "select_option": "Select option above to checkout",
+      "choose_consultant_and_party": "Thanks for being a TS to You Autoship member with #consultant-name! This orer contains subscription products and is being placed through #party-name and a new consultant #consultant-new. Subscriptions may only be linked to one consultant.",
+      "select": "Select an option: ",
+      "complicated_header": "This is a little complicated...",
+      "new_consultant_and_party": "Thanks for being a TS to You Autoship member with #current-consultant-name! This order contains subscription products and is being placed through #party-host-name-party party and a new consultant #new-consultant-name.",
+      "new_consultant_and_party_keep_1": "Keep your current TS to You consultant #current-consultant-name.",
+      "new_consultant_and_party_keep_2": "Host #party-host-name will *not* be credited with this order",
+      "new_consultant_and_party_change_1": "Place this order with #party-host-name-party party and change your TS to You Consultant to #new-consultant-name",
+      "new_consultant_and_party_change_2": "Your TS to You consultant will change to #new-consultant-name. If you wish to place an order with this party, return to your cart and remove subscription product and keep your current TS to You Consultant."
+    }
+  },
     "products": {
         "current_stock": "Current Stock:",
-        "quantity": "Quantity:",
+        "quantity": "Qty:",
         "change_product_options": "Change options for {name}",
-        "quantity_decrease": "Decrease Quantity of {name}",
-        "quantity_increase": "Increase Quantity of {name}",
+        "quantity_decrease": "Decrease Quantity:",
+        "quantity_increase": "Increase Quantity:",
         "quantity_error_message":"The quantity should contain only numbers",
         "purchase_units": "{quantity, plural, =0{0 units} one {# unit} other {# units}}",
         "max_purchase_quantity": "Maximum Purchase:",
         "min_purchase_quantity": "Minimum Purchase:",
-        "related_products": "Related Products",
+        "related_products": "Carefully Curated",
         "top": "Most Popular Products",
         "similar_by_views": "Customers Also Viewed",
         "featured": "Featured Products",
         "file_option_set": "Currently: <a href=\"{url}\" target=\"_blank\">{name}</a>",
         "new": "New Products",
         "warranty": "Warranty Information",
+    "select_options": "Autoship",
+    "quick_add_to_cart": "Add to Cart",
+    "added": "Added to cart",
         "reviews": {
             "hide": "Hide Reviews",
             "new": "Write a Review",
@@ -738,10 +816,11 @@
             "header": "{total, plural, =0{0 Reviews} one {# Review} other {# Reviews}}",
             "link_to_review": "({total, plural, =0{No reviews yet} one {# review} other {# reviews}})",
             "post_on_by": "Posted by { name } on { date }",
+      "author": "{ name }",
             "rating_label": "Rating",
             "select_rating": "Select Rating",
             "anonymous_poster": "Unknown",
-            "rating_aria_label": "{rating_target} rating is {current_rating} of {max_rating}",
+            "rating_aria_label": "Product rating is {current_rating} of {max_rating}",
             "rating": {
                 "1": "1 star (worst)",
                 "2": "2 stars",
@@ -841,10 +920,10 @@
         "comments": "Comments"
     },
     "newsletter": {
-        "subscribe": "Subscribe to our newsletter",
+        "subscribe": "add flavor to your inbox",
         "subscribe_intro": "Get the latest updates on new products and upcoming sales",
-        "subscribe_submit": "Subscribe",
-        "email_placeholder": "Your email address",
+        "subscribe_submit": "submit",
+        "email_placeholder": "email",
         "subscribed_heading": "Thanks for Subscribing!",
         "subscribed_heading_error": "Oops...",
         "subscribed_message": "Thank you for joining our mailing list. You'll be sent the next issue of our newsletter shortly",
@@ -859,7 +938,9 @@
         "state_error": "There was a problem retrieving states/provinces"
     },
     "search": {
-        "errorMessage": "There was a problem retrieving your results. Please try again in a few seconds.",
+        "tabs_accessibility_hint": "Use left and right arrows to navigate between tabs.",
+        "tabs_accesibility_hint": "Use left and right arrows to navigate between tabs.",
+        "errorMessage": "There was a problem retrieving your search results. Please try again in a few seconds, or try a different search.",
         "quick_search": {
             "input_label": "Search",
             "input_placeholder": "Search the store"
@@ -867,11 +948,14 @@
         "results": {
             "form_label": "Search Keyword:",
             "form_button_text": "Search",
-            "count": "{ count, plural, one {# result} other {# results} } for '{ search_query }'",
-            "quick_count": "{ count, plural, one {# product result} other {# product results} } for '{ search_query }'",
+            "count": "{ count, plural, one {result} other {results} } for { search_query }",
+            "quick_count": "{ count, plural, one {# product result} other {# product results} } for { search_query }",
             "quick_count_live": "product results for",
             "product_count": "Products ({count})",
-            "content_count": "News & Information ({count})"
+            "recipe_count": "Recipes ({count})",
+            "content_count": "News & Information ({count})",
+            "searching_recipes": "Recipes (searching...)",
+            "searching_products": "Products (searching...)"
         },
         "faceted": {
             "selected": {
@@ -903,8 +987,7 @@
         },
         "error": {
             "empty_field": "Search field cannot be empty."
-        },
-        "tabs_accesibility_hint": "Use left and right arrows to navigate between tabs."
+        }
     },
     "page_not_found": {
         "page_heading": "404 Error - Page not found",
@@ -928,24 +1011,41 @@
         "view_more": "View more details",
         "view_less": "Hide details"
     },
+  "cookies": {
+    "accept": "Accept Cookies"
+  },
     "maintenance": {
         "down": "Down for Maintenance"
     },
+  "admin": {
+    "maintenance_header": "Your store is down for maintenance.",
+    "maintenance_tooltip": "Only administrators can view the store at the moment. Visit your control panel settings page to disable maintenance mode.",
+    "maintenance_showstore_link": "Click here to see what your visitors will see.",
+    "prelaunch_header": "Your storefront is private. Share your site with preview code:",
+    "page_builder_link": "Design this page in Page Builder"
+  },
     "carousel": {
         "arrow_and_dot_aria_label": "Go to slide [SLIDE_NUMBER] of [SLIDES_QUANTITY]",
+        "dotAriaLabel": "Slide number",
+        "arrowAriaLabel": "Go to slide [NUMBER] of",
+        "activeDotAriaLabel": "active",
         "active_dot_aria_label": "active",
         "content_announce_message": "You are currently on slide [SLIDE_NUMBER] of [SLIDES_QUANTITY]",
         "play_pause_button_play": "Play",
         "play_pause_button_pause": "Pause",
         "play_pause_button_aria_play": "Play carousel",
         "play_pause_button_aria_pause": "Pause carousel",
+        "playPauseButtonPlay": "Play",
+        "playPauseButtonPause": "Pause",
+        "playPauseButtonAriaPlay": "Play carousel",
+        "playPauseButtonAriaPause": "Pause carousel",
         "slide_number": "Slide number {slide_number}"
     },
     "validation_messages": {
         "valid_email": "You must enter a valid email.",
         "password": "You must enter a password.",
         "password_match": "Your passwords do not match.",
-        "invalid_password": "Passwords must be at least 7 characters and contain both alphabetic and numeric characters.",
+        "invalid_password": "Passwords must be at least 8 characters and contain: upper case letters, at least 1 number, at least 1 special character.",
         "field_not_blank": " field cannot be blank.",
         "certificate_amount": "You must enter a gift certificate amount.",
         "certificate_amount_range": "You must enter a certificate amount between [MIN] and [MAX]",
@@ -960,7 +1060,7 @@
         "valid_email": "You must enter a valid email.",
         "password": "You must enter a password.",
         "password_match": "Your passwords do not match.",
-        "invalid_password": "Passwords must be at least 7 characters and contain both alphabetic and numeric characters.",
+    "invalid_password": "Passwords must be at least 8 characters and contain: upper case letters, at least 1 number, at least 1 special character.",
         "field_not_blank": " field cannot be blank.",
         "certificate_amount": "You must enter a gift certificate amount.",
         "certificate_amount_range": "You must enter a certificate amount between [MIN] and [MAX]",
@@ -975,7 +1075,7 @@
         "valid_email": "You must enter a valid email.",
         "password": "You must enter a password.",
         "password_match": "Your passwords do not match.",
-        "invalid_password": "Passwords must be at least 7 characters and contain both alphabetic and numeric characters.",
+    "invalid_password": "Passwords must be at least 8 characters and contain: upper case letters, at least 1 number, at least 1 special character.",
         "field_not_blank": "The field cannot be blank.",
         "certificate_amount": "You must enter a gift certificate amount.",
         "certificate_amount_range": "You must enter a certificate amount between [MIN] and [MAX]",
@@ -986,6 +1086,7 @@
         "price_invalid_value": "Input must be greater than 0.",
         "invalid_gift_certificate": "Please enter your valid certificate code."
     },
+    
     "page_builder": {
         "pdp_sale_badge_label": "On Sale!",
         "pdp_sold_out_label": "Sold Out",
@@ -994,6 +1095,19 @@
         "pdp-retail-price-label": "MSRP:",
         "pdp-custom-fields-tab-label": "Additional Information"
     },
+      "optimized_checkout": {
+    "order_confirmation": {
+      "order_number_text": "Your order number is <strong>{orderNumber}</strong>",
+      "order_pending_review_text": "Your order was sent to us but is currently awaiting payment. Once we receive the payment for your order, it will be completed. If you've already provided payment details then we will process your order manually and send you an email when it's completed.",
+      "order_with_downloadable_digital_items_text": "You can download your digital purchases by clicking the links on this page, or by logging into your account at any time. There is also a download link in your confirmation email, which should be arriving shortly.",
+      "order_with_support_number_text": "An email will be sent containing information about your purchase. If you have any questions about your purchase, email us at <a href=\"mailto:help@tastefullysimple.com?Subject=Order {orderNumber}\" target=\"_top\">help@tastefullysimple.com</a> or call us at <a href=\"tel://{supportPhoneNumber}\">{supportPhoneNumber}</a>.",
+      "order_without_downloadable_digital_items_text": "Once we receive your payment, we’ll send a confirmation email with a link to download your digital purchases.",
+      "order_without_support_number_text": "An email will be sent containing information about your purchase. If you have any questions about your purchase, email us at <a href=\"mailto:help@tastefullysimple.com?Subject=Order {orderNumber}\" target=\"_top\">help@tastefullysimple.com</a>.",
+      "thank_you_customer_heading": "Thank you {name}!",
+      "thank_you_heading": "Thank you!",
+      "order_status_update_facebook_messenger_heading": "Get instant updates of your order to Messenger"
+    }
+  },
     "consent_manager": {
         "data_collection_warning": "We use cookies (and other similar technologies) to collect data to improve your shopping experience.",
         "accept_all_cookies": "Accept All Cookies",
@@ -1033,5 +1147,33 @@
         "privacy_policy": "Privacy Policy",
         "allow_category_tracking": "Allow [CATEGORY_NAME] tracking",
         "disallow_category_tracking": "Disallow [CATEGORY_NAME] tracking"
+    },
+  "ts_affiliation": {
+    "party": {
+      "search_title": "find a party or fundraiser",
+      "results_title": "choose your party",
+      "tooltip_info": "What is a party? Tastefully Simple parties and fundraisers reward hosts of $200+ events with free products. Help us ensure your host gets credit for your order."
+    },
+    "consultant": {
+      "search_title": "find your consultant",
+      "results_title": "choose a consultant",
+      "parties_title": "your consultant's parties",
+      "parties_caption": "Are you shopping with a party or fundraiser? Make sure your host gets credit for your order.",
+      "tooltip_info": "What is a consultant? Our consultants are independent business owners who help you decide what's to eat! Help us ensure your consultant receives their commission or credit."
     }
+  },
+  "ts_cart_subscription": {
+    "auth_title": "Ready to Yum?",
+    "choose_consultant_with_party_title": "This is a little complicated...",
+    "choose_consultant_title": "Choose your Yum Club Consultant",
+    "create_account_intro": "Create an account to save and manage your subscriptions. You'll also be able to check-out quicker and have the ability to save a wish list just by creating a FREE account with us.",
+    "not_eligible_title": "Account Alert"
+  },
+  "ts_cart_marketplace": {
+    "popup": {
+      "title": "Welcome Party Palooza Consultant",
+      "description": "Thanks for attending Party Palooza! We see that you have Marketplace items & standard products in your cart. These exciting Marketplace items must be purchased on a separate order. Please update your cart accordingly.",
+      "button_label": "Return to Cart"
+    }
+  }
 }
