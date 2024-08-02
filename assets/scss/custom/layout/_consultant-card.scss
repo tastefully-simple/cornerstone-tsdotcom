@@ -1,0 +1,88 @@
+// =============================================================================
+// Tastefully Simple - Consultant Card
+// =============================================================================
+
+.consultant-card {
+    cursor:pointer;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-between;
+    padding: 10px;
+    width: 100%;
+    .consultant-info {
+        align-items: flex-start;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        .consultant-info-col p {
+            margin: 0;
+        }
+        .consultant-info-col.consultant-image {
+            width: 28%;
+            img {
+                max-height: 75px;
+            }
+        }
+        .consultant-info-col.consultant-contact {
+            margin: 10px 0 0 15px;
+        }
+        .system-14 {
+            font-size: 14px;
+        }
+        h5 {
+            margin: 0;
+            font-family: "PT Serif";
+        }
+        .consultant-phone {
+            display: flex;
+            .icon-system-phone {
+                margin-right: 5px;
+                width: 13.5px;
+            }
+            span {
+                vertical-align: middle;
+            }
+        }
+        .consultant-email {
+            display: flex;
+            .icon-system-envelope {
+                margin-right: 5px;
+                width: 15px;
+            }
+            span {
+                overflow-wrap: anywhere;
+                vertical-align: middle;
+                font-size: 10px;
+            }
+        }
+        .ts-page-link {
+            display: flex;
+            a {
+                text-decoration: none;
+                vertical-align: middle;
+            }
+            .icon-system-download {
+                margin: 0 10px;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width:801px) {
+    .consultant-card .consultant-info {
+        flex-wrap: nowrap;
+        min-width: 428px;
+
+        .consultant-info-col.consultant-image {
+            width: 15%;
+        }
+        .consultant-info-col.consultant-basic-info {
+            padding-left: 10px;
+            width: 35%;
+        }
+        .consultant-info-col.consultant-contact {
+            width: 50%;
+            margin: 0;
+        }
+    }
+}

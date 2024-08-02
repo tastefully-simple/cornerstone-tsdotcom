@@ -903,7 +903,8 @@
         "error": {
             "empty_field": "Suchfeld kann nicht leer sein."
         },
-        "tabs_accesibility_hint": "Verwenden Sie die Pfeile nach links und rechts, um zwischen den Registerkarten hin- und herzuwechseln."
+        "tabs_accessibility_hint": "Verwenden Sie die Pfeile nach links und rechts, um zwischen den Registerkarten hin- und herzuwechseln.",
+	    "tabs_accesibility_hint": "Verwenden Sie die Pfeile nach links und rechts, um zwischen den Registerkarten hin- und herzuwechseln."
     },
     "page_not_found": {
         "page_heading": "Fehler 404 – Seite nicht gefunden",

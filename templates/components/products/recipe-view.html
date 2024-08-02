@@ -1,0 +1,174 @@
+<script>
+    document.getElementById("main-content").classList.add("recipe-container");
+</script>
+<div class="productView" {{#if settings.data_tag_enabled}} data-event-type="product" data-entity-id="{{product.id}}" data-name="{{product.title}}" data-product-category="{{#each product.category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}" data-product-brand="{{product.brand.name}}" data-product-price="{{#if product.price.with_tax}}{{product.price.with_tax.value}}{{else}}{{product.price.without_tax.value}}{{/if}}" data-product-variant="single-product-option"{{/if}}>
+{{#each product.reviews.messages}}
+        {{#if error}}
+            {{> components/common/alert/alert-error error}}
+        {{/if}}
+        {{#if success}}
+            {{> components/common/alert/alert-success success}}
+        {{/if}}
+    {{/each}}
+
+    <div class="recipe-top">
+        <div class="recipe-top-left">
+            <section class="productView-details product-data">
+                <div class="productView-product">
+                    <h1 class="productView-title">{{product.title}}</h1>
+                    <span class="productView-recipe-description" id="recipe_description"></span>
+                    <script>
+                        if (recipe && recipe.Recipe && recipe.Recipe.Description) {
+                            const recipeDescription = recipe.Recipe.Description;
+                            document.getElementById('recipe_description').innerHTML = recipeDescription.replace(/^(.{250}[^\s]*).*/, "$1");
+                        }
+                    </script>
+                    <div class="productView-rating">
+                        {{#if settings.show_product_rating}}
+                            {{#if product.num_reviews '>' 0}}
+                                <a href="#product-reviews" class="ratingLink">
+                                    {{> components/products/ratings rating=product.rating}}
+                                    <span class="productView-numberReviews">({{product.num_reviews}})</span>
+                                </a>
+                            {{else}}
+                                {{> components/products/ratings rating=product.rating}}
+                                <span class="productView-numberReviews">({{product.num_reviews}})</span>
+                            {{/if}}
+                        {{/if}}
+                        {{#if settings.show_product_reviews}}
+                            <a href="{{product.url}}{{#if is_ajax}}#write_review{{/if}}"
+                               class="productView-reviewLink productView-reviewLink--new"
+                               {{#unless is_ajax}}data-reveal-id="modal-review-form"{{/unless}}
+                               role="button"
+                            >
+                               {{lang 'products.reviews.new'}}
+                            </a>
+                            {{> components/products/modals/writeReview}}
+                        {{/if}}
+                    </div>
+                    {{{region name="product_below_price"}}}
+                    {{product.detail_messages}}
+                </div>
+            </section>
+
+            <section class="productView-details product-options">
+                <div class="productView-options">
+                    {{#if product.release_date }}
+                        <p>{{product.release_date}}</p>
+                    {{/if}}
+                    <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data"
+                          data-cart-item-add>
+                        <input type="hidden" name="action" value="add">
+                        <input type="hidden" name="product_id" value="{{product.id}}"/>
+                        <div data-product-option-change style="display:none;">
+                            {{#each product.options}}
+                                {{{dynamicComponent 'components/products/options'}}}
+                            {{/each}}
+                        </div>
+                        {{!-- <div class="form-field form-field--stock{{#unless product.stock_level}} u-hiddenVisually{{/unless}}">
+                            <label class="form-label form-label--alternate">
+                                {{lang 'products.current_stock'}}
+                                <span data-product-stock>{{product.stock_level}}</span>
+                            </label>
+                        </div> --}}
+                        {{> components/products/add-to-cart}}
+                        {{#if product.out_of_stock}}
+                            {{#if product.out_of_stock_message}}
+                                {{> components/common/product-alert-error product.out_of_stock_message}}
+                            {{else}}
+                                {{> components/common/alert/alert-error (lang 'products.sold_out')}}
+                            {{/if}}
+                        {{/if}}
+                    </form>
+                </div>
+                {{#unless is_ajax}}
+                    {{> components/common/share}}
+                {{/unless}}
+                <p id="cost-per-saving">Cost per Serving: <span></span></p>
+                <script>
+                    if (typeof recipe.Recipe.CostPerServing !== 'undefined') {
+                        var span = document.createElement('span');
+                        span.innerHTML = recipe.Recipe.CostPerServing;
+                        var costPerSaving = document.getElementById('cost-per-saving');
+                        costPerSaving.appendChild(span);
+                        costPerSaving.style.display = 'block';
+                    }
+                </script>
+            </section>
+        </div>
+
+        <div class="recipe-top-right">
+            <section class="productView-images" data-image-gallery>
+                {{!--
+                    Note that these image sizes are coupled to image sizes used in /assets/js/theme/common/product-details.js
+                    for variant/rule image replacement
+                --}}
+                <ul class="productView-thumbnails images" {{#gt product.images.length 1}} data-slick='{
+                        "infinite": true,
+                        "mobileFirst": true,
+                        "slidesToShow": 1,
+                        "slidesToScroll": 1,
+                        "arrows": false,
+                        "dots": true,
+                        "autoplay": true,
+                        "autoplaySpeed": 3000
+                    }'{{/gt}}>
+                    {{#each product.images}}
+                        <li class="image" id="recipe-thumbnail-image">
+                            {{> components/common/responsive-img
+                                image=this
+                                fallback_size=theme_settings.product_size
+                                lazyload=theme_settings.lazyload_mode
+                                default_image=theme_settings.default_image_product
+                                otherAttributes="data-main-image"
+                            }}
+                        </li>
+                    {{/each}}
+                </ul>
+            </section>
+        </div>
+    </div>
+
+    <div class="recipe-main">
+        <div class="quick-info">
+            <script>
+                var quickInfo = document.querySelector('.quick-info');
+                for (const property in recipe.Recipe) {
+                    if (property === 'Makes' || property === 'ActiveTime' || property === 'TotalTime') {
+                        var title = '';
+                        switch (property) {
+                            case 'Makes':
+                                title = 'Makes';
+                                break;
+                            case 'ActiveTime':
+                                title = 'Active Time';
+                                break;
+                            case 'TotalTime':
+                                title = 'Total Time';
+                                break;
+                            default:
+                                title = property;
+                        }
+                        var span = document.createElement("span");
+                        var strong = document.createElement("strong");
+                        span.innerHTML = `${title}: `;
+                        strong.innerHTML = recipe.Recipe[property];
+                        span.append(strong);
+                        quickInfo.append(span);
+                    }
+                }
+            </script>
+        </div>
+
+        <article class="productView-description">
+            {{> components/recipes/description}}
+        </article>
+    </div>
+</div>
+
+<div id="previewModal" class="modal modal--large" data-reveal>
+    {{> components/common/modal/modal-close-btn }}
+    <div class="modal-content"></div>
+    <div class="loadingOverlay"></div>
+</div>
+

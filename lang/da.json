@@ -903,7 +903,8 @@
         "error": {
             "empty_field": "Søgefelt må ikke være tomt."
         },
-        "tabs_accesibility_hint": "Brug venstre og højre pile til at navigere mellem faner."
+        "tabs_accesibility_hint": "Brug venstre og højre pile til at navigere mellem faner.",
+        "tabs_accessibility_hint": "Brug venstre og højre pile til at navigere mellem faner."
     },
     "page_not_found": {
         "page_heading": "404-fejl - Side ikke fundet",

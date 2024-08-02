@@ -1,0 +1,74 @@
+---
+product:
+    videos:
+        limit: {{theme_settings.productpage_videos_count}}
+    reviews:
+        limit: {{theme_settings.productpage_reviews_count}}
+    related_products:
+        limit: {{theme_settings.productpage_related_products_count}}
+    similar_by_views:
+        limit: {{theme_settings.productpage_similar_by_views_count}}
+---
+{{inject 'productId' product.id}}
+
+{{#partial "page"}}
+
+{{> components/products/recipe-schema}}
+    <div id="recipe-page">
+        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+        {{#each product.shipping_messages}}
+            {{> components/common/alert/alert-info message}}
+        {{/each}}
+
+        <div>
+            {{> components/products/recipe-view schema=true  }}
+
+            {{{region name="product_below_content"}}}
+
+            {{#if product.videos.list.length}}
+                {{> components/products/videos product.videos}}
+            {{/if}}
+
+            {{#all settings.show_product_reviews theme_settings.show_product_reviews (if theme_settings.show_product_details_tabs '!==' true)}}
+                {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+            {{/all}}
+        </div>
+    </div>
+<script>
+    document.onreadystatechange = function(){
+        /**
+         * Creates a customized print preview page. Only the elements inside of
+         * .recipe-print-layer will be printed.
+         */
+        if(document.readyState === 'complete'){
+            let recipeImage;
+            let logoImage;
+            const recipeBody = document.getElementsByClassName('recipe-main')[0].innerHTML;
+            const recipeTitle = document.getElementsByClassName('productView-product')[0].innerHTML;
+
+            if (document.getElementById('recipe-thumbnail-image')) {
+                recipeImage = document.getElementById('recipe-thumbnail-image').innerHTML;
+            } else if (document.querySelectorAll('.slick-slide')){
+                // Get first image from the slideshow
+                recipeImage = `<img src="${document.querySelectorAll('#slick-slide00 img')[0].src}" />`;
+            }
+
+            logoImage = `<div style="display: flex;flex-direction: column-reverse;"><img style="float:left;margin-left:0;margin-bottom:20px;width: 300px;height:44px;max-width: 70%;" src="{{getImage settings.store_logo.image 'logo_size'}}"></div>`;
+           
+            const printLayer = document.createElement('div');
+            printLayer.className = 'recipe-print-layer';
+
+            const target = document.querySelector('.footer');
+            target.parentNode.insertBefore(printLayer, target);
+
+            document.getElementsByClassName('recipe-print-layer')[0].innerHTML = `${logoImage}${recipeImage}<div id="recipe-print-title">${recipeTitle}</div><div id="recipe-print-body">${recipeBody}</div>`;
+
+            const costPerSaving = document.getElementById('cost-per-saving').innerHTML;
+            const recipeDescription = document.querySelector('#recipe-print-title .productView-recipe-description').innerHTML;
+            document.querySelector('#recipe-print-title .productView-recipe-description').innerHTML = `${recipeDescription} ${costPerSaving}`;
+        }
+    }
+</script>
+{{/partial}}
+{{> layout/base}}

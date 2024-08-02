@@ -4,10 +4,14 @@ cart: true
 {{inject 'cancelButtonText' (lang 'common.cancel')}}
 {{#partial "page"}}
 {{inject 'invalidEntryMessage' (lang 'cart.invalid_entry_message')}}
+{{~inject 'subscriptionManagement' theme_settings.subscription_management}}
+{{~inject 'customerId' customer.id}}
+{{~inject 'customerEmail' customer.email}}
+{{~inject 'cartId' cart_id}}
 <div class="page">
 
-    <div class="page-content" data-cart>
-        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+    <main class="page-content cart-content" data-cart>
+        {{!-- {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}} --}}
 
         {{> components/cart/page-title}}
 
@@ -26,24 +30,26 @@ cart: true
                 {{> components/cart/totals}}
             </div>
 
+            {{!-- TST-426 --}}
+            {{> components/cart/ts-affiliation}}
+
+            {{> components/cart/marketplace-popup}}
+
             {{{region name="cart_below_totals"}}}
 
             {{#or customer (unless settings.hide_price_from_guests)}}
                 {{#if cart.show_primary_checkout_button}}
                     <div class="cart-actions cart-content-padding-right">
-                        <a
-                            class="button button--primary"
-                            href="{{urls.checkout.single_address}}"
-                            title="{{lang 'cart.checkout.title'}}"
-                            data-primary-checkout-now-action
-                        >
-                            {{lang 'cart.checkout.button'}}
-                        </a>
+                    {{!-- TST-427 Start --}}
+                    <a class="button button--primary" href="{{urls.checkout.single_address}}" title="{{lang 'cart.checkout.title'}}" onclick="return false;" disabled>{{lang 'cart.checkout.button'}}</a>
+                    {{!-- TST-427 End --}}
+
                         {{#if cart.show_multiple_address_shipping}}
                             <a class="checkoutMultiple" href="{{urls.checkout.multiple_address}}">
                                 {{lang 'cart.preview.checkout_multiple'}}
                             </a>
                         {{/if}}
+					{{> components/cart/shop-more}}
                     </div>
                 {{else}}
                     <div class="cart-actions cart-content-padding-right">
@@ -52,8 +58,10 @@ cart: true
                 {{/if}}
 
                 {{#if cart.additional_checkout_buttons}}
-                    <div data-cart-additional-checkout-buttons class="cart-additionalCheckoutButtons cart-content-padding-right">
-                        {{> components/cart/additional-checkout-buttons}}
+                <div class="cart-additionalCheckoutButtons cart-content-padding-right">
+                    {{#each cart.additional_checkout_buttons}}
+                        {{{this}}}
+                    {{/each}}
                     </div>
                 {{/if}}
             {{else}}
@@ -65,8 +73,20 @@ cart: true
         {{else}}
             <h3 tabindex="0">{{lang 'cart.checkout.empty_cart'}}</h3>
         {{/if}}
+        {{!-- TST-264 Check user last login date API --}}
+        <input type="hidden" class="customer-email" value="{{customer.email}}" />
 
-    </div>
+        {{> components/cart/modals/find-affiliate}}
+    </main>
 </div>
+
+<style>
+    .partybar {
+        display: none;
+    }
+    #mobile_partybar .partybar {
+        display: block !important;
+    }
+</style>
 {{/partial}}
-{{> layout/base}}
+{{> layout/base-cart}}
