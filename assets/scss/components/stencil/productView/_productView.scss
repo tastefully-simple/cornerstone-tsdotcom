@@ -40,21 +40,26 @@
 }
 
 .productView-img-container {
-
+    position: relative;
     @include lazy-loaded-padding("product_size");
     margin: auto;
-    max-width: get-width(stencilString("product_size"));
+    max-width: get-width(stencilString('product_size'));
     position: relative;
     width: 100%;
 
     img {
         @include lazy-loaded-img;
+        max-height: 100%;
+        width: 100%;
+        object-fit: contain;
         /* Object-fit polyfill */
         font-family: "object-fit: contain;";
         height: 100%;
         object-fit: contain;
         width: 100%;
     }
+
+    @include lazy-loaded-padding('product_size');
 }
 
 .productView-thumbnails {
@@ -90,7 +95,10 @@
         /* Object-fit polyfill */
         font-family: "object-fit: contain;";
         margin: 0;
+	width: get-width(stencilString('productview_thumb_size'));
         object-fit: contain;
+        /* Object-fit polyfill */
+        font-family: 'object-fit: contain;';
         position: relative;
         width: get-width(stencilString("productview_thumb_size"));
     }
@@ -98,7 +106,8 @@
 
 .productView-thumbnail {
     @include grid-column(3);
-    padding: spacing("quarter");
+    padding-left: spacing("quarter");
+    padding-right: spacing("quarter");
     text-align: center;
 
     @include breakpoint("large") {
@@ -109,13 +118,15 @@
 .productView-thumbnail-link {
     border: container("border");
     box-sizing: content-box;
-    display: flex;
+    display: inline-flex;
     height: 67px;
     justify-content: center;
     max-width: 75px;
     padding: 2px;
     position: relative;
     width: 100%;
+    box-sizing: content-box;
+    justify-content: center;
 
     &:hover,
     &.is-active {
@@ -125,6 +136,10 @@
 
 
 // Details
+// -----------------------------------------------------------------------------
+//
+// 1. for Androind Chrome and IE with zoom horizontal scroll fix
+//
 // -----------------------------------------------------------------------------
 
 .productView-details {
@@ -172,6 +187,7 @@
     a {
         color: $productView-brand-link-color;
 
+	// scss-lint:disable NestingDepth
         &:hover {
             color: $productView-brand-link-color--hover;
         }
@@ -207,6 +223,7 @@
     margin-left: spacing("quarter");
     vertical-align: middle;
 
+    // scss-lint:disable NestingDepth
     &:hover {
         color: stencilColor("color-textSecondary--hover");
     }
@@ -310,11 +327,9 @@
         font-size: 0; // 2
         margin-bottom: 2rem;
 
-        &--error > .form-inlineMessage {
-            font-size: 1rem;
-        }
-
-        > .form-checkbox + .form-label {
+        // scss-lint:disable SelectorDepth, NestingDepth
+        > .form-checkbox + .form-label
+        {
             display: inline-block;
             margin-left: spacing("single");
             width: auto;
@@ -342,13 +357,15 @@
         width: 100%;
 
         @include breakpoint("small") {
+            float: left;
             padding: 0 remCalc(10);
             width: 50%;
         }
 
         @include breakpoint("medium") {
-            padding-right: spacing("half");
-            width: 50%;
+            float: none;
+            padding: 0;
+            width: auto;
         }
 
         @include breakpoint("large") {
