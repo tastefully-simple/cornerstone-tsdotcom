@@ -65,6 +65,7 @@
     }
     .cart-actions {
         .button {
+            padding-bottom:20px;
             text-transform:lowercase;
             &.button--tertiary {
                 background-color: $white;
@@ -74,6 +75,14 @@
             outline: none !important;
         }
     }
+}
+
+.cart-actions .button.button--primary,
+.cart-actions
+.productView
+  .cart-actions
+  .add-to-cart {
+  margin-top: 2rem;
 }
 
 @media only screen and (min-width:801px) {

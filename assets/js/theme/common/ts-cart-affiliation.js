@@ -13,18 +13,19 @@ export default class TSCartAffiliation {
     }
 
     renderTemplate() {
-        const $wrapper = $('#ts-cart-affiliation .ts-cart-affiliation-wrapper');
-        $wrapper.attr('tabindex', '0');
+        
+        //const $wrapper = $('#ts-cart-affiliation .ts-cart-affiliation-wrapper');
+        //$wrapper.attr('tabindex', '0');
 
-        if (TSCookie.getConsultantId()) {
-            this.template('cart/ts-selected-affiliation')
-                .then(template => {
-                    $wrapper.append(template);
-                    this.renderSelectedAffiliation();
-                });
-        } else {
-            this.applyAffiliationOptionsTemplates($wrapper);
-        }
+        //if (TSCookie.getConsultantId()) {
+        //    this.template('cart/ts-selected-affiliation')
+        //        .then(template => {
+        //            $wrapper.append(template);
+        //            this.renderSelectedAffiliation();
+        //        });
+        //} else {
+        //    this.applyAffiliationOptionsTemplates($wrapper);
+        //}
     }
 
     template(templatePath) {

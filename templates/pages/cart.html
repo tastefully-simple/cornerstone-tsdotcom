@@ -10,7 +10,7 @@ cart: true
 {{~inject 'cartId' cart_id}}
 <div class="page">
 
-    <main class="page-content cart-content" data-cart>
+    <div class="page-content cart-content" data-cart>
         {{!-- {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}} --}}
 
         {{> components/cart/page-title}}
@@ -30,26 +30,31 @@ cart: true
                 {{> components/cart/totals}}
             </div>
 
-            {{!-- TST-426 --}}
-            {{> components/cart/ts-affiliation}}
-
-            {{> components/cart/marketplace-popup}}
-
             {{{region name="cart_below_totals"}}}
 
             {{#or customer (unless settings.hide_price_from_guests)}}
                 {{#if cart.show_primary_checkout_button}}
                     <div class="cart-actions cart-content-padding-right">
-                    {{!-- TST-427 Start --}}
-                    <a class="button button--primary" href="{{urls.checkout.single_address}}" title="{{lang 'cart.checkout.title'}}" onclick="return false;" disabled>{{lang 'cart.checkout.button'}}</a>
-                    {{!-- TST-427 End --}}
-
+                        <a
+                            class="button button--primary"
+                            href="{{urls.checkout.single_address}}"
+                            title="{{lang 'cart.checkout.title'}}"
+                            data-primary-checkout-now-action
+                        >
+                            {{lang 'cart.checkout.button'}}
+                        </a>
+						<a 
+                                class="button button--secondary shopMore"
+                                href="{{urls.home}}"
+                                title="{{lang 'cart.continue_shopping'}}"
+                        >
+                        {{lang 'cart.continue_shopping'}}
+                        </a>
                         {{#if cart.show_multiple_address_shipping}}
                             <a class="checkoutMultiple" href="{{urls.checkout.multiple_address}}">
                                 {{lang 'cart.preview.checkout_multiple'}}
                             </a>
                         {{/if}}
-					{{> components/cart/shop-more}}
                     </div>
                 {{else}}
                     <div class="cart-actions cart-content-padding-right">
@@ -58,14 +63,12 @@ cart: true
                 {{/if}}
 
                 {{#if cart.additional_checkout_buttons}}
-                <div class="cart-additionalCheckoutButtons cart-content-padding-right">
-                    {{#each cart.additional_checkout_buttons}}
-                        {{{this}}}
-                    {{/each}}
+                    <div data-cart-additional-checkout-buttons class="cart-additionalCheckoutButtons cart-content-padding-right">
+                        {{> components/cart/additional-checkout-buttons}}
                     </div>
                 {{/if}}
             {{else}}
-                <div class="cart-actions cart-content-padding-right">
+                <div class="cart-actions cart-content-padding-right">dfgdfg
                     <a class="button" href="{{urls.auth.login}}" title="{{lang 'cart.login_to_checkout'}}">{{lang 'cart.login_to_checkout'}}</a>
                 </div>
             {{/or}}
@@ -76,8 +79,7 @@ cart: true
         {{!-- TST-264 Check user last login date API --}}
         <input type="hidden" class="customer-email" value="{{customer.email}}" />
 
-        {{> components/cart/modals/find-affiliate}}
-    </main>
+    </div>
 </div>
 
 <style>
