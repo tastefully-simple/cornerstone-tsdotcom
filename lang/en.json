@@ -38,27 +38,21 @@
     },
     "cart": {
         "nav_aria_label": "Cart with 0 items",
-        "continue_shopping": "Click here to continue shopping",
-        "shop_more": {
-         "button": "Continue Shopping",
-         "title": "Click here to continue shopping"
-        },
+        "continue_shopping": "Continue shopping",
         "login_to_checkout": "Login to proceed to checkout",
-	"title": "Click here to continue shopping",
         "items": "{NUM, plural, =0{(0 items)} one {(# item)} other {(# items)}}",
         "checkout": {
             "address": {
                 "multiple": "check out with multiple addresses",
                 "or": "or"
             },
-            "button": "Select Option Above To Checkout",
+            "button": "Check out",
             "empty_cart": "Your cart is empty",
             "title": "Click here to proceed to checkout",
             "item": "Item",
             "price": "Price",
             "quantity": "Quantity",
             "total": "Total",
-            "change": "Change",
             "subtotal": "Subtotal",
             "enter_code": "Coupon code / Gift certificate",
             "gift_wrapping": "Gift wrapping",
