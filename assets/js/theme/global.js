@@ -57,15 +57,15 @@ export default class Global extends PageManager {
         newsletterAlert();
         stickyHeader();
         tsCookieConfig(themeSettings);
-        findConsultant(themeSettings);
+        //findConsultant(themeSettings);
         findParty(themeSettings);
         tooltip();
         tsCheckUserLogin();
         tsAddToCart();
         tsJoinProcess(themeSettings);
-        tsPartyDetails();
-        tsPartySummary();
-        tsConsultant();
+        //tsPartyDetails();
+        //tsPartySummary();
+        //tsConsultant();
         tsSeoProcess();
 
         // Open mobile account menu by default
