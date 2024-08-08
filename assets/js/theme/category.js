@@ -1,8 +1,9 @@
-import { hooks } from '@bigcommerce/stencil-utils';
+import { api, hooks } from '@bigcommerce/stencil-utils';
 import CatalogPage from './catalog';
 import compareProducts from './global/compare-products';
 import FacetedSearch from './common/faceted-search';
 import { createTranslationDictionary } from '../theme/common/utils/translations-utils';
+import urlUtils from './common/utils/url-utils';
 
 export default class Category extends CatalogPage {
     constructor(context) {
@@ -10,58 +11,66 @@ export default class Category extends CatalogPage {
         this.validationDictionary = createTranslationDictionary(context);
     }
 
-    setLiveRegionAttributes($element, roleType, ariaLiveStatus) {
-        $element.attr({
-            role: roleType,
-            'aria-live': ariaLiveStatus,
-        });
-    }
-
-    makeShopByPriceFilterAccessible() {
-        if (!$('[data-shop-by-price]').length) return;
-
-        if ($('.navList-action').hasClass('is-active')) {
-            $('a.navList-action.is-active').trigger('focus');
-        }
-
-        $('a.navList-action').on('click', () => this.setLiveRegionAttributes($('span.price-filter-message'), 'status', 'assertive'));
-    }
-
     onReady() {
-        this.arrangeFocusOnSortBy();
+        const self = this;
+        $('[data-button-type="add-cart"]').on('click', (e) => {
+            $(e.currentTarget).next().attr({
+                role: 'status',
+                'aria-live': 'polite',
+            });
+        });
 
-        $('[data-button-type="add-cart"]').on('click', (e) => this.setLiveRegionAttributes($(e.currentTarget).next(), 'status', 'polite'));
+        // Load all filters and hide the "show more" links
+        $('#facetedSearch ul[data-has-more-results="true"]').each((index, element) => {
+            const facet = $(element).attr('data-facet');
+            self.getMoreFacetResults(facet, element);
+        });
 
-        this.makeShopByPriceFilterAccessible();
+        compareProducts(this.context.urls);
 
-        compareProducts(this.context);
-
-        this.initFacetedSearch();
-
-        if (!$('#facetedSearch').length) {
+        if ($('#facetedSearch').length > 0) {
+            this.initFacetedSearch();
+        } else {
             this.onSortBySubmit = this.onSortBySubmit.bind(this);
             hooks.on('sortBy-submitted', this.onSortBySubmit);
-
-            // Refresh range view when shop-by-price enabled
-            const urlParams = new URLSearchParams(window.location.search);
-
-            if (urlParams.has('search_query')) {
-                $('.reset-filters').show();
-            }
-
-            $('input[name="price_min"]').attr('value', urlParams.get('price_min'));
-            $('input[name="price_max"]').attr('value', urlParams.get('price_max'));
         }
 
-        $('a.reset-btn').on('click', () => this.setLiveRegionsAttributes($('span.reset-message'), 'status', 'polite'));
+        $('a.reset-btn').on('click', () => {
+            $('span.reset-message').attr({
+                role: 'status',
+                'aria-live': 'polite',
+            });
+        });
 
         this.ariaNotifyNoProducts();
+    }
+
+    getMoreFacetResults(facet, ulResult) {
+        let facetUrl = urlUtils.getUrl();
+        if (facetUrl === '/recipes/') {
+            const recipesPerPage = this.context.themeSettings.recipespage_products_per_page;
+            facetUrl = `/recipes/?limit=${recipesPerPage}`;
+        }
+
+        api.getPage(facetUrl, {
+            template: 'category/show-more-auto',
+            params: {
+                list_all: facet,
+            },
+        }, (err, response) => {
+            if (err) {
+                throw new Error(err);
+            }
+            $(ulResult).html(response);
+        });
+
+        return true;
     }
 
     ariaNotifyNoProducts() {
         const $noProductsMessage = $('[data-no-products-notification]');
         if ($noProductsMessage.length) {
-            $noProductsMessage.trigger('focus');
+            $noProductsMessage.focus();
         }
     }
 
@@ -75,17 +84,70 @@ export default class Category extends CatalogPage {
         } = this.validationDictionary;
         const $productListingContainer = $('#product-listing-container');
         const $facetedSearchContainer = $('#faceted-search-container');
-        const productsPerPage = this.context.categoryProductsPerPage;
+
+        /**
+         * Choose the FacetedSearch results template and amount of products per page
+         * according to the category URL
+         */
+        let productsPerPage;
+        let productListingComponent;
+
+        const pathName = window.location.pathname;
+
+        if (pathName.search('/recipes/') !== -1) {
+            // eslint-disable-next-line radix
+            productsPerPage = parseInt(this.context.themeSettings.recipespage_products_per_page);
+            productListingComponent = 'recipes/product-listing';
+
+            const countTotalRecipes = $('.productGrid li').length;
+
+            if (countTotalRecipes > productsPerPage) {
+                /**
+                 * Remove last recipe card when no limit is set in the query string
+                 */
+                $('.productGrid li:last-child').remove();
+            }
+
+            const urlParams = new URLSearchParams(window.location.search);
+            // eslint-disable-next-line radix
+            const currentRecipeLimit = urlParams.get('limit') ? parseInt(urlParams.get('limit')) : false;
+
+            // If no limit is set on the current URL, add it to all:
+            if (currentRecipeLimit !== productsPerPage) {
+                // 1. Pagination Links
+                $('ul.pagination-list li').each((index, element) => {
+                    $(element).children('a')[0].href += `&limit=${productsPerPage}`;
+                });
+
+                $('#faceted-search-container .sidebarBlock ul.navList').each((indexNavlist, navlist) => {
+                    let itemUrl;
+                    $(navlist).children('li').each((index, element) => {
+                        itemUrl = $(element).children('a')[0].href;
+
+                        if (itemUrl.indexOf('?') === -1) {
+                            $(element).children('a')[0].href += `?limit=${productsPerPage}`;
+                        } else {
+                            $(element).children('a')[0].href += `&limit=${productsPerPage}`;
+                        }
+                    });
+                });
+            }
+        } else {
+            productsPerPage = this.context.categoryProductsPerPage;
+            productListingComponent = 'category/product-listing';
+        }
+
         const requestOptions = {
             config: {
                 category: {
+                    shop_by_price: true,
                     products: {
                         limit: productsPerPage,
                     },
                 },
             },
             template: {
-                productListing: 'category/product-listing',
+                productListing: productListingComponent,
                 sidebar: 'category/sidebar',
             },
             showMore: 'category/show-more',
