@@ -19,6 +19,7 @@
     padding: $facetedSearch-toggle-padding;
 
     @include breakpoint("medium") {
+        // scss-lint:disable ImportantRule
         display: none !important; // 1
     }
 
@@ -59,12 +60,14 @@
     display: none;
 
     @include breakpoint("medium") {
+        // scss-lint:disable ImportantRule
         display: block !important; // 1
     }
 
     &.is-open {
         display: block;
 
+        // scss-lint:disable SelectorDepth, NestingDepth
         .accordion--navList,
         .accordion-block:first-child .accordion-navigation {
             border-top-left-radius: 0;
@@ -109,8 +112,6 @@
 //
 // -----------------------------------------------------------------------------
 .facetedSearch-refineFilters {
-    display: none;
-
     @include breakpoint("medium") {
         display: block; // 1
     }
@@ -123,6 +124,58 @@
     }
 }
 
-.reset-filters {
+#facetedSearch {
+    .accordion-content {
+        a.toggleLink {
+            display: none;
+        }
+    }
+
+    .navList {
+        height: 180px;
+        display: block;
+    }
+    .accordion-content {
+        overflow-y: scroll;
+    }
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: $white;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: $aluminum;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+}
+
+#recipes-search-results-count, #recipes-search-results-count a, #products-search-results-count, #products-search-results-count a {
+    font-size: 20px;
+}
+
+#search-results-content-count:first-letter, #search-results-product-count:first-letter {
+    text-transform: uppercase !important;
+}
+
+#recipe_search_message {
+    margin-top: 1em;
+    font-family: arial, helvetica, sans-serif;
+    text-align: center;
+    font-size: 22px;
     display: none;
+    a {
+        font-size: 22px;
+    }
+}
+
+.recipe-search-results-heading .page-heading {
+    margin-bottom: 0;
 }

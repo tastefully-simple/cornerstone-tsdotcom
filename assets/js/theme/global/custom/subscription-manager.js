@@ -302,8 +302,8 @@ function getAutoshipProducts(subscriptionManagement) {
 }
 
 function isSubscriptionProduct(productId) {
-    console.log("isSubscriptionProduct");
-    console.log(productId);
+    //console.log("isSubscriptionProduct");
+    //console.log(productId);
     let x = {"subscriptionGroups":[{"selection_options":[{"platform_entity_id":"119"},{"platform_entity_id":"172"},{"platform_entity_id":"338"},{"platform_entity_id":"113"},{"platform_entity_id":"117"},{"platform_entity_id":"118"},{"platform_entity_id":"335"},{"platform_entity_id":"121"},{"platform_entity_id":"363"},{"platform_entity_id":"283"},{"platform_entity_id":"287"},{"platform_entity_id":"296"}]}]}
     //console.log(x)
     //console.log(x.subscriptionGroups[0].selection_options)
