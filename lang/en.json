@@ -50,6 +50,7 @@
                 "multiple": "check out with multiple addresses",
                 "or": "or"
             },
+            "change":"Change",
             "button": "Check out",
             "empty_cart": "Your cart is empty",
             "title": "Click here to proceed to checkout",
@@ -281,6 +282,9 @@
             "continue": "Continue Shopping"
         },
         "recaptcha_title": "Google recaptcha"
+    },
+    "forgot_password":{
+        "recaptcha_title": ""
     },
     "login": {
         "heading": "Sign in",
@@ -944,6 +948,7 @@
             "input_placeholder": "Search the store"
         },
         "results": {
+            "content_count": "Count",
             "form_label": "Search Keyword:",
             "form_button_text": "Search",
             "count": "{ count, plural, one {result} other {results} } for { search_query }",
