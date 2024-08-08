@@ -2207,20 +2207,6 @@
     "uk": "Кнопки оплати",
     "zh": "支付按钮"
   },
-  "i18n.ShowPayPalTagline": {
-    "default": "Show PayPal tagline",
-    "fr": "Afficher le slogan de PayPal",
-    "it": "Mostra tagline PayPal",
-    "uk": "Показати лінію оплати PayPal",
-    "zh": "展示 PayPal标签行"
-  },
-  "i18n.ShowFundingIcons": {
-    "default": "Show funding icons",
-    "fr": "Afficher les icônes de financement",
-    "it": "Mostra icone finanziamento",
-    "uk": "Показати піктограми фінансування",
-    "zh": "展示资金图标"
-  },
   "i18n.ButtonColor": {
     "default": "Button color",
     "fr": "Couleur du bouton",
