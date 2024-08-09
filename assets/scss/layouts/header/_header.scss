@@ -17,6 +17,8 @@
 //
 // -----------------------------------------------------------------------------
 
+@import "../../_tasteful-theme";
+
 .skip-to-main-link {
     background: $header-bg;
     color: $color-textBase;
@@ -35,7 +37,7 @@
 
 .header {
     background-color: $header-bg;
-    border-bottom: container("border");
+    //border-bottom: container("border");
     height: $header-height;
     position: fixed;
     top: 0;
@@ -43,7 +45,7 @@
     z-index: zIndex("higher");
 
     @include breakpoint("medium") {
-        border-bottom: container("border");
+        //border-bottom: container("border");
         display: flex;
         flex-direction: column;
         height: auto;
@@ -99,6 +101,7 @@
         width: 70%;
         z-index: zIndex("low");
 
+        // scss-lint:disable NestingDepth
         @include breakpoint("medium") {
             background: none;
             border-bottom: 0;
@@ -227,7 +230,7 @@
     .mobileMenu-toggleIcon,
     .mobileMenu-toggleIcon::before,
     .mobileMenu-toggleIcon::after {
-        background: $header-font-color;
+        background: #137f87;
         content: "";
         display: block;
         height: 2px;
@@ -254,6 +257,7 @@
         background-color: transparent;
         transition-delay: 100ms;
 
+        // scss-lint:disable NestingDepth
         &::before,
         &::after {
             background-color: $header-font-color;
@@ -274,3 +278,23 @@
 
     }
 }
+
+//
+// Recipes Header
+// -----------------------------------------------------------------------------
+
+.page-heading-recipes {
+    display: none !important;
+}
+
+//
+// Go Aff Pro Header
+// -----------------------------------------------------------------------------
+
+#gfp_shopper_toolbar {
+    background-color: $burgundy;
+    text-align: center;
+    color: $white;
+    padding: 0;
+}
+
