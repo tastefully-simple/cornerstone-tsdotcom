@@ -292,9 +292,9 @@
 // -----------------------------------------------------------------------------
 
 #gfp_shopper_toolbar {
-    background-color: $burgundy;
+    background-color: $burgundy !important;
     text-align: center;
-    color: $white;
+    color: $white !important;
     padding: 0;
 }
 
