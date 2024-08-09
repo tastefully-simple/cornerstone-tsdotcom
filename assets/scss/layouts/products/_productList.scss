@@ -11,6 +11,7 @@
     margin: spacing("half");
 
     .product {
+        // scss-lint:disable NestingDepth
         + .product {
             margin-top: spacing("base") * 4;
         }
@@ -22,13 +23,6 @@
 // -----------------------------------------------------------------------------
 
 .listItem {
-
-    @include breakpoint("small") {
-        @include grid-row($behavior: "nest");
-        display: table;
-        width: 100%;
-    }
-
     &:focus-within {
         .listItem-figureBody {
             @include breakpoint("large") {
@@ -43,6 +37,12 @@
                 opacity: 1;
             }
         }
+    }
+
+    @include breakpoint("small") {
+        @include grid-row($behavior: "nest");
+        display: table;
+        width: 100%;
     }
 }
 
@@ -232,6 +232,7 @@
         @include breakpoint("large") {
             width: 100%;
 
+            // scss-lint:disable NestingDepth
             + .button {
                 margin: spacing("half") 0 0;
             }
@@ -245,6 +246,8 @@
 
 .page-sidebar + .page-content {
     .productList {
+
+        // scss-lint:disable SelectorDepth, NestingDepth
         .listItem-details {
 
             @include breakpoint("large") {
