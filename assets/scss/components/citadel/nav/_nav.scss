@@ -112,6 +112,7 @@
             display: inline-block;
         }
 
+        // scss-lint:disable SelectorDepth, NestingDepth
         &.is-active {
             @include breakpoint("medium") {
                 border-bottom: 1px solid stencilColor("color-textBase");
@@ -124,7 +125,7 @@
 
         &.navBar-item--separate {
             @include breakpoint("medium") {
-                border-left: 1px solid stencilColor("color-textSecondary");
+                //border-left: 1px solid stencilColor("color-textSecondary");
                 margin: 0;
                 padding-left: spacing("half");
             }
@@ -136,6 +137,7 @@
         font-size: fontSize("base");
         padding: 0;
 
+        // scss-lint:disable NestingDepth
         &:hover {
             color: stencilColor("color-textSecondary--hover");
         }
