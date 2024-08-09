@@ -40,12 +40,15 @@
 // 1. When the sidebar is visible, reduce products to 3 across.
 //
 // -----------------------------------------------------------------------------
+$smallgrid: grid-calc(4, $total-columns);
+$product-card-margin: stencilString('categorypage_product_card_margin');
 
 .page-sidebar + .page-content {
     .productGrid {
+        // scss-lint:disable SelectorDepth, NestingDepth
         .product { // 1
             @include breakpoint("small") {
-                width: grid-calc(4, $total-columns);
+                width: calc(#{$smallgrid} - #{$product-card-margin} * 2);
             }
         }
     }
@@ -96,6 +99,7 @@
 
 .productGrid--maxCol6 {
     .no-csscolumns & {
+        // scss-lint:disable SelectorDepth, NestingDepth
         .product {
             @include breakpoint("medium") {
                 width: grid-calc(2, $total-columns);
@@ -112,6 +116,7 @@
 
 .productGrid--maxCol3 {
     .no-csscolumns & {
+        // scss-lint:disable SelectorDepth, NestingDepth
         .product {
             @include breakpoint("medium") {
                 width: grid-calc(4, $total-columns);
@@ -125,9 +130,58 @@
 
             float: none;
 
+            // scss-lint:disable SelectorDepth, NestingDepth
             .product {
                 @include grid-column(4, $float: none);
             }
         }
+    }
+}
+//
+// Make the cards have the same height even if their content is different
+// * Recipes category template only
+// -----------------------------------------------------------------------------
+.recipes-page-content {
+    padding-top: 50px;
+    .flex-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: left;
+        .product {
+            padding-top: 0.75em;
+            margin-right: stencilString('categorypage_product_card_margin') !important;
+            margin-left: stencilString('categorypage_product_card_margin') !important;
+        }
+    }
+
+    .flex-list-item {
+        display: flex;
+        padding: 0em;
+        width: 100%;
+    }
+}
+
+.category-page-content {
+    padding-top: 50px;
+    .flex-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: left;
+        .product {
+            padding-top: 0.75em;
+            @media only screen and (max-width: 800px) {
+                width: 44%;
+                .add-to-cart-btn {
+                    top: 45px;
+                    font-size: 13px;
+                }
+            }
+        }
+    }
+
+    .flex-list-item {
+        display: flex;
+        padding: 0em;
+        width: 100%;
     }
 }

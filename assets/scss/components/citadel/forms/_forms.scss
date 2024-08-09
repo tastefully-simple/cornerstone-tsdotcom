@@ -30,7 +30,9 @@
     }
 
     .form-inlineMessage {
-        &::before {
+
+        // scss-lint:disable NestingDepth
+        &:before {
             background: $form-error-icon no-repeat;
             background-size: $form-inlineMessage-backgroundSize;
             content: "";
@@ -71,6 +73,8 @@
 .form-checkbox,
 .form-radio {
     + .form-label {
+
+        // scss-lint:disable NestingDepth
         &:last-child {
             display: block;
             margin-bottom: $form-checkRadio-label-last-marginBottom;
@@ -120,6 +124,7 @@
             width: auto;
         }
 
+        // scss-lint:disable NestingDepth
         + .button,
         + input,
         + a {
@@ -129,6 +134,7 @@
                 margin: 0 0 0 spacing("half");
             }
         }
+        // scss-lint:enable NestingDepth
     }
 }
 
@@ -140,9 +146,9 @@
 //
 // -----------------------------------------------------------------------------
 @mixin placeholder {
-    &::-webkit-input-placeholder {@content; }
-    &::-moz-placeholder {@content; }
-    &:-ms-input-placeholder {@content; }
+    &::-webkit-input-placeholder {@content}
+    &::-moz-placeholder          {@content}
+    &:-ms-input-placeholder      {@content}
 }
 
 .form-label--alternate {
@@ -400,11 +406,12 @@
         overflow: hidden;
         position: relative;
 
+        // scss-lint:disable NestingDepth
         &.unavailable {
             background-color: $productOptions-disable-background-color;
             opacity: $productOptions-disable-opacity;
 
-            &::before {
+            &:before {
                 background-color: $productOptions-strikethrough-color;
                 content: "";
                 height: 2px;

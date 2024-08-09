@@ -9,7 +9,9 @@
 
 .panel--large {
     .panel-body {
-        margin-bottom: spacing("single") + spacing("third");
-        padding: spacing("single") + spacing("third");
+        margin-bottom: 0;
+        padding: 1rem;
+        border-radius: 3px;
     }
+    
 }
