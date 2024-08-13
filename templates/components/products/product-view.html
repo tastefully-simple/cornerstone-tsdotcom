@@ -48,7 +48,7 @@
                 {{!-- Remove the surrounding a-element if there is no main image. --}}
                 {{#if product.main_image}}
                     <a href="{{getImageSrcset product.main_image (cdn theme_settings.default_image_product) 1x=theme_settings.zoom_size}}"
-                        target="_blank">
+                        target="_blank"{{#if schema}} itemprop="image"{{/if}}>
                 {{/if}}
                 {{> components/common/responsive-img
                     image=product.main_image
@@ -70,7 +70,7 @@
                 "dots": false,
                 "accessibility": false,
                 "slidesToShow": 5,
-                "slidesToScroll": 5
+                "slidesToScroll": 1
             }'{{/gt}}>
             {{#each product.images}}
                 <li class="productView-thumbnail">
@@ -95,7 +95,7 @@
 
     <section class="productView-details product-data">
         <div class="productView-product">
-            <h1 class="productView-title">{{product.title}}</h1>
+            <h1 class="productView-title">{{product.title}} (not-nc-template)</h1>
             {{#if product.brand}}
                 <h2 class="productView-brand">
                     <a href="{{product.brand.url}}"><span>{{product.brand.name}}</span></a>
@@ -252,7 +252,7 @@
                 {{> components/products/add-to-cart with_wallet_buttons=true}}
                 {{#if product.out_of_stock}}
                     {{#if product.out_of_stock_message}}
-                        {{> components/common/alert/alert-error product.out_of_stock_message}}
+                        {{> components/common/product-alert-error product.out_of_stock_message}}
                     {{else}}
                         {{> components/common/alert/alert-error (lang 'products.sold_out')}}
                     {{/if}}
@@ -262,10 +262,12 @@
                 {{> components/common/wishlist-dropdown}}
             {{/if}}
         </div>
-        {{> components/common/share url=product.url}}
+        {{#unless is_ajax}}
+            {{> components/common/share}}
+        {{/unless}}
     </section>
 
-    <article class="productView-description">
+    <article class="productView-description"{{#if schema}} itemprop="description"{{/if}}>
         {{#if theme_settings.show_product_details_tabs}}
             {{> components/products/description-tabs}}
         {{else}}
@@ -279,3 +281,19 @@
     <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-header-title"></div>
     <div class="loadingOverlay"></div>
 </div>
+
+<style>
+    @media print {
+        .sharethis_toolbox, .productView-rating, .productView, #main-content {
+            display: revert !important;
+        }
+
+        #product_tabs_footer, .sharethis_toolbox, .form-wishlist, .slick-list, #product-reviews, iframe, #add-to-cart-wrapper, .alertBox {
+            display: none !important;
+        }
+
+        .body {
+            margin-top: 0 !important;
+        }
+    }
+</style>

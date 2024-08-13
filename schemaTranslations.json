@@ -1218,21 +1218,16 @@
   "i18n.PurchaseOptions": {
     "default": "Purchase options",
     "fr": "Options d'achat",
-    "it": "Opzioni di acquisto",
-    "zh": "购买选项",
-    "de": "Kaufoptionen",
-    "es": "Opciones de compra",
-    "nl": "Aankoopopties",
-    "pt": "Opções de compra",
-    "pt-BR": "Opções de compra",
-    "sv": "Köpalternativ",
-    "es-MX": "Opciones de compra",
-    "es-419": "Opciones de compra",
-    "da": "Købsmuligheder",
-    "no": "Kjøpsalternativer",
-    "ko": "구매 옵션",
-    "pl": "Opcje zakupu",
-    "ja": "購入オプション"
+    "it": "Opzioni per l'acquisto",
+    "uk": "Варіанти придбання",
+    "zh": "购买选项"
+  },
+  "i18n.HidePurchaseOptionsPriceAnd": {
+    "default": "Hide purchase options (price and add to cart button) for customers who aren't logged in",
+    "fr": "Masquer les options d’achat (prix et ajouter au bouton panier) pour les clients qui ne sont pas connectés",
+    "it": "Nascondi opzioni d'acquisto (prezzo e bottone aggiungi all'carrello) per utenti non loggati",
+    "uk": "Сховати параметри покупки (ціна та кнопка додавання у кошик) для клієнтів, які не ввійшли в систему",
+    "zh": "当客户未登录时，隐藏购买选项（价格和添加购物车按钮）在"
   },
   "i18n.FormInputFields": {
     "default": "Form Input fields",
@@ -1352,20 +1347,14 @@
     "default": "Field border active",
     "fr": "Bordure du champ actif",
     "it": "Bordo campo attivo",
-    "zh": "字段边框活动中",
-    "de": "Feld-Rahmen aktiv",
-    "es": "Borde del campo activo",
-    "nl": "Veldrand actief",
-    "pt": "Borda de campo ativa",
-    "pt-BR": "Borda de campo ativa",
-    "sv": "Fältkant aktiv",
-    "es-MX": "Borde del campo activo",
-    "es-419": "Borde del campo activo",
-    "da": "Aktiv feltkant",
-    "no": "Feltkant aktiv",
-    "ko": "필드 테두리 활성화",
-    "pl": "Granica pola aktywna",
-    "ja": "フィールド枠活性化"
+    "uk": "Кордон поля активний",
+    "zh": "字段边框启用"
+  },
+  "i18n.AdminBar": {
+    "default": "Admin Bar"
+  },
+  "i18n.ShowAdminBar": {
+    "default": "Show persistent admin bar when viewing storefront from your control panel"
   },
   "i18n.HeaderAndFooter": {
     "default": "Header and footer",
@@ -1997,116 +1986,233 @@
   "i18n.FooterBackground": {
     "default": "Footer background",
     "fr": "Arrière-plan du pied de page",
-    "it": "Sfondo piè di pagina",
-    "zh": "页脚背景",
-    "de": "Hintergrund der Fußzeile",
-    "es": "Fondo del pie de página",
-    "nl": "Achtergrond voettekst",
-    "pt": "Plano de fundo do rodapé",
-    "pt-BR": "Plano de fundo do rodapé",
-    "sv": "Sidfotsbakgrund",
-    "es-MX": "Fondo del pie de página",
-    "es-419": "Fondo del pie de página",
-    "da": "Baggrund for sidefod",
-    "no": "Bunntekstbakgrunn",
-    "ko": "풋터 배경",
-    "pl": "Tło stopki",
-    "ja": "プッター背景"
+    "it": "Sfondo footer",
+    "uk": "Фон нижнього колонтитулу",
+    "zh": "页脚背景"
   },
   "i18n.DisplaySettings": {
     "default": "Display settings",
-    "fr": "Paramètres d'affichage",
-    "it": "Impostazioni di visualizzazione",
-    "zh": "显示设置",
-    "de": "Anzeigeeinstellungen",
-    "es": "Configuración de pantalla",
-    "nl": "Beeldscherminstellingen",
-    "pt": "Configurações de exibição",
-    "pt-BR": "Configurações de exibição",
-    "sv": "Skärminställningar",
-    "es-MX": "Configuración de la pantalla",
-    "es-419": "Configuración de la pantalla",
-    "da": "Visningsindstillinger",
-    "no": "Visningsinnstillinger",
-    "ko": "화면 설정",
-    "pl": "Ustawienia wyświetlacza",
-    "ja": "画面設定"
+    "fr": "Afficher les paramètres",
+    "it": "Impostazioni display",
+    "uk": "Налаштування дисплею",
+    "zh": "显示设置"
   },
   "i18n.ShowPoweredByBigCommerce": {
     "default": "Show \"Powered by BigCommerce\"",
-    "fr": "Afficher « Optimisé par BigCommerce »",
-    "it": "Mostra \"Con tecnologia BigCommerce\"",
-    "zh": "显示“由 BigCommerce 提供技术支持”",
-    "de": "„Powered by BigCommerce“ anzeigen",
-    "es": "Mostrar «Con la tecnología de BigCommerce»",
-    "nl": "'Mogelijk gemaakt door BigCommerce' weergeven",
-    "pt": "Exibir \"Com tecnologia BigCommerce\"",
-    "pt-BR": "Exibir \"Com tecnologia BigCommerce\"",
-    "sv": "Visa ”Drivs av BigCommerce”",
-    "es-MX": "Mostrar \"Desarrollado por BigCommerce\"",
-    "es-419": "Mostrar \"Desarrollado por BigCommerce\"",
-    "da": "Vis \"Leveret af BigCommerce\"",
-    "no": "Vis «Powered by BigCommerce»",
-    "ko": "\"Powered by BigCommerce\" 표시",
-    "pl": "Pokaż \"Powered by BigCommerce\"",
-    "ja": "\"PoweredbyBigCommerce\"表示"
+    "fr": "Afficher \"Powered by BigCommerce\"",
+    "it": "Mostra \"Powered by BigCommerce\"",
+    "uk": "Показати \"Працює на BigCommerce\"",
+    "zh": "显示\"Powered by BigCommerce\""
   },
   "i18n.ShowBrandsInFooter": {
     "default": "Show brands in footer",
-    "fr": "Afficher les marques en pied de page",
-    "it": "Mostra brand nel piè di pagina",
-    "zh": "在页脚显示品牌",
-    "de": "Marken in Fußzeile anzeigen",
-    "es": "Mostrar marcas en el pie de página",
-    "nl": "Merken in voettekst weergeven",
-    "pt": "Exibir marcas no rodapé",
-    "pt-BR": "Exibir marcas no rodapé",
-    "sv": "Visa varumärken i sidfoten",
-    "es-MX": "Mostrar marcas en el pie de página",
-    "es-419": "Mostrar marcas en el pie de página",
-    "da": "Vis mærker i sidefoden",
-    "no": "Vis merker i bunntekst",
-    "ko": "풋터에 브랜드 표시",
-    "pl": "Pokaż marki w stopce",
-    "ja": "プッターにブランド表示"
+    "fr": "Afficher les marques sur le pied de page",
+    "it": "Mostra brand nel footer",
+    "uk": "Показати марки в нижньому колонтитулі",
+    "zh": "在页脚显示品牌"
   },
   "i18n.ShowCurrentYearAnd": {
     "default": "Show \"&copy;\", current year and store name",
-    "fr": "Afficher « © », l'année actuelle et le nom de la boutique",
-    "it": "Mostra \"©\", anno corrente e nome del negozio",
-    "zh": "显示“©”、当前年份和商店名称",
-    "de": "„©“, aktuelles Jahr und Shopname anzeigen",
-    "es": "Mostrar «©», año actual y nombre de la tienda",
-    "nl": "'©', huidig jaar en naam store weergeven",
-    "pt": "Exibir \"©\", ano atual e nome da loja",
-    "pt-BR": "Exibir \"©\", ano atual e nome da loja",
-    "sv": "Visa ”©”, aktuellt år och butiksnamn",
-    "es-MX": "Mostrar \"©\", el año actual y el nombre de la tienda",
-    "es-419": "Mostrar \"©\", el año actual y el nombre de la tienda",
-    "da": "Vis \"©\", nuværende årstal og butiksnavn",
-    "no": "Vis «{0};», gjeldende år og butikkens navn",
-    "ko": "\"&copy;\", 현재 연도 및 스토어 이름 표시",
-    "pl": "Pokaż \"&copy;\", bieżący rok i nazwę sklepu",
-    "ja": "&copy;'、現在の年度及びストア名表示"
+    "fr": "Afficher \"&copy;\", l’année en cours et le nom de la boutique",
+    "it": "Mostra \"&copy;\", anno corrente e nome negozio",
+    "uk": "Показати \"&copy;\", рік та назву магазину",
+    "zh": "显示\"&copy;\", 当前年份和店铺名称"
   },
   "i18n.PaymentIcons": {
     "default": "Payment icons",
     "fr": "Icônes de paiement",
-    "it": "Icone di pagamento",
-    "zh": "付款图标",
-    "de": "Zahlungs-Symbole",
-    "es": "Iconos de pago",
-    "nl": "Betalingspictogrammen",
-    "pt": "Ícones de pagamento",
-    "pt-BR": "Ícones de pagamento",
-    "sv": "Betalningsikoner",
-    "es-MX": "Íconos de pago",
-    "es-419": "Íconos de pago",
-    "da": "Betalingsikoner",
-    "no": "Betalingsikoner",
-    "ko": "결제 아이콘",
-    "pl": "Ikony płatności",
-    "ja": "決済アイコン"
+    "it": "Icone pagamenti",
+    "uk": "Платіжні іконки",
+    "zh": "支付图标"
+  },
+    "i18n.ApplePayColor": {
+    "default": "Apple Pay color",
+    "fr": "Couleur d’Apple Pay",
+    "it": "Colore Apple Pay",
+    "uk": "Колір Apple Pay",
+    "zh": "Apple 支付颜色"
+  },
+    "i18n.GeoTrustSSL": {
+    "default": "GeoTrust SSL",
+    "fr": "SSL GeoTrust",
+    "it": "GeoTrust SSL",
+    "uk": "GeoTrust SSL",
+    "zh": "Geo信任SSL"
+  },
+  "i18n.GoogleTagmanager": {
+    "default": "Google Tag Manager Settings",
+    "fr": "Google Tag Manager Settings",
+    "it": "Google Tag Manager Settings",
+    "uk": "Google Tag Manager Settings",
+    "zh": "Google Tag Manager Settings"
+  },
+  "i18n.GoogleTagmanagerCode": {
+    "default": "Container Code",
+    "fr": "Container Code",
+    "it": "Container Code",
+    "uk": "Container Code",
+    "zh": "Container Code"
+  },
+  "i18n.GoogleTagmanagerStatus": {
+    "default": "Status",
+    "fr": "Status",
+    "it": "Status",
+    "uk": "Status",
+    "zh": "Status"
+  },
+  "i18n.GoogleTagmanagerStatusEnabled": {
+    "default": "Enabled",
+    "fr": "Enabled",
+    "it": "Enabled",
+    "uk": "Enabled",
+    "zh": "Enabled"
+  },
+  "i18n.GoogleTagmanagerStatusDisabled": {
+    "default": "Disabled",
+    "fr": "Disabled",
+    "it": "Disabled",
+    "uk": "Disabled",
+    "zh": "Disabled"
+  },
+  "i18n.IfYouvePurchasedAGeoTrust": {
+    "default": "If you've purchased a GeoTrust SSL from BigCommerce, check your BigCommerce Account Dashboard for the correct Common Name to use here.",
+    "fr": "Si vous avez acheté un SSL GeoTrust auprès de BigCommerce, consultez le tableau de bord de votre compte BigCommerce pour le nom commun correct à utiliser ici.",
+    "it": "Sei hai acquistato un SSL GeoTrust da BigCommerce, verifica sulla Dashboard del tuo Account BigCommerce il corretto Nome Comune da utilizzare qui.",
+    "uk": "Якщо ви придбали GeoTrust SSL у BigCommerce, перевірте на панелі керування облікового запису BigCommerce правильну загальну назву, яку тут можна використовувати.",
+    "zh": "如果您有在Bigcommerce中购买Geo信任SSL，检查您的Bigcommerce账户的控制面板，获得在这里使用的正确的公共名称。"
+  },
+  "i18n.SSLCommonName": {
+    "default": "SSL Common Name",
+    "fr": "Nom commun du SSL",
+    "it": "Nome Comune SSL",
+    "uk": "Загальна назва SSL",
+    "zh": "SSL公共名称"
+  },
+  "i18n.SealSize": {
+    "default": "Seal size",
+    "fr": "Taille du sceau",
+    "it": "Dimensioni sigillo",
+    "uk": "Розмір печатки",
+    "zh": "标志尺寸"
+  },
+  "i18n.ShowQuantitySelectionOnProduct": {
+    "default": "Show quantity selection on product pages",
+    "fr": "Afficher la sélection de quantité sur les pages de produits",
+    "it": "Mostra selezione quantità sulle pagine prodotto",
+    "uk": "Показати вибір кількості на сторінках товарів",
+    "zh": "在产品页面显示数量选项框"
+  },
+    "i18n.RecipesPage": {
+    "default": "Recipes page",
+    "fr": "Page des Recettes",
+    "it": "Pagina Recetas",
+    "uk": "Рецепти категорії",
+    "zh": "分类页"
+  },
+  "i18n.RecipeSearchHeading": {
+    "default": "Recipe Search",
+    "fr": "Recherche de recette",
+    "it": "Ricerca ricetta",
+    "uk": "Пошук рецептів",
+    "zh": "食谱搜索"
+  },
+  "i18n.RecipeSearchStatus": {
+    "default": "Status",
+    "fr": "Statut",
+    "it": "Stato",
+    "uk": "Статус",
+    "zh": "地位"
+  },
+  "i18n.RecipeSearchStatusEnabled": {
+    "default": "Enabled",
+    "fr": "Activé",
+    "it": "Abilitato",
+    "uk": "Увімкнен",
+    "zh": "启用"
+  },
+  "i18n.RecipeSearchStatusDisabled": {
+    "default": "Disabled",
+    "fr": "Désactivé",
+    "it": "Disabilitato",
+    "uk": "Вимкнено",
+    "zh": "已禁用"
+  },
+  "i18n.RecipeSearchCategoryShopFilterId": {
+    "default": "Shop Category Filter ID",
+    "fr": "ID de filtre de catégorie Shop",
+    "it": "ID filtro categoria Shop",
+    "uk": "Ідентифікатор фільтра категорії Shop",
+    "zh": "商店类别过滤器 ID"
+  },
+  "i18n.RecipeSearchCategoryRecipeFilterId": {
+    "default": "Recipe Category Filter ID",
+    "fr": "ID de filtre de catégorie de Recette",
+    "it": "ID filtro categoria ricetta",
+    "uk": "Ідентифікатор фільтра категорії рецепта",
+    "zh": "配方类别过滤器 ID"
+  },
+  "i18n.FormChecklist": {
+    "default": "Form checklist",
+    "fr": "Checklist du formulaire",
+    "it": "Checklist modulo",
+    "uk": "Контрольний список форми",
+    "zh": "表单检查表"
+  },
+  "i18n.FormBackground": {
+    "default": "Form background",
+    "fr": "Arrière-plan du formulaire",
+    "it": "Sfondo modulo",
+    "uk": "Форма фону",
+    "zh": "表单背景"
+  },
+  "i18n.FormHeaderTextColor": {
+    "default": "Form header text color",
+    "fr": "Couleur du texte de l’en-tête du formulaire",
+    "it": "Colore testo modulo header",
+    "uk": "Колір тексту заголовка форми",
+    "zh": "表单头部文本颜色"
+  },
+  "i18n.FormBorderColor": {
+    "default": "Form border color",
+    "fr": "Couleur de la bordure du formulaire",
+    "it": "Colore bordo modulo",
+    "uk": "Форма кольору рамки",
+    "zh": "表单边框颜色"
+  },
+  "i18n.LoadingToaster": {
+    "default": "Loading toaster",
+    "fr": "Charger le toaster",
+    "it": "Caricamento toaster",
+    "uk": "Завантаження тостеру",
+    "zh": "加载toaster"
+  },
+  "i18n.ToasterBackground": {
+    "default": "Toaster background",
+    "fr": "Fond du toaster",
+    "it": "Sfondo toaster",
+    "uk": "Фон тостеру",
+    "zh": "Toaster 背景"
+  },
+  "i18n.ToasterTextColor": {
+    "default": "Toaster text color",
+    "fr": "Couleur du texte du toaster",
+    "it": "Colore testo toaster",
+    "uk": "Колір тексту тостеру",
+    "zh": "Toaster 文本颜色"
+  },
+  "i18n.PaymentButtons": {
+    "default": "Payment Buttons",
+    "fr": "Boutons de Paiement",
+    "it": "Bottoni Pagamento",
+    "uk": "Кнопки оплати",
+    "zh": "支付按钮"
+  },
+  "i18n.ButtonColor": {
+    "default": "Button color",
+    "fr": "Couleur du bouton",
+    "it": "Colore bottone",
+    "uk": "Колір кнопки",
+    "zh": "按钮颜色"
   },
   "i18n.ShowAmericanExpress": {
     "default": "Show American Express",
@@ -4882,158 +4988,13 @@
     "pl": "Tło przycisku pola wyboru",
     "ja": "チェックボックスボタン背景"
   },
-  "i18n.FormChecklist": {
-    "default": "Form checklist",
-    "fr": "Liste de contrôle du formulaire",
-    "it": "Elenco di controllo modulo",
-    "zh": "表格清单",
-    "de": "Formular-Checkliste",
-    "es": "Lista de verificación del formulario",
-    "nl": "Controlelijst formulier",
-    "pt": "Lista de verificação de formulário",
-    "pt-BR": "Lista de verificação de formulário",
-    "sv": "Checklista för formulär",
-    "es-MX": "Lista de verificación del formulario",
-    "es-419": "Lista de verificación del formulario",
-    "da": "Formularkontrolliste",
-    "no": "Skjema-sjekkliste",
-    "ko": "체크리스트 양식",
-    "pl": "Lista kontrolna formularzy",
-    "ja": "チェックリストフォーム"
-  },
-  "i18n.FormBackground": {
-    "default": "Form background",
-    "fr": "Arrière-plan du formulaire",
-    "it": "Sfondo modulo",
-    "zh": "表单背景",
-    "de": "Formular-Hintergrund",
-    "es": "Fondo del formulario",
-    "nl": "Achtergrond formulier",
-    "pt": "Plano de fundo do formulário",
-    "pt-BR": "Plano de fundo do formulário",
-    "sv": "Formulärbakgrund",
-    "es-MX": "Fondo del formulario",
-    "es-419": "Fondo del formulario",
-    "da": "Formularbaggrund",
-    "no": "Bakgrunn på skjema",
-    "ko": "양식 배경",
-    "pl": "Tło formularza",
-    "ja": "フォーム背景"
-  },
-  "i18n.FormHeaderTextColor": {
-    "default": "Form header text color",
-    "fr": "Couleur du texte de l'en-tête du formulaire",
-    "it": "Colore testo intestazione del modulo",
-    "zh": "表单标题文本颜色",
-    "de": "Textfarbe der Formularüberschrift",
-    "es": "Color del texto de la cabecera del formulario",
-    "nl": "Koptekstkleur formulier",
-    "pt": "Cor do texto do título do formulário",
-    "pt-BR": "Cor do texto do título do formulário",
-    "sv": "Textfärg för formulärsidhuvud",
-    "es-MX": "Color del texto del encabezado del formulario",
-    "es-419": "Color del texto del encabezado del formulario",
-    "da": "Formularoverskrift tekstfarve",
-    "no": "Tekstfarge på skjemaoverskrift",
-    "ko": "양식 헤더 텍스트 색상",
-    "pl": "Kolor tekstu nagłówka formularza",
-    "ja": "フォームヘッダーテキスト色"
-  },
-  "i18n.FormBorderColor": {
-    "default": "Form border color",
-    "fr": "Couleur de la bordure du formulaire",
-    "it": "Colore bordo del modulo",
-    "zh": "表单边框颜色",
-    "de": "Farbe des Formularrahmens",
-    "es": "Color del borde del formulario",
-    "nl": "Randkleur formulier",
-    "pt": "Cor da borda do formulário",
-    "pt-BR": "Cor da borda do formulário",
-    "sv": "Färg på formulärkant",
-    "es-MX": "Color del borde del formulario",
-    "es-419": "Color del borde del formulario",
-    "da": "Kantfarve for formular",
-    "no": "Kantfarge på skjema",
-    "ko": "양식 테두리 색상",
-    "pl": "Kolor obramowania formularza",
-    "ja": "フォーム枠の色"
-  },
-  "i18n.LoadingToaster": {
-    "default": "Loading toaster",
-    "fr": "Chargement avec effet toaster",
-    "it": "Notifica di caricamento in corso",
-    "zh": "正在加载吐司工具",
-    "de": "Loading-Toaster",
-    "es": "Mensaje de aviso de carga",
-    "nl": "Toaster laden",
-    "pt": "Carregando notificação",
-    "pt-BR": "Carregando notificação",
-    "sv": "Laddningstoaster",
-    "es-MX": "Cargando tostadora",
-    "es-419": "Cargando tostadora",
-    "da": "Indlæser toaster",
-    "no": "Laster inn toaster",
-    "ko": "로딩 토스터",
-    "pl": "Ładowanie tostera",
-    "ja": "ローディング·トースター"
-  },
-  "i18n.ToasterBackground": {
-    "default": "Toaster background",
-    "fr": "Arrière-plan du toaster",
-    "it": "Sfondo notifica",
-    "zh": "吐司工具背景",
-    "de": "Toaster-Hintergrund",
-    "es": "Fondo del mensaje de aviso",
-    "nl": "Achtergrond toaster",
-    "pt": "Plano de fundo da notificação",
-    "pt-BR": "Plano de fundo da notificação",
-    "sv": "Toasterbakgrund",
-    "es-MX": "Fondo de tostadora",
-    "es-419": "Fondo de tostadora",
-    "da": "Baggrund til toaster",
-    "no": "Bakgrunn på toaster",
-    "ko": "토스터 배경",
-    "pl": "Tło dla tostera",
-    "ja": "トースター背景"
-  },
-  "i18n.ToasterTextColor": {
-    "default": "Toaster text color",
-    "fr": "Couleur du texte du toaster",
-    "it": "Colore testo di notifica",
-    "zh": "吐司工具文本颜色",
-    "de": "Toaster-Textfarbe",
-    "es": "Color del texto del mensaje de aviso",
-    "nl": "Tekstkleur toaster",
-    "pt": "Cor do texto da notificação",
-    "pt-BR": "Cor do texto da notificação",
-    "sv": "Textfärg för toaster",
-    "es-MX": "Color de texto de tostadora",
-    "es-419": "Color de texto de tostadora",
-    "da": "Toaster-tekstfarve",
-    "no": "Tekstfarge på toaster",
-    "ko": "토스터 텍스트 색상",
-    "pl": "Kolor tekstu tostów",
-    "ja": "トースターテキスト色"
-  },
-  "i18n.PaymentButtons": {
-    "default": "Payment buttons",
-    "fr": "Boutons de paiement",
-    "it": "Pulsanti di pagamento",
-    "zh": "付款按钮",
-    "de": "Zahlungsschaltflächen",
-    "es": "Botones de pago",
-    "nl": "Betaalknoppen",
-    "pt": "Botões de pagamento",
-    "pt-BR": "Botões de pagamento",
-    "sv": "Betalningsknappar",
-    "es-MX": "Botones de pago",
-    "es-419": "Botones de pago",
-    "da": "Betalingsknapper",
-    "no": "Betalingsknapper",
-    "ko": "결제 버튼",
-    "pl": "Przyciski płatności",
-    "ja": "決済ボタン"
-  },
+
+
+
+
+
+
+
   "i18n.ButtonContainer": {
     "default": "Button Container",
     "fr": "Conteneur de bouton",
@@ -5053,25 +5014,7 @@
     "pl": "Pojemnik na przyciski",
     "ja": "ボタンコンテナ"
   },
-  "i18n.ButtonColor": {
-    "default": "Button color",
-    "fr": "Couleur du bouton",
-    "it": "Colore del pulsante",
-    "zh": "按钮颜色",
-    "de": "Farbe der Schaltflächen",
-    "es": "Color del botón",
-    "nl": "Kleur van de knop",
-    "pt": "Cor do botão",
-    "pt-BR": "Cor do botão",
-    "sv": "Knappfärg",
-    "es-MX": "Color del botón",
-    "es-419": "Color del botón",
-    "da": "Knappens farve",
-    "no": "Knappfarge",
-    "ko": "버튼 색상",
-    "pl": "Kolor guzika",
-    "ja": "ボタン色"
-  },
+
   "i18n.PayPalButtonColor": {
     "default": "PayPal button color",
     "fr": "Couleur du bouton PayPal",

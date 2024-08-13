@@ -117,6 +117,38 @@ class FacetedSearch {
 
         // Bind events
         this.bindEvents();
+        const self = this;
+        // Load all filters and hide the "show more" links
+        $('#facetedSearch ul[data-has-more-results="true"]').each((index, element) => {
+            const facet = $(element).attr('data-facet');
+            self.updateAllFacets(facet, element);
+        });
+    }
+
+    updateAllFacets(facet, ulResult) {
+        let facetUrl = urlUtils.getUrl();
+        let resultTemplate = 'category/show-more-auto';
+
+        if (facetUrl === '/recipes/') {
+            const recipesPerPage = this.context.themeSettings.recipespage_products_per_page;
+            facetUrl = `/recipes/?limit=${recipesPerPage}`;
+        } else if (facetUrl.indexOf('/recipes/') === -1) {
+            resultTemplate = 'search/show-more-auto';
+        }
+
+        api.getPage(facetUrl, {
+            template: resultTemplate,
+            params: {
+                list_all: facet,
+            },
+        }, (err, response) => {
+            if (err) {
+                throw new Error(err);
+            }
+            $(ulResult).html(response);
+        });
+
+        return true;
     }
 
     updateView() {
@@ -166,7 +198,7 @@ class FacetedSearch {
         const id = $navList.attr('id');
 
         // Toggle depending on `collapsed` flag
-        if (this.collapsedFacetItems.includes(id)) {
+        if (_.includes(this.collapsedFacetItems, id)) {
             this.getMoreFacetResults($navList);
 
             return true;
@@ -276,7 +308,7 @@ class FacetedSearch {
         $navLists.each((index, navList) => {
             const $navList = $(navList);
             const id = $navList.attr('id');
-            const shouldCollapse = this.collapsedFacetItems.includes(id);
+            const shouldCollapse = _.includes(this.collapsedFacetItems, id);
 
             if (shouldCollapse) {
                 this.collapseFacetItems($navList);
@@ -293,7 +325,7 @@ class FacetedSearch {
             const $accordionToggle = $(accordionToggle);
             const collapsible = $accordionToggle.data('collapsibleInstance');
             const id = collapsible.targetId;
-            const shouldCollapse = this.collapsedFacets.includes(id);
+            const shouldCollapse = _.includes(this.collapsedFacets, id);
 
             if (shouldCollapse) {
                 this.collapseFacet($accordionToggle);
@@ -431,8 +463,15 @@ class FacetedSearch {
     }
 
     onPopState() {
-        if (document.location.hash !== '') return;
-
+        const currentUrl = window.location.href;
+        const searchParams = new URLSearchParams(currentUrl);
+        // If searchParams does not contain a page value then modify url query string to have page=1
+        if (!searchParams.has('page')) {
+            const linkUrl = $('.pagination-link').attr('href');
+            const re = /page=[0-9]+/i;
+            const updatedLinkUrl = linkUrl.replace(re, 'page=1');
+            window.history.replaceState({}, document.title, updatedLinkUrl);
+        }
         $(window).trigger('statechange');
     }
 }

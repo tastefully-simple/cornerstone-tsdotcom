@@ -27,10 +27,13 @@ $card-preview-zoom-bottom-offset:       6rem;
 %additionalCheckoutButtons {
     @include clearfix;
 
+    // scss-lint:disable SelectorFormat
     .FloatRight {
         @include clearfix;
 
+        // scss-lint:disable SelectorDepth, NestingDepth
         p {
+            // scss-lint:disable ImportantRule
             float: none !important;
             margin: spacing("third") 0;
             text-align: right;
@@ -38,6 +41,18 @@ $card-preview-zoom-bottom-offset:       6rem;
 
         div {
             float: right;
+        }
+    }
+
+    .CheckoutButton {
+        margin-bottom: spacing("base");
+
+        &:first-child {
+            margin-top: spacing("single");
+        }
+
+        &:last-child {
+            margin-bottom: spacing("single");
         }
     }
 }
@@ -103,8 +118,8 @@ $card-preview-zoom-bottom-offset:       6rem;
         display: table-row; // 1
         padding-left: 0;
 
-        &::before,
-        &::after {
+        &:before,
+        &:after {
             display: none;
         }
     }
@@ -143,6 +158,8 @@ $card-preview-zoom-bottom-offset:       6rem;
         padding: $cart-thumbnail-paddingVertical 0;
         width: grid-calc(1, $total-columns);
     }
+
+    @include cart-item-lazy-load-img-placeholder;
 }
 
 .cart-item-fixed-image {
@@ -533,10 +550,25 @@ $card-preview-zoom-bottom-offset:       6rem;
         float: right;
         padding-top: spacing("quarter");
     }
+
+    .shopMore {
+        margin-right: 0;
+        margin-top: spacing("half");
+
+        @include breakpoint("small") {
+            margin-right: spacing("half");
+            margin-top: 0;
+        }
+    }
 }
 
 .cart-additionalCheckoutButtons {
     @extend %additionalCheckoutButtons;
+}
+
+.previewCart-additionalCheckoutButtons {
+    @extend %additionalCheckoutButtons;
+    padding-right: 1.5rem;
 }
 
 // Cart Preview

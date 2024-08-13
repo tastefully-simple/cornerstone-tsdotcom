@@ -32,6 +32,8 @@
     position: relative;
 
     &:hover {
+
+        // scss-lint:disable NestingDepth
         .card-figcaption {
             opacity: 1;
         }
@@ -67,23 +69,36 @@
 
 .card-image {
     @include lazy-loaded-img;
+    position: absolute;
+    top: 0;
     border: 0;
+    -o-object-fit: cover;
+    object-fit: cover;
+    height: 100%;
     /* Object-fit polyfill */
-    font-family: "object-fit: contain;";
-    max-height: 100%;
-    object-fit: contain;
-    width: 100%;
+    font-family: 'object-fit: cover;';
 }
 
 .card-title {
     font-size: $card-title-fontSize;
     margin: $card-title-margin;
+    height: 48px;
+    line-height: 16px;
+    overflow: hidden;
+    text-align: center;
+    /* autoprefixer: off */
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+    display: -webkit-inline-box;
+    -webkit-box-orient: vertical;
+    /* autoprefixer: on */
 
     > a {
         color: $card-title-color;
         display: block;
         text-decoration: $card-title-textDecoration;
 
+        // scss-lint:disable NestingDepth
         &:hover {
             color: $card-title-color-hover;
         }
@@ -154,6 +169,7 @@
     &:hover {
         border-color: stencilColor("color-primary");
 
+        // scss-lint:disable SelectorDepth, NestingDepth
         .card-body {
             background-color: stencilColor("color-primary");
 

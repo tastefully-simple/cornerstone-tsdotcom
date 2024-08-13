@@ -4,7 +4,6 @@ product_results:
 ---
 {{inject 'categoryTree' forms.search.category_options}}
 {{inject 'searchProductsPerPage' theme_settings.searchpage_products_per_page}}
-{{inject 'searchResultsCount' (lang 'search.results.count' count=result_count search_query=(sanitize forms.search.query))}}
 {{#partial "head"}}
     {{#if pagination.product_results.previous}}
         <link rel="prev" href="{{pagination.product_results.previous}}">
@@ -12,16 +11,31 @@ product_results:
     {{#if pagination.product_results.next}}
         <link rel="next" href="{{pagination.product_results.next}}">
     {{/if}}
+    {{#if theme_settings.recipe_search_status '==' '1'}}
+        {{>components/recipes/search-results-head}}
+    {{/if}}
 {{/partial}}
 
 {{#partial "page"}}
-{{{ stylesheet '/assets/scss/vendor/jstree/style.css' }}}
 {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
 <section class="nav">
     {{#if forms.search.query}}
         <div id="search-results-heading">
             {{>components/search/heading}}
         </div>
+        <h3 id="recipe_search_message"></h3>
+        <script>
+            // recipePageMessage can be edited in the Scripts Manager
+            var urlParams = new URLSearchParams(window.location.search);
+            var currentCategoryRecipeSearch = parseInt(urlParams.get('category'));
+            var configCategoryRecipeSearch = parseInt('{{theme_settings.recipe_search_category_recipe_filter_id}}');
+
+            if (currentCategoryRecipeSearch === configCategoryRecipeSearch && typeof recipePageMessage !== 'undefined') {
+                document.getElementById('recipe_search_message').innerHTML = recipePageMessage;
+                document.getElementById('recipe_search_message').style.display = 'block';
+                document.getElementById('search-results-heading').className += 'recipe-search-results-heading';
+            }
+        </script>
     {{/if}}
     <nav class="navBar navBar--sub search-nav">
         <span id="search-tabs-widget-description" class="aria-description--hidden">
@@ -29,13 +43,21 @@ product_results:
         </span>
         <ul role="tablist" class="navBar-section account-navigation" data-search-page-tabs>
             <li role="presentation" class="navBar-item">
-                <a aria-describedby="search-tabs-widget-description" role="tab" aria-controls="product-listing-container" id="search-results-product-count" class="navBar-action" href="{{forms.search.product_url}}" data-product-results-toggle>
-                    {{>components/search/product-count}}
+                <a aria-describedby="search-tabs-widget-description" role="tab" aria-controls="product-listing-container" id="search-results-product-count" class="navBar-action" href="{{forms.search.product_url}}">
+                    {{#if theme_settings.recipe_search_status '==' '1'}}
+                        {{>components/recipes/regular-product-count}}
+                    {{else}}
+                        {{>components/search/product-count}}
+                    {{/if}}
                 </a>
             </li>
             <li role="presentation" class="navBar-item">
-                <a aria-describedby="search-tabs-widget-description" role="tab" aria-controls="search-results-content" id="search-results-content-count" class="navBar-action" href="{{forms.search.content_url}}" data-content-results-toggle>
-                    {{>components/search/content-count}}
+                <a aria-describedby="search-tabs-widget-description" role="tab" aria-controls="search-results-content" id="search-results-content-count" class="navBar-action">
+                    {{#if theme_settings.recipe_search_status '==' '1'}}
+                        {{>components/recipes/search-results-count}}
+                    {{else}}
+                        {{>components/search/content-count}}
+                    {{/if}}
                 </a>
             </li>
             {{#unless product_results.faceted_search_enabled}}
@@ -57,7 +79,7 @@ product_results:
     {{/unless}}
 </section>
 
-<section class="page">
+<section class="page category-page-content">
     {{#if product_results.faceted_search_enabled}}
         <aside class="page-sidebar{{#if forms.search.section '!=' 'product'}} u-hiddenVisually{{/if}}" id="faceted-search-container">
             {{> components/faceted-search/index product_results}}
@@ -127,6 +149,14 @@ product_results:
             </div>
         {{/if}}
 
+        <p role="status"
+           aria-live="polite"
+           class="quickSearchResultsAriaMessage aria-description--hidden u-hidden"
+           data-search-aria-message
+        >
+            {{{lang 'search.results.count' count=result_count search_query=(sanitize forms.search.query)}}}
+        </p>
+
         <div role="tabpanel" id="search-results-content" aria-labelledby="search-results-content-count" {{#if forms.search.section '!=' 'content'}}class="u-hidden"{{/if}}>
             {{> components/search/content-listing}}
         </div>
@@ -138,6 +168,8 @@ product_results:
         {{{region name="search_below_content"}}}
     </main>
 </section>
-
+{{#if theme_settings.recipe_search_status '==' '1'}}
+    {{> components/recipes/search-results-scripts}}
+{{/if}}
 {{/partial}}
 {{> layout/base}}

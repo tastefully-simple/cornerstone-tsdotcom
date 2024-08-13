@@ -9,30 +9,38 @@
      * to any location of the site, as long as a bcapi_ div is placed there.
      */
 
+    // Cache results
+    let bcapiResults = [];
+
     /**
      * @param resultContainer
      */
-    function loadBcApi(resultContainer) {
+     function loadBcApi(selector, resultContainer) {
         var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
-            if (xmlhttp.readyState == XMLHttpRequest.DONE) {
-                if (xmlhttp.status == 200) {
-                    document.getElementById(resultContainer).innerHTML = xmlhttp.responseText;
-                }
-                else {
-                    console(`Could not load content for ${resultContainer}`);
-                }
-            }
-        };
 
-        const requestUrl = '/' + resultContainer + '/';
+        if (typeof bcapiResults[selector] !== 'undefined') {
+            resultContainer.innerHTML = bcapiResults[selector];
+        } else {
+            xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+                    if (xmlhttp.status == 200) {
+                        bcapiResults[selector] = xmlhttp.responseText;
+                        resultContainer.innerHTML = xmlhttp.responseText;
+                    }
+                    else {
+                        console(`Could not load content for ${selector}`);
+                    }
+                }
+            };
+            console.log(selector)
+            const requestUrl = '/' + selector + '/';
 
-        xmlhttp.open("GET", requestUrl, true);
-        xmlhttp.send();
+            xmlhttp.open("GET", requestUrl, true);
+            xmlhttp.send();
+        }
     }
-    const bcapiDivs = document.querySelectorAll('div[id^="bcapi_"]')
-
-    bcapiDivs.forEach((element, index) => {
-        loadBcApi(element.id);
+    const bcapiDivsByClass = document.querySelectorAll('div[class^="bcapi_"]');
+    bcapiDivsByClass.forEach((element, index) => {
+        loadBcApi(element.className, element);
     });
 </script>
