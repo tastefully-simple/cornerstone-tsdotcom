@@ -5,7 +5,6 @@ import TSCookie from '../common/ts-cookie';
 import StatesSelect from '../common/directory/states';
 import pagination from '../common/pagination';
 import ConsultantCard from '../common/consultant-card';
-import ConsultantParties from '../common/consultant-parties';
 import TSRemoveAffiliation from '../common/ts-remove-affiliation';
 import $ from 'jquery';
 import swal from './sweet-alert';
@@ -21,7 +20,7 @@ const DISPLAY_NUM_PAGES = 6;
 
 // Redirect
 const CONSULTANT_PAGE = '/web';
-const PARTY_DETAILS_PAGE = '/party-details';
+
 const CART_PAGE = '/cart.php';
 
 // API error message

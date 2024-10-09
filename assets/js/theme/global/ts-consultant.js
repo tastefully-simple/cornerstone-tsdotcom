@@ -57,11 +57,6 @@ class Consultant {
         }
     }
 
-    /*
-     * Added a class called consultant-page in div.body
-     * to use to remove the space between the party bar
-     * and hero image
-     */
     removeSpaceInHeader() {
         const $bodyContainer = document.querySelector('.body');
         $bodyContainer.classList.add('consultant-page');
@@ -251,13 +246,6 @@ class Consultant {
         }
     }
 
-    /*
-     * Consultant "my parties" section
-     */
-    getPartiesHtmlBlock() {
-        this.getTabContentHtmlBlock(this.consultantParties.Attend, this.attendTab);
-        this.getTabContentHtmlBlock(this.consultantParties.Past, this.pastTab);
-    }
 
     getTabContentHtmlBlock(parties, tab) {
         let $content;
@@ -278,19 +266,6 @@ class Consultant {
             return;
         }
 
-        parties.forEach((party, i) => {
-            // Create elements for the data
-            const $card = this.createPartyCard(party, tab);
-
-            const $divider = document.createElement('div');
-            $divider.classList.add('party-divider');
-
-            $content.appendChild($card);
-
-            if (i !== parties.length - 1) {
-                $content.appendChild($divider);
-            }
-        });
     }
 
     formatPhoneNumber(number) {
@@ -350,69 +325,6 @@ class Consultant {
         }
     }
 
-    setCookies(e, party) {
-        e.stopPropagation();
-        const phost = `${party.HostFirstName} ${party.HostLastName}`;
-
-        TSCookie.setPartyId(party.PartyId);
-        TSCookie.setPartyHost(phost);
-        TSCookie.setPartyDate(party.Date);
-        TSCookie.setPartyTime(party.Time);
-    }
-
-    /* Tab Content
-     * - Party Host
-     * - Date
-     * - Consultant
-     */
-    createPartyCard(party, tab) {
-        const $card = document.createElement('div');
-        $card.classList.add('party-card');
-
-        const $col1 = document.createElement('div');
-        $col1.classList.add('party-info');
-
-        const $col2 = document.createElement('div');
-        $col2.classList.add('party-shop');
-
-        const $host = document.createElement('h4');
-        $host.classList.add('party-host', 'textgray-text');
-
-        const $date = document.createElement('p');
-        $date.classList.add('party-date', 'system-14');
-
-        const $consultant = document.createElement('p');
-        $consultant.classList.add('party-consultant', 'system-14');
-
-        const $shop = document.createElement('a');
-        $shop.classList.add('party-shop-link');
-
-        $host.innerHTML = `${party.HostFirstName} ${party.HostLastName}'s Party`;
-        $consultant.innerHTML = `Consultant: ${party.Consultant}`;
-        $shop.setAttribute('href', '/shop');
-        $shop.innerHTML = 'shop';
-
-        $shop.addEventListener('click', (e) => { this.setCookies(e, party); });
-
-        let dateText = '';
-        if (tab === this.pastTab) {
-            dateText = `Ended On: ${party.Date}`;
-        } else {
-            dateText = `Date: ${party.Date}`;
-        }
-        $date.innerHTML = dateText;
-
-        $card.appendChild($col1);
-        $card.appendChild($col2);
-
-        $col1.appendChild($host);
-        $col1.appendChild($date);
-        $col1.appendChild($consultant);
-
-        $col2.appendChild($shop);
-
-        return $card;
-    }
 }
 
 export default function () {
