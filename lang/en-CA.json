@@ -1052,11 +1052,6 @@
       }
     },
     "ts_affiliation": {
-      "party": {
-        "search_title": "find a party or fundraiser",
-        "results_title": "choose your party",
-        "tooltip_info": "What is a party? Tastefully Simple parties and fundraisers reward hosts of $200+ events with free products. Help us ensure your host gets credit for your order."
-      },
       "consultant": {
         "search_title": "find your consultant",
         "results_title": "choose a consultant",

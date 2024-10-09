@@ -58,8 +58,7 @@ class TSCookieConfig {
     deleteAffiliationCookies() {
         // Delete TS Affiliation cookies
         TSCookie.deleteConsultant();
-        TSCookie.deleteParty();
-
+        
         // Reset cookie session checker
         TSCookie.deleteAffiliationExpiration();
 

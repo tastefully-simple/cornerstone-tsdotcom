@@ -13,12 +13,8 @@ export default class TSRouter {
     checkUrls() {
         // Function returns true to stop routing chain
         return this.checkUrlForBuyNow()
-            || this.checkUrlForPartyId()
-            || this.checkUrlForPartyPlannerId()
-            || this.checkUrlForMissingPartyId()
             || this.checkUrlForConsultantId()
             || this.checkUrlForConsultantWebSlug()
-            || this.checkUrlForPartyDetailPage()
             || this.checkUrlForTest();
     }
 
@@ -47,96 +43,6 @@ export default class TSRouter {
         return false;
     }
 
-
-    // Check for party id
-    checkUrlForPartyId() {
-        const szUrl = window.location.pathname;
-        if (szUrl.match(/^\/p\/\d+/ig)) {
-            const filterString = szUrl.match(/\d+/g);
-            const iPid = filterString[0];
-
-            if (iPid > 0) {
-                this.showLoading();
-                this.api.getPartyDetails(iPid)
-                    .then(res => {
-                        /* TST-267 Closed party (HTTP 410) or other
-                         * non-200 responses are being handled in
-                         * Party Detail Widget script in Shogun
-                         */
-                        const newResponse = res.ok ? res.json() : res.status;
-                        return newResponse;
-                    })
-                    .then(party => {
-                        if (typeof party !== 'number') {
-                            if (party.IsClosed) {
-                                this.setPartyCookies(party);
-                                localStorage.removeItem('partyDetails');
-                                window.location = '/closed-party';
-                            } else {
-                                TSCookie.setConsultantId(party.ConsultantId);
-                                TSCookie.setConsultantName(party.ConsultantName);
-                                TSCookie.setConsultantImage(party.Image);
-                                TSCookie.setConsultantHasOpenParty(true);
-                                this.setPartyCookies(party);
-
-                                localStorage.setItem('partyDetails', JSON.stringify(party));
-                                window.location = '/party-details';
-                            }
-                        } else {
-                            TSCookie.setPartyCookies(party);
-                            localStorage.removeItem('partyDetails');
-                            window.location = '/closed-party';
-                        }
-                    })
-                    .catch(err => {
-                        console.warn('TSApi::getPartyDetails()', err);
-                    });
-
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    // Check for party id
-    checkUrlForPartyPlannerId() {
-        const matches = window.location.pathname.match(/^\/party-planner\/(\d+)\//i);
-        if (matches && matches[1]) {
-            const iPid = parseInt(matches[1], 10);
-            if (iPid > 0) {
-                this.showLoading();
-                this.api.getPartyDetails(iPid)
-                    .then(res => res.json())
-                    .then(party => {
-                        TSCookie.setConsultantId(party.ConsultantId);
-                        TSCookie.setConsultantName(party.ConsultantName);
-                        TSCookie.setConsultantHasOpenParty(true);
-                        this.setPartyCookies(party);
-                        window.location = '/host-planner';
-                    })
-                    .catch(err => {
-                        console.warn('getPartyDetails', err);
-                    });
-
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    checkUrlForMissingPartyId() {
-        const matches = window.location.pathname.match(/^\/party-details/i);
-        if (matches && !TSCookie.getPartyId()) {
-            this.showLoading();
-            window.location = '/';
-            return true;
-        }
-
-        return false;
-    }
-
     // SCID
     checkUrlForConsultantId() {
         const szUrl = window.location.search;
@@ -152,8 +58,6 @@ export default class TSRouter {
                     TSCookie.setConsultantId(data.ConsultantId);
                     TSCookie.setConsultantName(data.Name);
                     TSCookie.setConsultantImage(data.Image);
-                    TSCookie.setConsultantHasOpenParty(data.HasOpenParty);
-
                     window.location = window.location.pathname;
                 })
                 .catch(err => console.warn('checkUrlForConsultantId', err));
@@ -178,12 +82,9 @@ export default class TSRouter {
                         const cname = `${data.FirstName} ${data.LastName}`;
                         TSCookie.setConsultantName(cname);
                         TSCookie.setConsultantId(data.ConsultantId);
-                        TSCookie.setConsultantHasOpenParty(data.HasOpenParty);
-                        this.deletePartyCookies();
                         window.location = '/web';
                     } else {
                         TSCookie.deleteConsultant();
-                        this.deletePartyCookies();
                         window.location = '/shop';
                     }
                 })
@@ -197,21 +98,6 @@ export default class TSRouter {
         return false;
     }
 
-    checkUrlForPartyDetailPage() {
-        const szUrl = window.location.pathname;
-
-        if (szUrl === '/party-details' || szUrl === '/closed-party') {
-            const partyId = TSCookie.getPartyId();
-            window.history.pushState(null, null, `/p/${partyId}`);
-
-            if (szUrl === '/closed-party') {
-                TSCookie.deleteParty();
-            }
-
-            return true;
-        }
-        return false;
-    }
 
     checkUrlForTest() {
         /*
@@ -231,24 +117,6 @@ export default class TSRouter {
     // HELPERS
     //
 
-    setPartyCookies(party) {
-        TSCookie.setPartyId(party.PartyId);
-        TSCookie.setPartyHost(party.HostName);
-        TSCookie.setPartyDate(party.Date);
-        TSCookie.setPartyTime(party.Time);
-    }
-
-    /* TST-175
-     * commented out sendPartyOrder() as it's not being called anywhere
-     * and ESLint detects that 'getFullUrl' is not defined
-     */
-    // sendPartyOrder(orderId, partyId) {
-    //     const uri = `/webhook/party/order/${orderId}/${partyId}`;
-    //     return fetch(getFullUrl(uri), {
-    //         method: 'GET',
-    //         headers: { Accept: 'application/json' },
-    //     });
-    // }
 
     apiUrl(uri) {
         return this.settings.ts_api_environment
@@ -280,10 +148,5 @@ export default class TSRouter {
         });
     }
 
-    deletePartyCookies() {
-        const $partyBarText = $('#partybar-find .partybar-text');
-        $partyBarText.text('Find a party');
 
-        TSCookie.deleteParty();
-    }
 }

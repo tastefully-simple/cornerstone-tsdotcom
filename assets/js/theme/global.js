@@ -20,14 +20,11 @@ import accordian from './global/accordian';
 import newsletterAlert from './global/newsletter-alert';
 import stickyHeader from './global/sticky-header';
 import findConsultant from './global/find-consultant';
-import findParty from './global/find-party';
 import tooltip from './global/tooltip';
 import tsCheckUserLogin from './global/ts-check-user-login';
 import tsAddToCart from './global/ts-add-to-cart';
 import tsJoinProcess from './global/ts-join-process';
 import tsCookieConfig from './global/ts-cookie-config';
-import tsPartyDetails from './global/ts-party-details';
-import tsPartySummary from './global/ts-party-summary';
 import tsConsultant from './global/ts-consultant';
 import tsSeoProcess from './global/ts-seo-process';
 import subscriptionManager from './global/custom/subscription-manager';
@@ -58,13 +55,10 @@ export default class Global extends PageManager {
         stickyHeader();
         tsCookieConfig(themeSettings);
         //findConsultant(themeSettings);
-        findParty(themeSettings);
         tooltip();
         tsCheckUserLogin();
         tsAddToCart();
         tsJoinProcess(themeSettings);
-        //tsPartyDetails();
-        //tsPartySummary();
         //tsConsultant();
         tsSeoProcess();
 

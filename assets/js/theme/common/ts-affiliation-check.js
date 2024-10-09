@@ -16,8 +16,7 @@ export default class TSAffiliationCheck {
                         cartID: cart[0].id,
                         // cart[0].email returns "" when user not signed in
                         email: cart[0].email ? cart[0].email : undefined,
-                        consultantID: "0160785", //TSCookie.getConsultantId(),
-                        partyID: TSCookie.getPartyId(),
+                        consultantID: "0160785", //TSCookie.getConsultantId(),,
                     };
 
                     this.api.affiliationCheck(affiliations);

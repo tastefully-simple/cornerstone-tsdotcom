@@ -42,13 +42,11 @@
                 }
             }
 
-            var partyId = getAffiliationCookie('pid');
             var consultantId = getAffiliationCookie('cid');
 
             window.dataLayer.push({
                 'event' : 'affiliation',
-                'dimension2': consultantId,
-                'dimension3': partyId
+                'dimension2': consultantId
             });
         </script>
         <!-- Google Tag Manager -->

@@ -102,62 +102,6 @@
     text-decoration: none;
 }
 
-/* My Parties Section */
-.consultant-parties {
-
-    h2 {
-        text-align: center;
-    }
-
-    .tabs {
-        width: 100%;
-        border-bottom: 1px solid $silver;
-        .tab.is-active {
-            border: 0;
-            border-bottom: 4px solid $green-hover;
-            .tab-title {
-                outline: none;
-            }
-        }
-
-        .tab {
-            border-top: none;
-            width: 50%;
-            float: left;
-            .tab-title {
-                text-align: center;
-            }
-        }
-    }
-
-    .tab-contents {
-        .party-card {
-            align-items: center;
-            display: flex;
-            justify-content: space-between;
-            .party-info {
-                //border: 1px solid blue;
-                h4,
-                p {
-                    margin: 0;
-                }
-            }
-            .party-shop {
-                .party-shop-link {
-                    color: $green-hover;
-                    font-size: 1rem;
-                    font-weight: 800;
-                    text-decoration: none;
-                }
-            }
-        }
-        .party-divider {
-            border-bottom: 1px solid $silver;
-            margin: 1rem 0;
-            width: 100%;
-        }
-    }
-}
 
 @media only screen and (min-width:801px) {
     .cdetails-hero {

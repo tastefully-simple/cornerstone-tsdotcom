@@ -116,8 +116,6 @@ export default class TSCartAffiliation {
 
         // Update Selected Consultant
         this.updateConsultantSelection();
-        // Update Selected party
-        this.updatePartySelection();
     }
 
     updateConsultantSelection() {
@@ -137,91 +135,9 @@ export default class TSCartAffiliation {
         }
     }
 
-    updatePartySelection() {
-        const pid = TSCookie.getPartyId();
-        const hasOpenParties = JSON.parse(TSCookie.getConsultantHasOpenParty());
 
-        if (hasOpenParties && pid === 'null') {
-            // Scenario 1
-            this.hasOpenPartiesNoPartySelected();
-        } else if (hasOpenParties && pid) {
-            // Scenario 2
-            this.hasOpenPartiesWithPartySelected();
-        } else if (hasOpenParties && !pid) {
-            // Scenario 3
-            this.hasOpenPartiesNoPartySelectedYet();
-        } else {
-            // Scenario 4
-            this.noOpenParties();
-        }
-    }
 
-    // Scenario 1
-    hasOpenPartiesNoPartySelected() {
-        const html =
-            `<div class="cart-affiliate-party noparty">
-                <p class="cart-affiliate-party-name frame-subhead">I'm shopping without a party or fundraiser</p>
-                <p>
-                    <button type="button" class="framelink-sm cart-affiliate-btn view-consultant-parties">
-                        view ${this.selectedConsultant.name}'s parties
-                    </button>
-                </p>
-                <p>
-                    <button type="button" class="framelink-sm cart-affiliate-btn view-all-parties">
-                        search all parties
-                    </button>
-                </p>
-            </div>`;
 
-        $('.cart-affiliate-party-state').html(html);
-        this.enableCheckout();
-    }
-
-    // Scenario 2
-    hasOpenPartiesWithPartySelected() {
-        const phost = TSCookie.getPartyHost();
-        const html =
-            `<div class="cart-affiliate-party">
-                <p class="cart-affiliate-party-name frame-subhead">
-                    <span class="frameheading-4">${phost}</span>
-                    is my host<button type="button" class="framelink-sm remove-party">remove</button>
-                </p>
-            </div>`;
-
-        $('.cart-affiliate-party-state').html(html);
-        this.enableCheckout();
-
-        // Remove Party
-        const $removeParty = $('.cart-affiliate-party').find('.remove-party');
-        $removeParty.on('click', () => {
-            TSCookie.deleteParty();
-            window.location.reload();
-        });
-    }
-
-    // Scenario 3
-    hasOpenPartiesNoPartySelectedYet() {
-        $('.cart-affiliate-party-state').text('');
-
-        const $parentCartAction = $('.cart-actions');
-        $parentCartAction.find('.button--primary').attr('href', '/checkout').hide();
-
-        const $continueBtn = $('<a>', { class: 'button button--primary view-consultant-parties' });
-        $continueBtn.text('continue');
-        $parentCartAction.prepend($continueBtn);
-    }
-
-    // Scenario 4
-    noOpenParties() {
-        if (this.selectedConsultant.id === this.TS_CONSULTANT_ID) {
-            $('.cart-affiliate-consultant-selected.external-consultant').hide();
-            $('.cart-affiliate-consultant-selected.internal-consultant').show();
-        } else {
-            $('.cart-affiliate-party-state').text('');
-        }
-
-        this.enableCheckout();
-    }
 
     enableCheckout() {
         $(this.checkoutButton).html('checkout');

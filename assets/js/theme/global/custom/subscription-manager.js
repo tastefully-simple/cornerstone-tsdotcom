@@ -349,7 +349,7 @@ function toggleAutoshipButtons() {
  * @returns {boolean}
  */
 export default function (customerId, productId, subscriptionManagement, customerEmail) {
-    if (!subscriptionManagement.enabled) {
+    if (subscriptionManagement === undefined || !subscriptionManagement.enabled) {
         return false;
     }
 

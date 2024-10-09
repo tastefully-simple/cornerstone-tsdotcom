@@ -4,18 +4,12 @@ export default class TSApi {
             ? `https:\/\/${window.theme_settings.ts_api_environment}-${window.theme_settings.ts_tsapi_base_url}`
             : `https:\/\/${window.theme_settings.ts_tsapi_base_url}`;
 
-        this.hostPartyBaseUrl = window.theme_settings.ts_api_environment
-            ? `https:\/\/${window.theme_settings.ts_api_environment}-${window.theme_settings.ts_tsapi_host_party_base_url}`
-            : `https:\/\/${window.theme_settings.ts_tsapi_host_party_base_url}`;
     }
 
     fullUrl(uri) {
         return this.baseUrl + uri;
     }
 
-    fullPartyUrl(uri) {
-        return this.hostPartyBaseUrl + uri;
-    }
 
     welcomeCheck(email) {
         return fetch(this.fullUrl('/users/welcome/check'), {
@@ -36,14 +30,6 @@ export default class TSApi {
         });
     }
 
-    /*
-     * Cart - Affiliation check
-     * var affiliations {}
-     * - CartID
-     * - Email
-     * - ConsultantID
-     * - PartyID
-     */
     affiliationCheck(affiliations) {
         return fetch(this.fullUrl('/cart/affiliationcheck'), {
             method: 'POST',
@@ -82,27 +68,6 @@ export default class TSApi {
         });
     }
 
-    getPartiesByConsultant(cid, page, size) {
-        const uri = `/search/party-list/${cid}/${page}/${size}`;
-
-        return fetch(this.fullUrl(uri), {
-            method: 'GET',
-            headers: { Accept: 'application/json' },
-        });
-    }
-
-
-    /*
-     * Find a Party
-     */
-    searchPartyByState(state, name, page, size, sid) {
-        const uri = `/search/party/${state}/${page}/${size}?name=${name}&sid=${sid}`;
-
-        return fetch(this.fullUrl(uri), {
-            method: 'GET',
-            headers: { Accept: 'application/json' },
-        });
-    }
 
     /*
      * Consultant Detail Page
@@ -141,18 +106,6 @@ export default class TSApi {
     // Get Consultant by username
     getConsultantByUsername(username) {
         const uri = `/sb/web/${username}`;
-
-        return fetch(this.fullUrl(uri), {
-            method: 'GET',
-            headers: { Accept: 'application/json' },
-        });
-    }
-
-    /*
-     * Party Details
-     */
-    getPartyDetails(pid) {
-        const uri = `/party/detail?pid=${pid}`;
 
         return fetch(this.fullUrl(uri), {
             method: 'GET',
@@ -234,43 +187,5 @@ export default class TSApi {
         });
     }
 
-    getPartyGuests(pid) {
-        const uri = `/planner/guests/${pid}`;
 
-        return $.ajax({
-            type: 'GET',
-            accepts: 'json',
-            url: this.fullPartyUrl(uri),
-        });
-    }
-
-    getPartyRewards(pid) {
-        const uri = `/planner/rewards/${pid}`;
-
-        return $.ajax({
-            type: 'GET',
-            accepts: 'json',
-            url: this.fullPartyUrl(uri),
-        });
-    }
-
-    getPartyInfo(pid) {
-        const uri = `/party/planner?pid=${pid}`;
-
-        return $.ajax({
-            type: 'GET',
-            accepts: 'json',
-            url: this.fullUrl(uri),
-        });
-    }
-
-    getPartySummary(pid) {
-        const uri = `/planner/summary/${pid}`;
-
-        return $.ajax({
-            type: 'GET',
-            accepts: 'json',
-            url: this.fullPartyUrl(uri),
-        });
-    }
 }

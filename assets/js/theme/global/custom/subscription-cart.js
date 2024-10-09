@@ -5,7 +5,6 @@ import swal from '../../global/sweet-alert';
 import utils from '@bigcommerce/stencil-utils';
 import TSCookie from '../../common/ts-cookie';
 import TSAffiliationCheck from '../../common/ts-affiliation-check';
-import ConsultantParties from '../../common/consultant-parties';
 
 // This is set as TRUE when all conditions to proceed to the checkout are cleared
 window.allowSubscriptionCheckout = false;
@@ -107,29 +106,12 @@ class SubscriptionCart {
             $('#modal-consultant-choose .button--primary').html('checkout');
         });
 
-        // Enable button on Choose Consultant and Party modal when an option is selected
-        // Also display/hide text under the selection
-        $('body').on('change', '#modal-consultant-choose-with-party input[type=radio]', (event) => {
-            $('#modal-consultant-choose-with-party .button--primary').prop('disabled', false);
-            $('#modal-consultant-choose-with-party .button--primary').html('checkout');
-            if ($(event.target).hasClass('current-consultant')) {
-                $('.text-current-consultant').css('visibility', 'visible');
-                $('.text-new-consultant').css('visibility', 'hidden');
-            } else {
-                $('.text-current-consultant').css('visibility', 'hidden');
-                $('.text-new-consultant').css('visibility', 'visible');
-            }
-        });
 
         // Save consultant on "choose consultant" modal
         $('body').on('click', '#modal-consultant-choose .button--primary', () => {
             this.saveConsultant('#modal-consultant-choose');
         });
 
-        // Save consultant on "choose consultant and party" modal
-        $('body').on('click', '#modal-consultant-choose-with-party .button--primary', () => {
-            this.saveConsultant('#modal-consultant-choose-with-party');
-        });
     }
 
     /**
@@ -172,16 +154,9 @@ class SubscriptionCart {
         const cartBoldCheckout = document.querySelectorAll('.cart-item-title .definitionList .bold-subscriptions-interval-info');
 
         utils.api.cart.getCart({ includeOptions: true }, (err, response) => {
-            const pid = TSCookie.getPartyId();
-            if (err) {
-                console.error(`Failed to get cart. Error: ${err}`);
-                swal.fire({
-                    text: 'An error has happened. Please, try again later. (001)',
-                    icon: 'error',
-                });
-            } else if (self.hasAutoshipProducts(response)) {
+            if (self.hasAutoshipProducts(response)) {
                 self.isCustomerLogged();
-            } else if (!self.hasOpenParties() || (self.hasOpenParties() && typeof pid !== 'undefined') || (self.hasAutoshipProducts(response) === false && !self.hasOpenParties())) {
+            } else {
                 window.location = '/checkout';
             }
         });
@@ -194,23 +169,10 @@ class SubscriptionCart {
         if (document.getElementById('tsacf-shopdirect') &&
             document.getElementById('tsacf-shopdirect').checked) {
             // Set Tastefully Simple as the consultant
-            TSCookie.deleteParty();
             TSCookie.setConsultantId(this.TS_CONSULTANT_ID);
             TSCookie.setConsultantName('Tastefully Simple');
             TSCookie.setConsultantImage(null);
-            TSCookie.setConsultantHasOpenParty(false);
         }
-    }
-
-    /**
-     * Verifies if the current consultant has open parties
-     * @returns {any|boolean}
-     */
-    hasOpenParties() {
-        const pid = TSCookie.getPartyId();
-        const hasOpenParties = JSON.parse(TSCookie.getConsultantHasOpenParty());
-
-        return (hasOpenParties && (typeof pid === 'undefined' || !pid) && pid !== 'null');
     }
 
     /**
@@ -330,7 +292,6 @@ class SubscriptionCart {
      */
     fetchLogin(data) {
         const self = this;
-        const pid = TSCookie.getPartyId();
         return this.sendLoginRequest(data)
             .done(async (res) => {
                 const $resHtml = $(res);
@@ -351,7 +312,7 @@ class SubscriptionCart {
 
                             if (self.hasAutoshipProducts(response)) {
                                 self.isCustomerLogged();
-                            } else if (!self.hasOpenParties() || (self.hasOpenParties() && typeof pid !== 'undefined')) {
+                            } else {
                                 window.location = '/checkout';
                             }
                         }
@@ -370,15 +331,9 @@ class SubscriptionCart {
             type: 'GET',
             dataType: 'JSON',
             success(response) {
-                const pid = TSCookie.getPartyId();
                 if (response) {
                     // This is a consultant.
                     self.showModal('is-consultant');
-                } else if (self.hasOpenParties()) {
-                    // Show party selection modal
-                    self.showConsultantPartiesModal();
-                } else if (pid && pid !== 'null') {
-                    self.verifyPartyAndConsultant();
                 } else {
                     self.verifyConsultantUpdates();
                 }
@@ -387,24 +342,9 @@ class SubscriptionCart {
     }
 
     /**
-     * Ask customer to choose a party
-     */
-    showConsultantPartiesModal() {
-        const consultant = TSCookie.getConsultantData();
-        new ConsultantParties(
-            Cookies.get('cid'),
-            {},
-            consultant,
-            (() => {}),
-        );
-    }
-
-    /**
      * Verify if the current consultant is different from the new one, when the customer has selected a party
      */
     verifyPartyAndConsultant() {
-        const partyHostName = Cookies.get('phost');
-        const partyId = Cookies.get('pid');
         const newConsultantName = Cookies.get('name');
         const newConsultantId = Cookies.get('cid').toString();
         const self = this;
@@ -433,9 +373,6 @@ class SubscriptionCart {
                     // Map consultant data to template
                     const map = {
                         '#current-consultant-name': `<b>${consultantName}</b>`,
-                        '#party-host-name-party': `<b>${partyHostName}'s</b>`,
-                        '#party-host-name': `<b>${partyHostName}</b>`,
-                        '#party-id': partyId,
                         '#new-consultant-name': `<b>${newConsultantName}</b>`,
                         '#current-consultant-id': activeConsultantId || pendingConsultant,
                         '#new-consultant-id': newConsultantId,
