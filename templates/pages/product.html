@@ -19,8 +19,8 @@ product:
         {{> components/common/alert/alert-info message}}
     {{/each}}
 
-    <div>
-        {{> components/products/product-view}}
+    <div itemscope itemtype="http://schema.org/Product">
+        {{> components/products/product-view-nc schema=true  }}
 
         {{{region name="product_below_content"}}}
 
@@ -28,13 +28,13 @@ product:
             {{> components/products/videos product.videos}}
         {{/if}}
 
-        {{#all settings.show_product_reviews theme_settings.show_product_reviews (if theme_settings.show_product_details_tabs '!==' true)}}
-            {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
-        {{/all}}
-
         {{> components/products/tabs}}
-    </div>
 
-    {{> components/products/schema}}
+        {{#all settings.show_product_reviews theme_settings.show_product_reviews (if theme_settings.show_product_details_tabs '!==' true)}}
+        <div id="recipe-page">
+            {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+        </div>
+        {{/all}}
+    </div>
 {{/partial}}
 {{> layout/base}}
