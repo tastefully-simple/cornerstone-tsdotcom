@@ -7,10 +7,7 @@ import collapsibleFactory from './common/collapsible';
 import ProductDetails from './common/product-details';
 import videoGallery from './product/video-gallery';
 import { classifyForm } from './common/utils/form-utils';
-import modalFactory, { modalTypes } from './global/modal';
-import TSCopyLink from './common/ts-copy-link';
-
-const { WRITE_REVIEW } = modalTypes;
+import modalFactory from './global/modal';
 
 export default class Product extends PageManager {
     constructor(context) {
@@ -45,9 +42,7 @@ export default class Product extends PageManager {
 
         if ($reviewForm.length === 0) return;
 
-        const review = new Review($reviewForm);
-
-        $(document).on('opened.fndtn.reveal', '#modal-review-form', () => this.reviewModal.setupFocusableElements(WRITE_REVIEW));
+        const review = new Review({ $reviewForm });
 
         $('body').on('click', '[data-reveal-id="modal-review-form"]', () => {
             validator = review.registerValidation(this.context);
@@ -64,8 +59,6 @@ export default class Product extends PageManager {
         });
 
         this.productReviewHandler();
-        this.bulkPricingHandler();
-        TSCopyLink.socialShareHandler('.socialLinks-copy');
     }
 
     ariaDescribeReviewInputs($form) {
