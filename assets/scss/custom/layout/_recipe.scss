@@ -324,7 +324,10 @@
 
 @media print {
     .header, .footer, #consent-manager-update-banner, #consent-manager,
-    .sharethis_toolbox, .productView-rating, .footer, .productView, #main-content, .partybar, nav, iframe#launcher, iframe#SmileUIPromptContainer, iframe#smile-ui-container, iframe.smile-launcher-frame {
+    .sharethis_toolbox, .productView-rating, .footer, .productView, 
+    #main-content, .partybar, nav, iframe#launcher, iframe#SmileUIPromptContainer, 
+    iframe#smile-ui-container, iframe.smile-launcher-frame, #gfp_shopper_toolbar, 
+    #sw_floating_container {
         display: none;
     }
 
