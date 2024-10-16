@@ -24,6 +24,12 @@
         </div>
 
         <aside class="account-sidebar">
+            {{#if order.comments}}
+            <section class=" orders-listaccount-sidebar-block">
+                <h3 class="account-heading">{{lang 'account.orders.details.comments'}}</h3>
+                <p>{{order.comments}}</p>
+            </section>
+            {{/if}}
             <section class="account-sidebar-block">
                 <h3 class="account-heading">{{lang 'account.orders.details.order_details'}}</h3>
                 <dl class="definitionList">
@@ -148,13 +154,6 @@
                             </dd>
                         </dl>
                     {{/each}}
-                </section>
-            {{/if}}
-
-            {{#if order.comments}}
-                <section class=" orders-listaccount-sidebar-block">
-                    <h3 class="account-heading">{{lang 'account.orders.details.comments'}}</h3>
-                    <p>{{order.comments}}</p>
                 </section>
             {{/if}}
 
