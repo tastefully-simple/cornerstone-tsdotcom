@@ -67,7 +67,7 @@
     </section>
     <section class="productView-details product-data">
         <div class="productView-product">
-            <h1 class="productView-title" {{#if schema}}itemprop="name"{{/if}}>{{product.title}}</h1>
+            <h1 class="productView-title" {{#if schema}}itemprop="name"{{/if}}>{{product.title}} - NC</h1>
             <div class="productView-rating"{{#if product.num_reviews '>' 0}}{{#if schema}} itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating"{{/if}}{{/if}}>
                 {{#if settings.show_product_rating}}
                     {{#if product.num_reviews '>' 0}}
@@ -181,7 +181,9 @@
             display: revert !important;
         }
 
-        #product_tabs_footer, .sharethis_toolbox, .form-wishlist, .slick-list, #product-reviews, iframe, iframe, #add-to-cart-wrapper, .alertBox, #gfp_shopper_toolbar, #sw_floating_container {
+        #product_tabs_footer, .sharethis_toolbox, .form-wishlist, .slick-list, #product-reviews, iframe, iframe, #add-to-cart-wrapper, 
+        .alertBox, #gfp_shopper_toolbar, #sw_floating_container, div:has(> [title^='No content'], [title^='No content']), 
+        div:has(> [title^='Message from company'], [title^='Message from company']) {
             display: none !important;
         }
 
