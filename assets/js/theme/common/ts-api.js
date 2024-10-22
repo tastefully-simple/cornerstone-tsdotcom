@@ -31,7 +31,8 @@ export default class TSApi {
     }
 
     affiliationCheck(affiliations) {
-        return fetch(this.fullUrl('/cart/affiliationcheck'), {
+        console.log("affiliationCheck")
+        return fetch(this.fullUrl('/webhook/store/cart/affiliate'), {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(affiliations),
