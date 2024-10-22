@@ -20,6 +20,10 @@
                 return Cookies.get('cid');
             },
 
+            getAffiliateRef: function() {
+                return Cookies.get('ref');
+            },
+
             // Consultant XID
             setConsultantXid: function(cxid) {
                 Cookies.set('cxid', cxid, { domain: cookieDomain });
