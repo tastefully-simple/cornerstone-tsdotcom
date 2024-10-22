@@ -40,9 +40,8 @@ async function renewToken() {
 }
 
 class SubscriptionCart {
-    constructor(tsConsultantId) {
+    constructor() {
         this.initListeners();
-        this.TS_CONSULTANT_ID = tsConsultantId;
     }
 
     /**
@@ -100,35 +99,8 @@ class SubscriptionCart {
             this.login(event);
         });
 
-        // Enable button on consultant choose modal when an option is selected
-        $('body').on('change', '#modal-consultant-choose input[type=radio]', () => {
-            $('#modal-consultant-choose .button--primary').prop('disabled', false);
-            $('#modal-consultant-choose .button--primary').html('checkout');
-        });
-
-
-        // Save consultant on "choose consultant" modal
-        $('body').on('click', '#modal-consultant-choose .button--primary', () => {
-            this.saveConsultant('#modal-consultant-choose');
-        });
-
     }
 
-    /**
-     * Save consultant on the Consultant Choose modal
-     */
-    saveConsultant(modalId) {
-        if (!$(`${modalId} button`).prop('disabled')) {
-            $(`${modalId} button`).prop('disabled', true);
-            const selectedConsultant = $(`${modalId} input[name="consultant"]:checked`).val();
-
-            if (selectedConsultant.toString() === Cookies.get('cid').toString()) {
-                this.setConsultantAsPending(selectedConsultant);
-            } else {
-                this.goToCheckout();
-            }
-        }
-    }
 
     /**
      * Redirect customer to the checkout page
@@ -138,11 +110,6 @@ class SubscriptionCart {
         document.querySelector('.cart-actions .button--primary').click();
     }
 
-    cartTSAffiliationCheck() {
-        const tsAffiliationCheck = new TSAffiliationCheck();
-        return tsAffiliationCheck;
-    }
-
     /**
      * Initialize Subscription Cart
      * @param e
@@ -150,7 +117,6 @@ class SubscriptionCart {
     init(e) {
         const self = this;
         e.preventDefault();
-        this.verifyShopDirectlyWithTst();
         const cartBoldCheckout = document.querySelectorAll('.cart-item-title .definitionList .bold-subscriptions-interval-info');
 
         utils.api.cart.getCart({ includeOptions: true }, (err, response) => {
@@ -162,18 +128,6 @@ class SubscriptionCart {
         });
     }
 
-    /**
-     * Verify if the customer chose the option to shop wth Tastefully Simple
-     */
-    verifyShopDirectlyWithTst() {
-        if (document.getElementById('tsacf-shopdirect') &&
-            document.getElementById('tsacf-shopdirect').checked) {
-            // Set Tastefully Simple as the consultant
-            TSCookie.setConsultantId(this.TS_CONSULTANT_ID);
-            TSCookie.setConsultantName('Tastefully Simple');
-            TSCookie.setConsultantImage(null);
-        }
-    }
 
     /**
      * Verify if the cart has autoship-enabled products
@@ -199,7 +153,6 @@ class SubscriptionCart {
 
     /**
      * Verifies if customer is logged.
-     * If the customer is logged, proceed to verify if it is a Consultant.
      * If the customer is NOT logged, display login modal.
      */
     isCustomerLogged() {
@@ -208,9 +161,6 @@ class SubscriptionCart {
             this.showModal('sign-in');
             return false;
         }
-
-        // Customer is logged, let's verify if he has a consultant
-        this.isCustomerConsultant();
     }
 
     /**
@@ -308,7 +258,6 @@ class SubscriptionCart {
                         } else {
                             window.subscriptionManager.customerId = response.customerId;
                             window.subscriptionManager.customerEmail = response.email;
-                            this.cartTSAffiliationCheck();
 
                             if (self.hasAutoshipProducts(response)) {
                                 self.isCustomerLogged();
@@ -320,151 +269,10 @@ class SubscriptionCart {
                 }
             });
     }
-
-    /**
-     * Verifies if current customer is a consultant
-     */
-    isCustomerConsultant() {
-        const self = this;
-        $.ajax({
-            url: `${window.subscriptionManager.consultantApiUrl}/Info/isconsultant?emailAddress=${window.subscriptionManager.customerEmail}`,
-            type: 'GET',
-            dataType: 'JSON',
-            success(response) {
-                if (response) {
-                    // This is a consultant.
-                    self.showModal('is-consultant');
-                } else {
-                    self.verifyConsultantUpdates();
-                }
-            },
-        });
-    }
-
-    /**
-     * Verify if the current consultant is different from the new one, when the customer has selected a party
-     */
-    verifyPartyAndConsultant() {
-        const newConsultantName = Cookies.get('name');
-        const newConsultantId = Cookies.get('cid').toString();
-        const self = this;
-
-        $.ajax({
-            url: `${window.subscriptionManager.tsApiUrl}/cart/affiliations/?customerId=${window.subscriptionManager.customerId}`,
-            type: 'GET',
-            dataType: 'JSON',
-            success(consultants) {
-                const activeConsultant = consultants.filter(c => c.IsActive === true)[0];
-                const activeConsultantId = activeConsultant ? activeConsultant.ConsultantID.replace(/ /g, '') : false;
-                const pendingConsultant = consultants.filter(c => c.IsActive === false)[0];
-                const pendingConsultantId = pendingConsultant ? pendingConsultant.ConsultantID.replace(/ /g, '') : false;
-
-                if (activeConsultantId === false) {
-                    // Set newconsultant as pending
-                    self.setConsultantAsPending(newConsultantId);
-                    // Go to Checkout page
-                    self.goToCheckout();
-                } else if (newConsultantId === activeConsultantId || newConsultantId === pendingConsultantId) {
-                    // Go to the checkout
-                    self.goToCheckout();
-                } else {
-                    const consultantName = activeConsultantId ? `${activeConsultant.FirstName} ${activeConsultant.LastName}` : `${pendingConsultant.FirstName} ${pendingConsultant.LastName}`;
-                    // Ask customer to choose one
-                    // Map consultant data to template
-                    const map = {
-                        '#current-consultant-name': `<b>${consultantName}</b>`,
-                        '#new-consultant-name': `<b>${newConsultantName}</b>`,
-                        '#current-consultant-id': activeConsultantId || pendingConsultant,
-                        '#new-consultant-id': newConsultantId,
-                        '*not*': '<b>not</b>',
-                    };
-
-                    self.showModal('choose-consultant-and-party', map);
-                }
-            },
-        });
-    }
-
-    /**
-     * Verifies if the current selected consultant is the same as consultant in file.
-     * If they are different, ask the customer to choose one of them
-     */
-    verifyConsultantUpdates() {
-        const newConsultantId = Cookies.get('cid') ? Cookies.get('cid').replace(/ /g, '') : false;
-        const self = this;
-
-        $.ajax({
-            url: `${window.subscriptionManager.tsApiUrl}/cart/affiliations/?customerId=${window.subscriptionManager.customerId}`,
-            type: 'GET',
-            dataType: 'JSON',
-            success(consultants) {
-                const activeConsultant = consultants.filter(c => c.IsActive === true)[0];
-                const activeConsultantId = activeConsultant ? activeConsultant.ConsultantID.replace(/ /g, '') : false;
-                const pendingConsultant = consultants.filter(c => c.IsActive === false)[0];
-                const pendingConsultantId = pendingConsultant ? pendingConsultant.ConsultantID.replace(/ /g, '') : false;
-
-                if (activeConsultantId === false) {
-                    // Set newconsultant as pending
-                    self.setConsultantAsPending(newConsultantId);
-                    // Go to Checkout page
-                    self.goToCheckout();
-                } else if (newConsultantId === activeConsultantId || newConsultantId === pendingConsultantId) {
-                    // Go to the checkout
-                    self.goToCheckout();
-                } else {
-                    const consultantName = activeConsultantId ? `${activeConsultant.FirstName} ${activeConsultant.LastName}` : `${pendingConsultant.FirstName} ${pendingConsultant.LastName}`;
-                    // Ask customer to choose one
-                    // Map consultant data to template
-                    const map = {
-                        '#current-consultant-id': activeConsultantId || pendingConsultantId,
-                        '#current-consultant-name': consultantName,
-                        '#consultant-name': `<b>${consultantName}</b>`,
-                        '#new-consultant-id': newConsultantId,
-                        '#new-consultant-name': Cookies.get('name'),
-                    };
-                    self.showModal('choose-consultant', map);
-                }
-            },
-        });
-    }
-
-    /**
-     * Set a given consultant as Pending
-     * @param consultantId
-     */
-    async setConsultantAsPending(consultantId) {
-        await renewToken();
-        // window.subscriptionManager is set on subscription-manager.js
-        const setAffiliationUrl = `${window.subscriptionManager.apiUrl}/Customers/${window.subscriptionManager.customerId}/affiliation/`;
-        const self = this;
-
-        $.ajax({
-            url: setAffiliationUrl,
-            type: 'POST',
-            dataType: 'JSON',
-            headers: {
-                'Content-Type': 'application/json',
-                'jwt-token': window.currentCustomer.token,
-            },
-            data: JSON.stringify({
-                consultantId,
-                overridePending: 0,
-            }),
-        }).always((response) => {
-            if (response.responseText === 'Success') {
-                self.goToCheckout();
-            } else {
-                swal.fire({
-                    text: 'An error has happened. Please, try again later. (009)',
-                    icon: 'error',
-                });
-            }
-        });
-    }
 }
 
 export default function (themeSettings) {
     if (window.location.href.indexOf('/cart.php') > -1) {
-        return new SubscriptionCart(themeSettings.ts_consultant_id);
+        return new SubscriptionCart();
     }
 }
