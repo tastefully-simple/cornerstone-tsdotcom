@@ -303,7 +303,7 @@
 
     .form-field {
         font-size: 0; // 2
-        margin-bottom: 2rem;
+        margin-bottom: 0; //2rem;
 
         // scss-lint:disable SelectorDepth, NestingDepth
         > .form-checkbox + .form-label
