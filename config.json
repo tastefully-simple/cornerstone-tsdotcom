@@ -465,7 +465,19 @@
         ]
       },
       "images": {},
-      "settings": {}
+      "settings": {
+        "ts_api_environment": "qa1",
+        "ts_affiliate_link": "https://tastefully-simple-inc-sandbox-6.mybigcommerce.com/ts-affiliate-marketing",
+        "google_tagmanager_status": "2",
+        "recipe_search_status": "1",
+        "recipe_search_category_shop_filter_id": "25",
+        "recipe_search_category_recipe_filter_id": "271",
+        "marketplace_brand": "Party Palooza",
+        "subscription_management": {
+          "enabled": true,
+          "api_url": "https://qa1-gateway.api.tastefullysimple.com/subscription/store/1"
+        }
+      }
     },
     {
       "name": "Tech-Sandbox",
@@ -498,7 +510,7 @@
         "marketplace_brand": "Party Palooza",
         "subscription_management": {
           "enabled": true,
-          "api_url": "https://qa1-subscription.api.tastefullysimple.com/store/1"
+          "api_url": "https://qa1-gateway.api.tastefullysimple.com/subscription/store/1"
         }
       }
     },
