@@ -448,6 +448,40 @@
   },
   "variations": [
     {
+      "name": "Local",
+      "id": "light",
+      "meta": {
+        "desktop_screenshot": "desktop_light.png",
+        "mobile_screenshot": "mobile_light.png",
+        "description": "Ideal for a wide range of businesses and brands, this design is fully responsive, simple, and ready for you to add your branding, logo, and products. It comes ready to build a clean looking and beautiful store with features such as homepage carousel, social media icons, featured and top selling products, and faceted search (which is available on select BigCommerce plans). Fully express your brand by using our Theme Editor to quickly and easily style your site's fonts and colors, all without the need to write code.",
+        "demo_url": "https://cornerstone-light-demo.mybigcommerce.com",
+        "optimized_for": [
+          "multi_purpose",
+          "mobile_tablet_desktop",
+          "sales_discounts",
+          "large_catalog"
+        ],
+        "industries": [
+          "food_beverage"
+        ]
+      },
+      "images": {},
+      "settings": {
+        "environment": "local",
+        "ts_api_environment": "qa1",
+        "ts_affiliate_link": "https://tastefully-simple-inc-sandbox-6.mybigcommerce.com/ts-affiliate-marketing",
+        "google_tagmanager_status": "2",
+        "recipe_search_status": "1",
+        "recipe_search_category_shop_filter_id": "25",
+        "recipe_search_category_recipe_filter_id": "271",
+        "marketplace_brand": "Party Palooza",
+        "subscription_management": {
+          "enabled": true,
+          "api_url": "https://qa1-subscription.api.tastefullysimple.com/store/1"
+        }
+      }
+    },
+    {
       "name": "Light",
       "id": "light",
       "meta": {
@@ -467,6 +501,7 @@
       },
       "images": {},
       "settings": {
+        "environment": "qa",
         "ts_api_environment": "qa1",
         "ts_affiliate_link": "https://tastefully-simple-inc-sandbox-6.mybigcommerce.com/ts-affiliate-marketing",
         "google_tagmanager_status": "2",
