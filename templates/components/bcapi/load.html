@@ -17,22 +17,27 @@
      */
      function loadBcApi(selector, resultContainer) {
         var xmlhttp = new XMLHttpRequest();
-
         if (typeof bcapiResults[selector] !== 'undefined') {
-            resultContainer.innerHTML = bcapiResults[selector];
+           // resultContainer.innerHTML = bcapiResults[selector];
         } else {
             xmlhttp.onreadystatechange = function() {
                 if (xmlhttp.readyState == XMLHttpRequest.DONE) {
                     if (xmlhttp.status == 200) {
+                        var environment = theme_settings.environment;
                         bcapiResults[selector] = xmlhttp.responseText;
-                        resultContainer.innerHTML = xmlhttp.responseText;
+                        if(environment != "local"){
+                            resultContainer.innerHTML = xmlhttp.responseText; 
+                        }
+                        else {
+                            resultContainer.innerHTML = "<span>Local Environment (No data from bcAPI)</span>";
+                        }
+                            
                     }
                     else {
                         console(`Could not load content for ${selector}`);
                     }
                 }
             };
-            console.log(selector)
             const requestUrl = '/' + selector + '/';
 
             xmlhttp.open("GET", requestUrl, true);
