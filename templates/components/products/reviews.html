@@ -1,45 +1,43 @@
 {{#if reviews.total}}
 <section class="toggle productReviews" id="product-reviews" data-product-reviews>
-    <h4 class="toggle-title">
-        {{lang 'products.reviews.header' total=reviews.total}}
-        {{#if theme_settings.show_product_reviews}}
-            <a class="toggleLink is-open" data-collapsible href="#productReviews-content">
-                <span class="toggleLink-text toggleLink-text--on">
-                    {{lang 'products.reviews.hide'}}
-                </span>
-                <span class="toggleLink-text toggleLink-text--off">
-                    {{lang 'products.reviews.show'}}
-                </span>
-            </a>
-        {{/if}}
-    </h4>
+    <div class="review-sep">
+        <div class="review-sep-inner">
+            <h2>read the latest reviews</h2>
+            <span class="toggle-title">{{lang 'products.reviews.header' total=reviews.total}}</span>
+            <button class="button-primary" data-reveal-id="modal-review-form" role="button">submit a review</button>
+        </div>
+    </div>
     <div class="toggle-content is-open" id="productReviews-content" aria-hidden="false">
         <ul class="productReviews-list" id="productReviews-list">
             {{#each reviews.list}}
             <li class="productReview">
-                <article>
+                <article itemprop="review" itemscope itemtype="http://schema.org/Review">
+                    <meta itemprop="itemReviewed" content="{{../product.title}}">
                     <header>
-                        <span class="productReview-rating rating--small">
-                            {{> components/products/ratings rating=rating}}
-                            <span class="productReview-ratingNumber">{{ rating }}</span>
-                        </span>
-                        <h5 class="productReview-title">{{{ sanitize title }}}</h5>
                         {{#if name}}
+                            <meta itemprop="author" content="{{name}}">
                             <p class="productReview-author">
-                                {{{lang 'products.reviews.post_on_by' date=date name=(sanitize name) }}}
+                                {{{lang 'products.reviews.author' date=date name=(sanitize name) }}}
                             </p>
                         {{else}}
                             <p class="productReview-author">
-                                {{lang 'products.reviews.post_on_by' date=date name=(lang 'products.reviews.anonymous_poster')}}
+                                {{lang 'products.reviews.author' date=date name=(lang 'products.reviews.anonymous_poster')}}
                             </p>
                         {{/if}}
+                        <div class="rating-title">
+                            <span class="productReview-rating rating--small" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+                            {{> components/products/ratings rating=rating}}
+                                <span class="productReview-ratingNumber" itemprop="ratingValue">{{ rating }}</span>
+                            </span>
+                            <h5 itemprop="name" class="productReview-title">{{{ sanitize title }}}</h5>
+                        <div>
                     </header>
-                    <p class="productReview-body">{{{ sanitize text }}}</p>
+                    <p itemprop="reviewBody" class="productReview-body">{{{ sanitize text }}}</p>
                 </article>
             </li>
             {{/each}}
         </ul>
-        {{> components/common/paginator pagination.reviews reload=true}}
+        {{> components/common/paginator pagination.reviews}}
     </div>
 </section>
 {{/if}}
