@@ -1,32 +1,21 @@
 import nod from '../common/nod';
-import collapsibleFactory, { CollapsibleEvents } from '../common/collapsible';
+import { CollapsibleEvents } from '../common/collapsible';
 import forms from '../common/models/forms';
 import { safeString } from '../common/utils/safe-string';
-import { announceInputErrorMessage } from '../common/utils/form-utils';
+
 
 export default class {
-    constructor({ $reviewForm, $context }) {
-        if ($reviewForm && $reviewForm.length) {
-            this.validator = nod({
-                submit: $reviewForm.find('input[type="submit"]'),
-                tap: announceInputErrorMessage,
-            });
-        }
+    constructor($reviewForm) {
+        this.validator = nod({
+            submit: $reviewForm.find('input[type="submit"]'),
+        });
 
-        this.$context = $context;
-        this.$reviewTabLink = $('.productView-reviewTabLink', this.$context);
-        this.$reviewsContent = $('#product-reviews', this.$context);
-        this.$reviewsContentList = $('#productReviews-content', this.$reviewsContent);
+        this.$reviewsContent = $('#product-reviews');
         this.$collapsible = $('[data-collapsible]', this.$reviewsContent);
 
-        if (this.$context) {
-            collapsibleFactory('[data-collapsible]', { $context });
-        } else {
-            this.initLinkBind();
-        }
-
+        this.initLinkBind();
         this.injectPaginationLink();
-        this.setupReviews();
+        this.collapseReviews();
     }
 
     /**
@@ -34,33 +23,24 @@ export default class {
      * The browser jumps to the review page and should expand the reviews section
      */
     initLinkBind() {
-        const $productReviewLink = $('#productReview_link');
-        $productReviewLink
-            .attr('href', `${$productReviewLink.attr('href')}${window.location.search}#product-reviews`)
-            .on('click', () => this.expandReviews());
+        const $content = $('#productReviews-content', this.$reviewsContent);
+
+        $('#productReview_link').on('click', () => {
+            $('.productView-reviewTabLink').trigger('click');
+            if (!$content.hasClass('is-open')) {
+                this.$collapsible.trigger(CollapsibleEvents.click);
+            }
+        });
     }
 
-    setupReviews() {
-        // We're in paginating state, reviews should be visible
-        if (
-            window.location.hash
-            && window.location.hash.indexOf('#product-reviews') === 0
-            && this.$reviewsContent.parents('.quickView').length === 0
-        ) {
-            this.expandReviews();
+    collapseReviews() {
+        // We're in paginating state, do not collapse
+        if (window.location.hash && window.location.hash.indexOf('#product-reviews') === 0) {
             return;
         }
 
         // force collapse on page load
         this.$collapsible.trigger(CollapsibleEvents.click);
-    }
-
-    expandReviews() {
-        this.$reviewTabLink.trigger('click');
-
-        if (!this.$reviewsContentList.hasClass('is-open')) {
-            this.$collapsible.trigger(CollapsibleEvents.click);
-        }
     }
 
     /**
@@ -82,15 +62,15 @@ export default class {
     registerValidation(context) {
         this.context = context;
         this.validator.add([{
-            selector: '[name="revrating"]',
+            selector: '#rating-rate',
             validate: 'presence',
             errorMessage: safeString(this.context.reviewRating),
         }, {
-            selector: '[name="revtitle"]',
+            selector: '#revtitle',
             validate: 'presence',
             errorMessage: safeString(this.context.reviewSubject),
         }, {
-            selector: '[name="revtext"]',
+            selector: '#revtext',
             validate: 'presence',
             errorMessage: safeString(this.context.reviewComment),
         }, {
