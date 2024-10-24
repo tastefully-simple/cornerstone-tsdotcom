@@ -327,7 +327,8 @@
     .sharethis_toolbox, .productView-rating, .footer, .productView, 
     #main-content, .partybar, nav, iframe#launcher, iframe#SmileUIPromptContainer, 
     iframe#smile-ui-container, iframe.smile-launcher-frame, #gfp_shopper_toolbar, 
-    #sw_floating_container {
+    #sw_floating_container, div:has(> [title^='No content'], [title^='No content']), 
+    div:has(> [title^='Message from company'], [title^='Message from company']) {
         display: none;
     }
 
