@@ -535,6 +535,7 @@
       },
       "images": {},
       "settings": {
+        "environment": "qa",
         "ts_api_environment": "qa1",
         "ts_affiliation_timer": 60,
         "zoy_dev_mode": false,
@@ -569,6 +570,7 @@
         ]
       },
       "settings": {
+        "environment": "local",
         "homepage_featured_products_count": 6,
         "homepage_featured_products_column_count": 3,
         "body-font": "Google_Source+Sans+Pro_400",
