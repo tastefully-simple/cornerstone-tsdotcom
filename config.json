@@ -70,6 +70,7 @@
       }
     ],
     "ts_api_environment": "qa1",
+    "ts_environment": "local",
     "ts_current_store_base_url": "https://tastefully-simple-sandbox-2.mybigcommerce.com",
     "ts_shop_more_url": "/shop/",
     "ts_tsapi_base_url": "gateway.api.tastefullysimple.com",
