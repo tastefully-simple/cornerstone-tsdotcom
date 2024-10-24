@@ -469,6 +469,7 @@
       "images": {},
       "settings": {
         "ts_api_environment": "qa1",
+        "ts_environment": "local",
         "ts_affiliate_link": "https://tastefully-simple-inc-sandbox-6.mybigcommerce.com/ts-affiliate-marketing",
         "google_tagmanager_status": "2",
         "recipe_search_status": "1",
@@ -502,6 +503,7 @@
       "images": {},
       "settings": {
         "ts_api_environment": "qa1",
+        "ts_environment": "Tech",
         "ts_affiliation_timer": 60,
         "zoy_dev_mode": false,
         "ts_affiliate_link": "https://tastefully-simple-inc-sandbox-6.mybigcommerce.com/ts-affiliate-marketing",
