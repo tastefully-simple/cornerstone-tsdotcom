@@ -195,9 +195,9 @@
         display: inline-block;
         padding: spacing("half") (spacing("half") + spacing("quarter")) (spacing("half") + spacing("quarter"));
 
-        &.is-open {
-            background-color: $navPage-subMenu-item--is-highlighted-background;
-        }
+        //&.is-open {
+        //    background-color: $navPage-subMenu-item--is-highlighted-background;
+        //}
     }
 
     &.has-subMenu {
