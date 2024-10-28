@@ -15,11 +15,6 @@
         button {
             padding:0;
         }
-        .footer-copyright{
-            &>.powered-by{
-                color: $white;
-            }
-        }
     }
     // end color override
     .footer-loveit{
@@ -37,16 +32,22 @@
                 flex-direction:column;
             }
             .footer-info-heading {
-                @extend .framelink-lg;
+                @extend .framelink-xl;
                 &:not(.tst-accordion-title) {
                     margin-top:1rem;
                     text-align:left;
                 }
                 &::after {
-                    color:$green-apple;
+                    color:$white;
                 }
             }
             .footer-info-list{
+                a{
+                    font-size: 16px;
+                }
+                .footer-info-heading{
+                    font-size: 16px;
+                }
                 li{
                     padding:.2rem 0;
                 }
@@ -57,7 +58,7 @@
                 .form {
                     margin-bottom:0;
                     .form-label {
-                        color: $white; 
+                        color: $white;
                     }
                     .form-field {
                         margin-bottom:0;
@@ -126,7 +127,8 @@
         }
     }
     .footer-bottom {
-        background-color:$text-gray;
+        background-color:$white;
+        color:$black;
         .container {
             align-items:center;
             display:flex;
@@ -143,6 +145,7 @@
                     }
                     .footer-logos {
                         display:flex;
+                        padding-right: 10%;
                         a {
                             display:block;
                             padding:0 .5rem;
@@ -170,13 +173,38 @@
         text-align:center;
         width:auto;
     }
+
+}
+@media only screen and (max-width:800px) {
+    .footer{
+        .footer-bottom{
+            img{
+                max-height: 32px;
+            }
+            .copyright-logos {
+                padding: 10px 0;
+            }
+        }
+        .footer-info-heading{
+            min-width: 132px;
+            margin-right: 20px;
+            display: inline-block;
+            position: relative;
+            padding-right: 25px;
+            &::after{
+                position: absolute;
+                right: 0;
+            }
+        }
+    }
+
 }
 @media only screen and (min-width:800px) {
     .footer{
         .footer-bottom {
-            background-color:$text-gray;
             .container {
                 flex-flow:row;
+                padding: 1rem 2rem;
             }
         }
         &>.footer-info {

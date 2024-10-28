@@ -1,8 +1,4 @@
 {{#if children}}
-<a class="navPages-action has-subMenu{{#if is_active}} activePage{{/if}}" href="{{url}}" id="navPages-mainmenu-cat{{name}}" data-collapsible="navPages-cat{{name}}">
-    {{name}}
-</a>
-<div class="navPage-subMenu" id="navPages-cat{{name}}" aria-hidden="true" tabindex="-1">
     <ul class="navPage-subMenu-list">
         {{#each children}}
             <li class="navPage-subMenu-item">
@@ -29,7 +25,4 @@
             </li>
         {{/each}}
     </ul>
-</div>
-{{else}}
-<a class="navPages-action{{#if is_active}} activePage{{/if}}" href="{{url}}">{{name}}</a>
 {{/if}}
