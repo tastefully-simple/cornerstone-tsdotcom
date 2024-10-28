@@ -13,6 +13,7 @@
         <li class="navPages-item navPages-item-blog">
             <a class="navPages-action" href="//blog.tastefullysimple.com">blog</a>
         </li>
+        {{!-- @nc: remove join, host and fundraiser
         <li class="navPages-item navPages-item-join">
             <a class="navPages-action teal-text" href="/join-us/">join</a>
         </li>
@@ -21,7 +22,9 @@
         </li>
         <li class="navPages-item navPages-item-consultant-fundraiser">
             <div id="mobile_consultant" style="display: block; position: relative; float: left; width: 50%"></div>
+            <div id="mobile_partybar" style="display: block; position: relative; float: left; width: 50%; height: 63px !important"></div>
         </li>
+        --}}
     </ul>
     <ul class="navPages-list navPages-list--user" id="navigation-menu-custom">
         {{#if currency_selector.currencies.length '>' 1}}
@@ -109,14 +112,9 @@
                 </div>
             </li>
         {{else}}
-            <li class="navPages-item" style="padding-bottom: 50px">
-                <span style="font-weight: 900;
-    font-size: 16px;
-    color: #00757d"><a class="" style="font-weight: 900;
-    font-size: 16px; text-decoration: none;
-    color: #00757d" href="{{urls.auth.login}}">sign in</a> / <a class="" style="font-weight: 900;
-    font-size: 16px;
-    color: #00757d; text-decoration: none" href="{{urls.auth.create_account}}">register</a></span>
+            <li class="navPages-item">
+                <a class="navPages-action" href="{{urls.auth.login}}">sign in to account</a>
+                <a class="navPages-action" href="{{urls.auth.create_account}}">register for an account</a>
             </li>
         {{/if}}
         {{#if theme_settings.social_icon_placement_top}}

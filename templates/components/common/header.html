@@ -47,6 +47,17 @@
                 {{> components/common/search-box}}
             </div>
         </div>
+
+
+        <nav class="primaryMenu">
+            {{#each categories}}
+            {{#if name '===' 'shop'}}
+                {{> components/common/navigation-list-primary}}
+            {{/if}}
+            {{/each}}
+        </nav>
+
+
     </div>
 </header>
 {{{region name="header_bottom--global"}}}
