@@ -1,5 +1,6 @@
-{{#if children}}
-    <ul class="navPage-subMenu-list">
+
+    
+        {{#and children (if name '===' 'shop')}}
         {{#each children}}
             <li class="navPage-subMenu-item">
                 {{#if children}}
@@ -19,10 +20,15 @@
                         </li>
                         {{/each}}
                     </ul>
-                {{else}}
-                    <a class="navPage-subMenu-action navPages-action{{#if is_active}} activePage{{/if}}" href="{{url}}">{{name}}</a>
                 {{/if}}
             </li>
         {{/each}}
-    </ul>
-{{/if}}
+        {{else}}
+        {{#or (if name '===' 'samples (P2)') (if name '===' 'supplies (P3)')}}
+            <li class="navPage-subMenu-item">
+                <a class="navPage-subMenu-action navPages-action{{#if is_active}} activePage{{/if}}" href="{{url}}">{{name}}</a>
+            </li>
+        {{/or}}
+        {{/and}}
+
+

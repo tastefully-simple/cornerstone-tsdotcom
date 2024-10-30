@@ -50,11 +50,11 @@
 
 
         <nav class="primaryMenu">
-            {{#each categories}}
-            {{#if name '===' 'shop'}}
-                {{> components/common/navigation-list-primary}}
-            {{/if}}
-            {{/each}}
+            <ul class="navPage-subMenu-list">
+                {{#each categories}}
+                    {{> components/common/navigation-list-primary}}
+                {{/each}}
+            </ul>
         </nav>
 
 
