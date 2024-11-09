@@ -24,6 +24,10 @@
                 return Cookies.get('ref');
             },
 
+            getExperienceRef: function() {
+                return Cookies.get('source');
+            },
+
             // Consultant XID
             setConsultantXid: function(cxid) {
                 Cookies.set('cxid', cxid, { domain: cookieDomain });
