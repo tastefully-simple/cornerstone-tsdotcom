@@ -13,10 +13,12 @@ export default class TSAffiliationCheck {
             .then(cart => {
                 if (cart.length > 0) {
                     var affiliateReference = TSCookie.getAffiliateRef();
+                    var experienceReference = TSCookie.getExperienceRef();
                     const affiliations = {
                         cartID: cart[0].id,
                         email: cart[0].email ? cart[0].email : "",
-                        gapReference: affiliateReference ? affiliateReference : ""
+                        reference: affiliateReference ? affiliateReference : "",
+                        experience: experienceReference ? experienceReference : ""
                     };
 
                     this.api.affiliationCheck(affiliations);
