@@ -19,16 +19,13 @@ import shippingModalInteraction from './global/shippingModalInteraction';
 import accordian from './global/accordian';
 import newsletterAlert from './global/newsletter-alert';
 import stickyHeader from './global/sticky-header';
-import findConsultant from './global/find-consultant';
 import tooltip from './global/tooltip';
 import tsCheckUserLogin from './global/ts-check-user-login';
 import tsAddToCart from './global/ts-add-to-cart';
 import tsJoinProcess from './global/ts-join-process';
 import tsCookieConfig from './global/ts-cookie-config';
-import tsConsultant from './global/ts-consultant';
 import tsSeoProcess from './global/ts-seo-process';
-import subscriptionManager from './global/custom/subscription-manager';
-import subscriptionCart from './global/custom/subscription-cart';
+
 
 export default class Global extends PageManager {
     onReady() {
@@ -68,10 +65,5 @@ export default class Global extends PageManager {
             accountMenu.classList.add('is-open');
         }
 
-        subscriptionManager(
-            this.context.customerId, this.context.productId ? this.context.productId : false,
-            this.context.subscriptionManagement, this.context.customerEmail,
-        );
-        subscriptionCart(themeSettings);
     }
 }

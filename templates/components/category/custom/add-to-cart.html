@@ -60,19 +60,6 @@
                             {{/if}}
                         </div>
                     </div>
-                    {{#if add_to_cart_url }}
-                    <div class="row3">
-                        <div>
-                            <a href="{{url}}" class="button-small ts-to-you-link"><img src="{{cdn 'assets/img/tstoyou.png'}}" width="50">{{lang 'products.select_options'}}</a>
-                        </div>
-                    </div>
-                    {{else}}
-                    <div class="row3" style="display: none;">
-                        <div>
-                            <a href="{{url}}" class="button-small ts-to-you-link"><img src="{{cdn 'assets/img/tstoyou.png'}}" width="50">{{lang 'products.select_options'}}</a>
-                        </div>
-                    </div> 
-                    {{/if}}
                 </div>
 
                 <input type="hidden" name="action" value="add">
