@@ -11,7 +11,7 @@
 
 $cart-item-spacing:                     spacing("single");
 $cart-content-padding-right:            4px;
-
+$cart-content-margin-bottom:            5px;
 $cart-thumbnail-maxWidth:               remCalc(100px);
 $cart-thumbnail-height:                 remCalc(100px);
 $cart-thumbnail-maxHeight:              14rem;
@@ -223,6 +223,7 @@ $card-preview-zoom-bottom-offset:       6rem;
 // -----------------------------------------------------------------------------
 .cart-content-padding-right {
     padding-right: $cart-content-padding-right;
+    margin-bottom: $cart-content-margin-bottom;
 }
 
 .cart-header-quantity,
