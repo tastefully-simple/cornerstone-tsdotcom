@@ -1,34 +1,28 @@
-
-    
         {{#and children (if name '===' 'shop')}}
-        {{#each children}}
-            <li class="navPage-subMenu-item">
-                {{#if children}}
-                    <a
-                        class="navPage-subMenu-action navPages-action has-subMenu{{#if is_active}} activePage{{/if}}"
-                        href="{{url}}"
-                        data-collapsible="navPages-{{id}}"
-                        data-collapsible-disabled-breakpoint="medium"
-                        data-collapsible-disabled-state="open"
-                        data-collapsible-enabled-state="closed">
-                        {{name}}
-                    </a>
-                    <ul class="navPage-childList" id="navPages-{{id}}">
-                        {{#each children}}
-                        <li class="navPage-childList-item">
-                            <a class="navPage-childList-action navPages-action{{#if is_active}} activePage{{/if}}" href="{{url}}">{{name}}</a>
-                        </li>
-                        {{/each}}
-                    </ul>
-                {{/if}}
-            </li>
-        {{/each}}
-        {{else}}
-        {{#or (if name '===' 'samples (P2)') (if name '===' 'supplies (P3)')}}
+            {{#each children}}
+                <li class="navPage-subMenu-item">
+                        <a
+                            class="navPage-subMenu-action navPages-action has-subMenu{{#if is_active}} activePage{{/if}}"
+                            href="{{url}}"
+                            data-collapsible="navPages-{{id}}"
+                            data-collapsible-disabled-breakpoint="medium"
+                            data-collapsible-disabled-state="open"
+                            data-collapsible-enabled-state="closed">
+                            {{name}}
+                        </a>
+                        <ul class="navPage-childList" id="navPages-{{id}}">
+                            {{#each children}}
+                            <li class="navPage-childList-item">
+                                <a class="navPage-childList-action navPages-action{{#if is_active}} activePage{{/if}}" href="{{url}}">{{name}}</a>
+                            </li>
+                            {{/each}}
+                        </ul>
+                </li>
+            {{/each}}
+        {{/and}}
+        {{#and (if name '!==' 'Recipes') (if name '!==' 'shop') }}
             <li class="navPage-subMenu-item">
                 <a class="navPage-subMenu-action navPages-action{{#if is_active}} activePage{{/if}}" href="{{url}}">{{name}}</a>
             </li>
-        {{/or}}
         {{/and}}
-
 
