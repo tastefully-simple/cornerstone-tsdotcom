@@ -289,10 +289,17 @@
 //
 // Go Aff Pro Header #2
 // -----------------------------------------------------------------------------
-#gfp_shopper_toolbar {
+.mobile_shopping_with_bar {
+    display: block; 
+    position: relative; 
+    float: left; 
+    padding: 4px;
+    margin-top:10px;
+}
+
+.shopping_with_bar {
     background-color: $burgundy !important;
     text-align: center;
     color: $white !important;
     padding: 0;
 }
-
