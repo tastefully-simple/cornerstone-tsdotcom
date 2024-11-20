@@ -293,13 +293,28 @@
     display: block; 
     position: relative; 
     float: left; 
-    padding: 4px;
-    margin-top:10px;
+
+    :not(:empty) {
+        margin-top:10px;
+        padding: 4px;
+      }
 }
 
 .shopping_with_bar {
-    //background-color: $burgundy !important;
+    background-color: #e2dfe2;
     text-align: center;
-    color: $white !important;
     box-shadow: none !important;
+    color: #080000;
+    :not(:empty) {
+        padding: 4px !important;
+      }
+
+}
+
+.shopping-bar {
+    z-index: -1;
+    :not(:empty) {
+        margin-top:6px;
+      }
+
 }
