@@ -296,7 +296,7 @@
 
     :not(:empty) {
         margin-top:10px;
-        padding: 4px;
+        padding: 6px;
       }
 }
 
@@ -305,9 +305,9 @@
     text-align: center;
     box-shadow: none !important;
     color: #080000;
-    :not(:empty) {
-        padding: 4px !important;
-      }
+    //:not(:empty) {
+        //padding: 4px !important;
+    // }
 
 }
 
@@ -318,7 +318,12 @@
 .shopping-bar {
     z-index: -1;
     :not(:empty) {
-        margin-top:6px;
+        margin-top:2px;
+        padding:2px;
       }
 
+}
+
+.gfp_toolbar_style.svelte-11mid2p{
+    box-shadow: none !important; 
 }
