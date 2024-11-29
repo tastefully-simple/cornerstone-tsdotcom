@@ -1,33 +1,24 @@
 import PageManager from './page-manager';
 import { bind, debounce } from 'lodash';
-import checkIsGiftCertValid from './common/gift-certificate-validator';
-import { createTranslationDictionary } from './common/utils/translations-utils';
+import giftCertCheck from './common/gift-certificate-validator';
 import utils from '@bigcommerce/stencil-utils';
 import ShippingEstimator from './cart/shipping-estimator';
-import { defaultModal, showAlertModal, ModalEvents } from './global/modal';
+import modalFactory, { defaultModal, modalTypes, ModalEvents } from './global/modal';
+import swal from './global/sweet-alert';
 import CartItemDetails from './common/cart-item-details';
 
 export default class Cart extends PageManager {
     onReady() {
         this.$modal = null;
-        this.$cartPageContent = $('[data-cart]');
         this.$cartContent = $('[data-cart-content]');
         this.$cartMessages = $('[data-cart-status]');
         this.$cartTotals = $('[data-cart-totals]');
-        this.$cartAdditionalCheckoutBtns = $('[data-cart-additional-checkout-buttons]');
         this.$overlay = $('[data-cart] .loadingOverlay')
             .hide(); // TODO: temporary until roper pulls in his cart components
         this.$activeCartItemId = null;
         this.$activeCartItemBtnAction = null;
 
-        this.setApplePaySupport();
         this.bindEvents();
-    }
-
-    setApplePaySupport() {
-        if (window.ApplePaySession) {
-            this.$cartPageContent.addClass('apple-pay-supported');
-        }
     }
 
     cartUpdate($target) {
@@ -44,9 +35,15 @@ export default class Cart extends PageManager {
         const newQty = $target.data('action') === 'inc' ? oldQty + 1 : oldQty - 1;
         // Does not quality for min/max quantity
         if (newQty < minQty) {
-            return showAlertModal(minError);
+            return swal.fire({
+                text: minError,
+                icon: 'error',
+            });
         } else if (maxQty > 0 && newQty > maxQty) {
-            return showAlertModal(maxError);
+            return swal.fire({
+                text: maxError,
+                icon: 'error',
+            });
         }
 
         this.$overlay.show();
@@ -61,7 +58,10 @@ export default class Cart extends PageManager {
                 this.refreshContent(remove);
             } else {
                 $el.val(oldQty);
-                showAlertModal(response.data.errors.join('\n'));
+                swal.fire({
+                    text: response.data.errors.join('\n'),
+                    icon: 'error',
+                });
             }
         });
     }
@@ -78,16 +78,25 @@ export default class Cart extends PageManager {
         let invalidEntry;
 
         // Does not quality for min/max quantity
-        if (!Number.isInteger(newQty)) {
+        if (!newQty) {
             invalidEntry = $el.val();
             $el.val(oldQty);
-            return showAlertModal(this.context.invalidEntryMessage.replace('[ENTRY]', invalidEntry));
+            return swal.fire({
+                text: `${invalidEntry} is not a valid entry`,
+                icon: 'error',
+            });
         } else if (newQty < minQty) {
             $el.val(oldQty);
-            return showAlertModal(minError);
+            return swal.fire({
+                text: minError,
+                icon: 'error',
+            });
         } else if (maxQty > 0 && newQty > maxQty) {
             $el.val(oldQty);
-            return showAlertModal(maxError);
+            return swal.fire({
+                text: maxError,
+                icon: 'error',
+            });
         }
 
         this.$overlay.show();
@@ -101,8 +110,10 @@ export default class Cart extends PageManager {
                 this.refreshContent(remove);
             } else {
                 $el.val(oldQty);
-
-                return showAlertModal(response.data.errors.join('\n'));
+                swal.fire({
+                    text: response.data.errors.join('\n'),
+                    icon: 'error',
+                });
             }
         });
     }
@@ -113,8 +124,10 @@ export default class Cart extends PageManager {
             if (response.data.status === 'succeed') {
                 this.refreshContent(true);
             } else {
-                this.$overlay.hide();
-                showAlertModal(response.data.errors.join('\n'));
+                swal.fire({
+                    text: response.data.errors.join('\n'),
+                    icon: 'error',
+                });
             }
         });
     }
@@ -136,24 +149,15 @@ export default class Cart extends PageManager {
 
         utils.api.productAttributes.configureInCart(itemId, options, (err, response) => {
             modal.updateContent(response.content);
-            const optionChangeHandler = () => {
-                const $productOptionsContainer = $('[data-product-attributes-wrapper]', this.$modal);
-                const modalBodyReservedHeight = $productOptionsContainer.outerHeight();
-
-                if ($productOptionsContainer.length && modalBodyReservedHeight) {
-                    $productOptionsContainer.css('height', modalBodyReservedHeight);
-                }
-            };
-
-            if (this.$modal.hasClass('open')) {
-                optionChangeHandler();
-            } else {
-                this.$modal.one(ModalEvents.opened, optionChangeHandler);
-            }
+            const $productOptionsContainer = $('[data-product-attributes-wrapper]', this.$modal);
+            const modalBodyReservedHeight = $productOptionsContainer.outerHeight();
+            $productOptionsContainer.css('height', modalBodyReservedHeight);
 
             this.productDetails = new CartItemDetails(this.$modal, context);
 
             this.bindGiftWrappingForm();
+
+            modal.setupFocusableElements(modalTypes.CART_CHANGE_PRODUCT);
         });
 
         utils.hooks.on('product-option-change', (event, currentTarget) => {
@@ -165,7 +169,10 @@ export default class Cart extends PageManager {
                 const data = result.data || {};
 
                 if (err) {
-                    showAlertModal(err);
+                    swal.fire({
+                        text: err,
+                        icon: 'error',
+                    });
                     return false;
                 }
 
@@ -196,7 +203,6 @@ export default class Cart extends PageManager {
                 totals: 'cart/totals',
                 pageTitle: 'cart/page-title',
                 statusMessages: 'cart/status-messages',
-                additionalCheckoutButtons: 'cart/additional-checkout-buttons',
             },
         };
 
@@ -211,18 +217,12 @@ export default class Cart extends PageManager {
             this.$cartContent.html(response.content);
             this.$cartTotals.html(response.totals);
             this.$cartMessages.html(response.statusMessages);
-            this.$cartAdditionalCheckoutBtns.html(response.additionalCheckoutButtons);
 
             $cartPageTitle.replaceWith(response.pageTitle);
-
-            const quantity = $('[data-cart-quantity]', this.$cartContent).data('cartQuantity') || 0;
-
-            if (!quantity) {
-                return window.location.reload();
-            }
-
             this.bindEvents();
             this.$overlay.hide();
+
+            const quantity = $('[data-cart-quantity]', this.$cartContent).data('cartQuantity') || 0;
 
             $('body').trigger('cart-quantity-update', quantity);
 
@@ -250,29 +250,28 @@ export default class Cart extends PageManager {
         });
 
         // cart qty manually updates
-        $('.cart-item-qty-input', this.$cartContent).on({
-            focus: function onQtyFocus() {
-                preVal = this.value;
-            },
-            change: event => {
-                const $target = $(event.currentTarget);
-                event.preventDefault();
+        $('.cart-item-qty-input', this.$cartContent).on('focus', function onQtyFocus() {
+            preVal = this.value;
+        }).change(event => {
+            const $target = $(event.currentTarget);
+            event.preventDefault();
 
-                // update cart quantity
-                cartUpdateQtyTextChange($target, preVal);
-            },
+            // update cart quantity
+            cartUpdateQtyTextChange($target, preVal);
         });
 
         $('.cart-remove', this.$cartContent).on('click', event => {
             const itemId = $(event.currentTarget).data('cartItemid');
             const string = $(event.currentTarget).data('confirmDelete');
-            showAlertModal(string, {
+            swal.fire({
+                text: string,
                 icon: 'warning',
                 showCancelButton: true,
-                onConfirm: () => {
+            }).then((result) => {
+                if (result.value) {
                     // remove item from cart
                     cartRemoveItem(itemId);
-                },
+                }
             });
             event.preventDefault();
         });
@@ -317,14 +316,20 @@ export default class Cart extends PageManager {
 
             // Empty code
             if (!code) {
-                return showAlertModal($codeInput.data('error'));
+                return swal.fire({
+                    text: $codeInput.data('error'),
+                    icon: 'error',
+                });
             }
 
             utils.api.cart.applyCode(code, (err, response) => {
                 if (response.data.status === 'success') {
                     this.refreshContent();
                 } else {
-                    showAlertModal(response.data.errors.join('\n'));
+                    swal.fire({
+                        html: response.data.errors.join('\n'),
+                        icon: 'error',
+                    });
                 }
             });
         });
@@ -339,14 +344,12 @@ export default class Cart extends PageManager {
             event.preventDefault();
             $(event.currentTarget).toggle();
             $certContainer.toggle();
-            $certContainer.attr('aria-hidden', false);
             $('.gift-certificate-cancel').toggle();
         });
 
         $('.gift-certificate-cancel').on('click', event => {
             event.preventDefault();
             $certContainer.toggle();
-            $certContainer.attr('aria-hidden', true);
             $('.gift-certificate-add').toggle();
             $('.gift-certificate-cancel').toggle();
         });
@@ -356,16 +359,21 @@ export default class Cart extends PageManager {
 
             event.preventDefault();
 
-            if (!checkIsGiftCertValid(code)) {
-                const validationDictionary = createTranslationDictionary(this.context);
-                return showAlertModal(validationDictionary.invalid_gift_certificate);
+            if (!giftCertCheck(code)) {
+                return swal.fire({
+                    text: $certInput.data('error'),
+                    icon: 'error',
+                });
             }
 
             utils.api.cart.applyGiftCertificate(code, (err, resp) => {
                 if (resp.data.status === 'success') {
                     this.refreshContent();
                 } else {
-                    showAlertModal(resp.data.errors.join('\n'));
+                    swal.fire({
+                        html: resp.data.errors.join('\n'),
+                        icon: 'error',
+                    });
                 }
             });
         });
@@ -442,10 +450,6 @@ export default class Cart extends PageManager {
         this.bindGiftCertificateEvents();
 
         // initiate shipping estimator module
-        const shippingErrorMessages = {
-            country: this.context.shippingCountryErrorMessage,
-            province: this.context.shippingProvinceErrorMessage,
-        };
-        this.shippingEstimator = new ShippingEstimator($('[data-shipping-estimator]'), shippingErrorMessages);
+        this.shippingEstimator = new ShippingEstimator($('[data-shipping-estimator]'));
     }
 }

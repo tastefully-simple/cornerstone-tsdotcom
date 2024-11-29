@@ -196,6 +196,7 @@ $card-preview-zoom-bottom-offset:       6rem;
 .cart-item-info {
     clear: both;
     width: 100%;
+    padding-right:3px;
 
     @include breakpoint("small") {
         clear: none;
