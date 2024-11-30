@@ -8,9 +8,9 @@
                 <li class="socialLinks-item socialLinks-item--{{service}}">
                     <a class="st-custom-button icon-social-{{service}} sharethis_button_{{service}} icon icon--{{service}}" {{{annotation}}} data-network="{{service}}">
                         {{#if service '===' 'email'}}
-                        <img class="social-icon-custom-mail" src="../assets/icons/email.svg">
+                        <img class="social-icon-custom-mail" src="{{cdn 'icons/email.svg'}}" >
                         {{else if service '===' 'print'}}
-                        <img class="social-icon-custom-print" src="../assets/icons/printer.svg">
+                        <img class="social-icon-custom-print" src="{{cdn 'icons/printer.svg'}}">
                         {{/if}}
                     </a>
                 </li>
