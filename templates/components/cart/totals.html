@@ -4,7 +4,7 @@
             <strong>{{lang 'cart.checkout.subtotal'}}:</strong>
         </div>
         <div class="cart-total-value">
-            {{#or customer (unless settings.hide_price_from_guests)}}
+            {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
                 <span>{{cart.sub_total.formatted}}</span>
             {{else}}
                 {{> components/common/login-for-pricing}}
@@ -64,7 +64,7 @@
             </div>
         </li>
     {{/if}}
-    {{#if cart.coupons}}
+    {{!-- #if cart.coupons}}
         {{#each cart.coupons}}
             <li class="cart-total">
                 <div class="cart-total-label">
@@ -86,6 +86,7 @@
             {{> components/cart/coupon-input}}
         </li>
     {{/if}}
+    --}}
     {{#if settings.gift_certificates_enabled}}
         {{#each cart.gift_certificates}}
             <li class="cart-total">
