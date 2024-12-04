@@ -29,6 +29,7 @@ cart: true
                 {{> components/cart/totals}}
             </div>
 
+			{{> components/cart/marketplace-popup}}
             {{{region name="cart_below_totals"}}}
 
             {{#or customer (unless settings.hide_price_from_guests)}}

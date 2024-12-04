@@ -1,6 +1,5 @@
 import 'jquery.tabbable';
 import foundation from './foundation';
-import * as focusTrap from 'focus-trap';
 
 const bodyActiveClass = 'has-activeModal';
 const loadingOverlayClass = 'loadingOverlay';
@@ -48,7 +47,6 @@ export const ModalEvents = {
     closed: 'closed.fndtn.reveal',
     open: 'open.fndtn.reveal',
     opened: 'opened.fndtn.reveal',
-    loaded: 'loaded.data.custom',
 };
 
 function getSizeFromModal($modal) {
@@ -80,12 +78,7 @@ function wrapModalBody(content) {
 }
 
 function restrainContentHeight($content) {
-    if ($content.length === 0) return;
-
     const $body = $(`.${modalBodyClass}`, $content);
-
-    if ($body.length === 0) return;
-
     const bodyHeight = $body.outerHeight();
     const contentHeight = $content.outerHeight();
     const viewportHeight = getViewportHeight(0.9);
@@ -139,7 +132,6 @@ export class Modal {
         this.size = this.defaultSize;
         this.pending = false;
         this.$preModalFocusedEl = null;
-        this.focusTrap = null;
 
         this.onModalOpen = this.onModalOpen.bind(this);
         this.onModalOpened = this.onModalOpened.bind(this);
@@ -227,7 +219,6 @@ export class Modal {
 
         this.pending = false;
         this.$content.html($content);
-        this.$modal.trigger(ModalEvents.loaded);
 
         restrainContentHeight(this.$content);
         foundation(this.$content);
@@ -313,14 +304,6 @@ export class Modal {
     }
 
     onModalOpened() {
-        if (this.pending) {
-            this.$modal.one(ModalEvents.loaded, () => {
-                if (this.$modal.hasClass('open')) this.setupFocusTrap();
-            });
-        } else {
-            this.setupFocusTrap();
-        }
-
         restrainContentHeight(this.$content);
     }
 }
@@ -369,43 +352,8 @@ export function alertModal() {
 /*
  * Display the given message in the default alert modal
  */
-export function showAlertModal(message, options = {}) {
+export function showAlertModal(message) {
     const modal = alertModal();
-    const $cancelBtn = modal.$modal.find('.cancel');
-    const $confirmBtn = modal.$modal.find('.confirm');
-    const {
-        icon = 'error',
-        $preModalFocusedEl = null,
-        showCancelButton,
-        onConfirm,
-    } = options;
-
-    if ($preModalFocusedEl) {
-        modal.$preModalFocusedEl = $preModalFocusedEl;
-    }
-
     modal.open();
-    modal.$modal.find('.alert-icon').hide();
-
-    if (icon === 'error') {
-        modal.$modal.find('.error-icon').show();
-    } else if (icon === 'warning') {
-        modal.$modal.find('.warning-icon').show();
-    }
-
     modal.updateContent(`<span>${message}</span>`);
-
-    if (onConfirm) {
-        $confirmBtn.on('click', onConfirm);
-
-        modal.$modal.one(ModalEvents.closed, () => {
-            $confirmBtn.off('click', onConfirm);
-        });
-    }
-
-    if (showCancelButton) {
-        $cancelBtn.show();
-    } else {
-        $cancelBtn.hide();
-    }
 }
