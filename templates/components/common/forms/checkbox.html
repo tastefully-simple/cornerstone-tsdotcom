@@ -1,4 +1,4 @@
-<div class="form-field" id="{{id}}" data-validation="{{validation}}" {{#if private_id}}data-type="{{private_id}}"{{/if}}>
+<div class="form-field" id="{{id}}" {{#if id '===' 'FormField_25'}}style="display:none;"{{/if}} data-validation="{{validation}}"{{#if private_id}}data-type="{{private_id}}"{{/if}}>
     <label class="form-label" for="{{id}}">{{label}}
         {{#if required}}
             <small>{{lang 'common.required' }}</small>
@@ -7,6 +7,9 @@
     {{#if checkboxes}}
         {{#each checkboxes}}
             <input type="checkbox"
+                   {{#if value '==' "I would like to receive updates and offers."}}checked{{/if}}
+                   {{this.pageid}}
+                   {{this.file_name}}
                    value="{{value}}"
                    name="{{name}}"
                    id="{{name}}"
@@ -21,4 +24,5 @@
             <label class="form-label {{class}}" for="{{name}}">{{label}}</label>
         {{/each}}
     {{/if}}
+
 </div>
