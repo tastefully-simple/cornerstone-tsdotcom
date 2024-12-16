@@ -70,6 +70,7 @@
       }
     ],
     "ts_api_environment": "qa1",
+    "ts_omnisend_embedded_id": "omnisend-embedded-v2-6759ed5f0b7287d7960f4d13",
     "ts_environment": "local",
     "ts_current_store_base_url": "https://tastefully-simple-sandbox-2.mybigcommerce.com",
     "ts_shop_more_url": "/shop/",
@@ -419,16 +420,7 @@
     "recipe_search_status": "1",
     "recipe_search_category_shop_filter_id": "25",
     "recipe_search_category_recipe_filter_id": "271",
-    "checkout-paymentbuttons-paypal-color": "black",
-    "checkout-paymentbuttons-paypal-shape": "rect",
-    "checkout-paymentbuttons-paypal-size": "large",
-    "checkout-paymentbuttons-paypal-label": "pay",
-    "paymentbuttons-number-of-buttons": 1,
-    "googlepay-button-color": "black",
-    "afterpay-button-color": "black-mint",
-    "amazon-button-color": "Gold",
-    "masterpass-button-color": "black",
-    "paymentbuttons-provider-sorting": []
+    "marketplace_brand": "Party Palooza"
   },
   "read_only_files": [
     "/assets/scss/components/citadel",

@@ -1,6 +1,10 @@
 <h3 style="display:none;" class="footer-info-heading">{{lang 'newsletter.subscribe'}}</h3>
 <p style="display:none;">{{lang 'newsletter.subscribe_intro'}}</p>
-<div id="omnisend-embedded-v2-6759ed5f0b7287d7960f4d13"></div>
+
+<div id="omnisend-footer">
+    <div class="omnisend-footer-subscriber" id="{{theme_settings.ts_omnisend_embedded_id}}"></div>
+</div>
+
 <form class="form" style="display:none;" action="{{urls.subscribe.action}}" method="post">
     <fieldset class="form-fieldset">
         <input type="hidden" name="action" value="subscribe">
