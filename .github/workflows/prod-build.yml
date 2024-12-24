@@ -1,0 +1,48 @@
+name: Production Build
+# This workflow is triggered on creation of releases on the Mock branch only.
+on:
+  release:
+    types:
+      - created
+    branches:
+      business
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node: [18.x]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Use Node.js ${{ matrix.node }}
+      uses: actions/setup-node@v2-beta
+      with:
+        node-version: ${{ matrix.node }}
+
+    - name: npm cache
+      uses: actions/cache@v2
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    - name: Install Stencil CLI Dependency
+      run: npm install -g @bigcommerce/stencil-cli@7.4.2
+      # must remove the 3.10.1 specific version at some point.
+      
+    - name: Install Dependencies
+      run: npm ci
+
+    - name: Connect to store
+      env:
+        URL: ${{ secrets.STENCIL_STORE_URL_PRODUCTION }}
+        TOKEN: ${{ secrets.STENCIL_ACCESS_TOKEN_PRODUCTION }}
+      run: stencil init -u $URL -t $TOKEN -p 3000 -h https://api.bigcommerce.com
+
+    - name: Publishing theme to Production, automatically deleting oldest theme if necessary
+      run: stencil push -a Production
