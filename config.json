@@ -46,29 +46,6 @@
     "Firefox ESR"
   ],
   "settings": {
-    "channels": [
-      {
-        "id": 1,
-        "name": "Light",
-        "code": "Light",
-        "is_active": true,
-        "switch_url": "https://cornerstone-light-demo.mybigcommerce.com"
-      },
-      {
-        "id": 2,
-        "name": "Bold",
-        "code": "Bold",
-        "is_active": false,
-        "switch_url": "https://cornerstone-bold-demo.mybigcommerce.com"
-      },
-      {
-        "id": 3,
-        "name": "Warm",
-        "code": "Warm",
-        "is_active": false,
-        "switch_url": "https://cornerstone-warm-demo.mybigcommerce.com"
-      }
-    ],
     "ts_api_environment": "qa1",
     "ts_omnisend_embedded_id": "omnisend-embedded-v2-6759ed5f0b7287d7960f4d13",
     "ts_environment": "local",
@@ -83,7 +60,6 @@
     "ts_debug_mode": true,
     "ts_affiliate_link": "https://tastefully-simple-inc-sandbox-6.mybigcommerce.com/ts-affiliate-marketing",
     "zoy_dev_mode": true,
-    "show_channels": false,
     "hide_breadcrumbs": false,
     "hide_page_heading": false,
     "hide_category_page_heading": false,
@@ -94,7 +70,6 @@
     "homepage_top_products_count": 4,
     "homepage_show_carousel": true,
     "homepage_show_carousel_arrows": true,
-    "homepage_show_carousel_play_pause_button": true,
     "homepage_stretch_carousel_images": false,
     "homepage_new_products_column_count": 4,
     "homepage_featured_products_column_count": 4,
@@ -224,7 +199,6 @@
     "carousel-dot-color-active": "#2d2d2d",
     "carousel-dot-bgColor": "#ffffff",
     "carousel-arrow-color": "#999999",
-    "carousel-arrow-color--hover": "#474747",
     "carousel-arrow-bgColor": "#ffffff",
     "carousel-arrow-borderColor": "#ffffff",
     "carousel-play-pause-button-textColor": "8f8f8f",
@@ -353,12 +327,6 @@
     "color_text_product_sale_badges": "#ffffff",
     "color_hover_product_sale_badges": "#000000",
     "restrict_to_login": false,
-    "product_sold_out_badges": "none",
-    "color_badge_product_sold_out_badges": "#007dc6",
-    "color_text_product_sold_out_badges": "#ffffff",
-    "color_hover_product_sold_out_badges": "#000000",
-    "focusTooltip-textColor": "#ffffff",
-    "focusTooltip-backgroundColor": "#313440",
     "swatch_option_size": "22x22",
     "social_icon_placement_top": false,
     "social_icon_placement_bottom": "bottom_right",
@@ -368,53 +336,23 @@
     "price_ranges": true,
     "pdp-price-label": "",
     "pdp_sale_badge_label": "",
-    "pdp_sold_out_label": "",
     "pdp-sale-price-label": "",
     "pdp-non-sale-price-label": "",
-    "pdp-retail-price-label": "MSRP",
+    "pdp-retail-price-label": "MSRP:",
     "pdp-custom-fields-tab-label": "Additional Information",
-    "paymentbuttons-paypal-product-details-page-color": "gold",
-    "paymentbuttons-paylater-product-details-page-color": "gold",
-    "paymentbuttons-venmo-product-details-page-color": "blue",
-    "paymentbuttons-paypal-cart-page-add-cart-color": "gold",
-    "paymentbuttons-paylater-cart-page-add-cart-color": "gold",
-    "paymentbuttons-venmo-cart-page-add-cart-color": "blue",
-    "paymentbuttons-paypal-checkout-on-top-color": "gold",
-    "paymentbuttons-paylater-checkout-on-top-color": "gold",
-    "paymentbuttons-venmo-checkout-on-top-color": "blue",
-    "paymentbuttons-paypal-checkout-payment-color": "black",
-    "paymentbuttons-paylater-checkout-payment-color": "gold",
-    "paymentbuttons-venmo-checkout-payment-color": "blue",
-    "paymentbuttons-paypal-checkout-payment-label": "checkout",
-    "paymentbuttons-paypal-checkout-on-top-payment-label": "checkout",
-    "paymentbuttons-paypal-cart-page-add-cart-label": "checkout",
-    "paymentbuttons-paypal-product-details-page-label": "checkout",
-    "paymentbuttons-paypal-checkout-payment-size": "large",
+    "paymentbuttons-paypal-layout": "vertical",
     "paymentbuttons-paypal-color": "gold",
     "paymentbuttons-paypal-shape": "pill",
     "paymentbuttons-paypal-size": "responsive",
     "paymentbuttons-paypal-label": "checkout",
-    "paymentbanners-homepage-color": "white",
-    "paymentbuttons-bolt-shape": "rect",
-    "paymentbanners-homepage-ratio": "8x1",
-    "paymentbanners-cartpage-text-color": "black",
-    "paymentbanners-cartpage-logo-position": "left",
-    "paymentbanners-cartpage-logo-type": "primary",
-    "paymentbanners-proddetailspage-color": "white",
-    "paymentbanners-proddetailspage-ratio": "8x1",
-    "paymentbuttons-container": "medium",
+    "paymentbuttons-paypal-tagline": false,
+    "paymentbuttons-paypal-fundingicons": false,
     "supported_card_type_icons": [
       "american_express",
-      "diners_club",
+      "diners",
       "discover",
       "mastercard",
-      "unionpay",
       "visa"
-    ],
-    "supported_payment_methods": [
-      "card",
-      "paypal",
-      "bank"
     ],
     "lazyload_mode": "lazyload+lqip",
     "recipe_search_status": "1",
@@ -500,6 +438,85 @@
         "recipe_search_category_shop_filter_id": "25",
         "recipe_search_category_recipe_filter_id": "271",
         "marketplace_brand": "Party Palooza"
+      }
+    },
+    {
+      "name": "Business-Sandbox",
+      "id": "bold",
+      "meta": {
+        "desktop_screenshot": "desktop_bold.png",
+        "mobile_screenshot": "mobile_bold.png",
+        "description": "Ideal for a wide range of businesses and brands, this design is fully responsive, simple, and ready for you to add your branding, logo, and products. It comes ready to build a clean looking and beautiful store with features such as homepage carousel, social media icons, featured and top selling products, and faceted search (which is available on select BigCommerce plans). Fully express your brand by using our Theme Editor to quickly and easily style your site's fonts and colors, all without the need to write code.",
+        "demo_url": "https://cornerstone-bold-demo.mybigcommerce.com",
+        "optimized_for": [
+          "multi_purpose",
+          "mobile_tablet_desktop",
+          "sales_discounts",
+          "large_catalog"
+        ],
+        "industries": [
+          "food_beverage"
+        ]
+      },
+      "settings": {
+        "ts_omnisend_embedded_id": "omnisend-embedded-v2-6759ed5f0b7287d7960f4d13",
+        "ts_api_environment": "stage",
+        "ts_current_store_base_url": "https://tastefully-simple-sandbox-1.mybigcommerce.com",
+        "ts_shop_more_url": "/shop/",
+        "ts_join_store_url": "https://tastefully-simple-inc-sandbox-5.mybigcommerce.com",
+        "ts_affiliation_timer": 60,
+        "zoy_dev_mode": false,
+        "ts_affiliate_link": "https://tastefully-simple-sandbox-3.mybigcommerce.com/ts-affiliate-marketing",
+        "google_tagmanager_status": "1",
+        "google_tagmanager_code": "GTM-PD7HGB2",
+        "recipe_search_status": "1",
+        "recipe_search_category_shop_filter_id": "23",
+        "recipe_search_category_recipe_filter_id": "247",
+        "marketplace_brand": "Party Palooza",
+        "subscription_management": {
+          "enabled": true,
+          "api_url": "https://stage-subscription.api.tastefullysimple.com/store/1"
+        }
+      }
+    },
+    {
+      "name": "Production",
+      "id": "warm",
+      "meta": {
+        "desktop_screenshot": "desktop_warm.png",
+        "mobile_screenshot": "mobile_warm.png",
+        "description": "Ideal for a wide range of businesses and brands, this design is fully responsive, simple, and ready for you to add your branding, logo, and products. It comes ready to build a clean looking and beautiful store with features such as homepage carousel, social media icons, featured and top selling products, and faceted search (which is available on select BigCommerce plans). Fully express your brand by using our Theme Editor to quickly and easily style your site's fonts and colors, all without the need to write code.",
+        "demo_url": "https://cornerstone-warm-demo.mybigcommerce.com",
+        "optimized_for": [
+          "multi_purpose",
+          "mobile_tablet_desktop",
+          "sales_discounts",
+          "large_catalog"
+        ],
+        "industries": [
+          "food_beverage"
+        ]
+      },
+      "settings": {
+      	"ts_omnisend_embedded_id": "omnisend-embedded-v2-67621b2a6cb11a96995ebfc5",
+        "ts_api_environment": "",
+        "ts_current_store_base_url": "https://www.tastefullysimple.com",
+        "ts_shop_more_url": "/shop/",
+        "ts_join_store_url": "https://join.tastefullysimple.com",
+        "ts_affiliation_timer": 1440,
+        "ts_affiliate_link": "https://creators.tastefullysimple.com/ts-affiliate-marketing",
+        "ts_debug_mode": false,
+        "zoy_dev_mode": false,
+        "recipe_search_status": "1",
+        "recipe_search_category_shop_filter_id": "25",
+        "recipe_search_category_recipe_filter_id": "573",
+        "google_tagmanager_status": "1",
+        "google_tagmanager_code": "GTM-PD7HGB2",
+        "marketplace_brand": "Party Palooza",
+        "subscription_management": {
+          "enabled": true,
+          "api_url": "https://subscription.api.tastefullysimple.com/store/1"
+        }
       }
     }
   ]
