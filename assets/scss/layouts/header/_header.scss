@@ -293,7 +293,7 @@
     display: block; 
     position: relative; 
     float: left; 
-
+    width:100%;
     :not(:empty) {
         margin-top:10px;
         //padding: 6px;
@@ -331,4 +331,5 @@
 
 .navPages-item-shopping-with-bar{
     padding: 6px;
+    width:100%;
 }
