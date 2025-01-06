@@ -8,15 +8,11 @@
     {{#for 1 5}}
         {{#if ../this.rating '>=' $index}}
             <span class="icon icon--ratingFull">
-                <svg>
-                    <use href="#icon-star" />
-                </svg>
+                <img class="icon img icon--ratingFull" src="{{cdn 'icons/full-star.svg'}}">
             </span>
         {{else}}
             <span class="icon icon--ratingEmpty">
-                <svg>
-                    <use href="#icon-star" />
-                </svg>
+                <img class="icon img icon--ratingEmpty" src="{{cdn 'icons/empty-star.svg'}}">
             </span>
         {{/if}}
     {{/for}}
