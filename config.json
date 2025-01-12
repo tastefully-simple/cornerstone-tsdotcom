@@ -405,7 +405,11 @@
         "recipe_search_status": "1",
         "recipe_search_category_shop_filter_id": "25",
         "recipe_search_category_recipe_filter_id": "271",
-        "marketplace_brand": "Party Palooza"
+        "marketplace_brand": "Party Palooza",
+        "consultant_management": {
+          "enabled": true,
+          "api_url": "https://qa1-gateway.api.tastefullysimple.com/ambassador/store/1"
+        }
       }
     },
     {
@@ -437,7 +441,11 @@
         "recipe_search_status": "1",
         "recipe_search_category_shop_filter_id": "25",
         "recipe_search_category_recipe_filter_id": "271",
-        "marketplace_brand": "Party Palooza"
+        "marketplace_brand": "Party Palooza",
+        "consultant_management": {
+          "enabled": true,
+          "api_url": "https://qa1-gateway.api.tastefullysimple.com/ambassador/store/1"
+        }
       }
     },
     {
@@ -473,9 +481,9 @@
         "recipe_search_category_shop_filter_id": "23",
         "recipe_search_category_recipe_filter_id": "247",
         "marketplace_brand": "Party Palooza",
-        "subscription_management": {
+        "consultant_management": {
           "enabled": true,
-          "api_url": "https://stage-subscription.api.tastefullysimple.com/store/1"
+          "api_url": "https://stage-gateway.api.tastefullysimple.com/ambassador/store/1"
         }
       }
     },
@@ -513,9 +521,9 @@
         "google_tagmanager_status": "1",
         "google_tagmanager_code": "GTM-PD7HGB2",
         "marketplace_brand": "Party Palooza",
-        "subscription_management": {
-          "enabled": true,
-          "api_url": "https://subscription.api.tastefullysimple.com/store/1"
+        "consultant_management": {
+            "enabled": true,
+            "api_url": "https://consultant.api.tastefullysimple.com/store/4"
         }
       }
     }
