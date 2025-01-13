@@ -281,7 +281,9 @@ export default class EarnedIncentives {
                 throw new Error(`HTTP error: ${response.status}`);
             }
 
+
             let data = await response.json();
+            console.log(data);
             const itemData = that.parseCartItems(data) ?? [];
             return itemData;
         } catch (error) {
