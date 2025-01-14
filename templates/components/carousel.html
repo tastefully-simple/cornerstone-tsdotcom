@@ -6,21 +6,26 @@
         "slidesToScroll": 1,
         "autoplay": true,
         "autoplaySpeed": {{carousel.swap_frequency}},
-        "slide": "[data-hero-slide]"
+        "lazyLoad": "anticipated",
+        "slide": ".js-hero-slide",
+        "prevArrow": ".js-hero-prev-arrow",
+        "nextArrow": ".js-hero-next-arrow"
     }'
->
+    data-dots-labels='{
+        "dotAriaLabel": "{{lang 'carousel.dotAriaLabel'}}",
+        "activeDotAriaLabel": "{{lang 'carousel.activeDotAriaLabel'}}"
+    }'>
+    {{#and arrows (if carousel.slides.length '>' 1)}}
+    <button aria-label="{{lang 'carousel.arrowAriaLabel'}} {{carousel.slides.length}}" class="js-hero-prev-arrow slick-prev slick-arrow"></button>
+    {{/and}}
     {{#each carousel.slides}}
     {{#if button_text}}
-    <div data-hero-slide="{{@index}}">
+    <div class="js-hero-slide">
     {{else}}
-    <a href="{{url}}" data-hero-slide="{{@index}}" aria-label="{{#if this.alt_text.length '!=' 0}}{{this.alt_text}}{{else}}{{lang 'carousel.slide_number' slide_number=(add @index 1)}}{{/if}}">
+    <a href="{{url}}" class="js-hero-slide" aria-label="{{#if this.alt_text.length '!=' 0}}{{this.alt_text}}{{else}}{{lang 'common.carousel_slide_number' slide_number=(add @index 1)}}{{/if}}">
     {{/if}}
         <div class="heroCarousel-slide {{#if ../theme_settings.homepage_stretch_carousel_images}}stretch{{/if}} {{#if @first}}heroCarousel-slide--first{{/if}}">
-            {{#if button_text}}
-            <a href="{{url}}" class="heroCarousel-image-wrapper">
-            {{else}}
             <div class="heroCarousel-image-wrapper">
-            {{/if}}
             {{#if @first}}
                 {{> components/common/responsive-img
                     image=stencil_image
@@ -36,14 +41,18 @@
                     lazyload='lazyload'
                 }}
             {{/if}}
-            {{#if button_text}}
-            </a>
-            {{else}}
             </div>
+            {{#if heading}}
+                {{> components/carousel-content show_background=true}}
+            {{else}}
+                {{#if text}}
+                    {{> components/carousel-content show_background=true}}
+                {{else}}
+                    {{#if button_text}}
+                        {{> components/carousel-content show_background=false}}
+                    {{/if}}
+                {{/if}}
             {{/if}}
-            {{#or heading text button_text}}
-                {{> components/carousel-content}}
-            {{/or}}
         </div>
     {{#if button_text}}
     </div>
@@ -51,10 +60,22 @@
     </a>
     {{/if}}
     {{/each}}
-    {{#if carousel.slides.length '>' 1}}
-        {{> components/carousel-content-announcement}}
-        {{#if play_pause_button}}
-            {{> components/carousel-play-pause-button}}
-        {{/if}}
+    {{#and arrows (if carousel.slides.length '>' 1)}}
+    <button aria-label="{{lang 'carousel.arrowAriaLabel'}} {{carousel.slides.length}}" class="js-hero-next-arrow slick-next slick-arrow"></button>
+    {{/and}}
+    {{#if play_pause_button}}
+        <button
+            type="button"
+            class="heroCarousel-play-pause-button js-hero-play-pause-button"
+            aria-label="{{lang 'carousel.playPauseButton.ariaPause'}}"
+            data-play="true"
+            data-labels='{
+                "play": "{{lang 'carousel.playPauseButtonPlay'}}",
+                "pause": "{{lang 'carousel.playPauseButtonPause'}}",
+                "ariaPlay": "{{lang 'carousel.playPauseButtonAriaPlay'}}",
+                "ariaPause": "{{lang 'carousel.playPauseButtonAriaPause'}}"
+            }'>
+            {{lang 'carousel.playPauseButtonPause'}}
+        </button>
     {{/if}}
 </section>
