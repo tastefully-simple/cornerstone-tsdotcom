@@ -67,6 +67,7 @@ export default class EarnedIncentives {
                         }
                     }
                     if (err) {
+                        console.warn('Unable to place incentive item in cart');
                         console.warn('err', err);
                         console.warn('err response', response);
                     }
