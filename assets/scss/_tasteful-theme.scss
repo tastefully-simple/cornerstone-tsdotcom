@@ -1121,7 +1121,7 @@ table{
     }
 }
 
-.mobile-nav-name {
+.navPage-account {
     display: flex;
     justify-content: space-between;
 }
@@ -1135,6 +1135,19 @@ table{
 .earned-incentives-account {
     &.hidden {
         display: none;
+    }
+}
+
+.mobile-nav-name {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+
+    .razoyo-sticker{
+        margin-top:10px;
     }
 }
 
