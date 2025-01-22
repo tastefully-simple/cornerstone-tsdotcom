@@ -373,11 +373,11 @@
 }
 
 .navPage-subMenu-item {
-    padding: spacing("half") 0;
+    //padding: spacing("half") 0;
 
     @include breakpoint("medium") {
         @include grid-column(3);
-        padding: 0 0.75rem !important; // 1
+        //padding: 0 0.75rem !important; // 1
 
         .navPages-action {
             text-transform: none;

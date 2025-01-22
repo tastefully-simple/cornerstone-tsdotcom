@@ -7,7 +7,6 @@ import $ from 'jquery';
 export default class EarnedIncentives {
     constructor(context) {
         this.context = context;
-
         if (this.isLoggedIn()) {
             const that = this;
             $(document).ready(() => {
@@ -282,9 +281,7 @@ export default class EarnedIncentives {
                 throw new Error(`HTTP error: ${response.status}`);
             }
 
-
             let data = await response.json();
-            console.log(data);
             const itemData = that.parseCartItems(data) ?? [];
             return itemData;
         } catch (error) {
@@ -406,9 +403,10 @@ export default class EarnedIncentives {
         }
 
         //const jwtToken = await window.jwtToken();
-        const mobileSelector = '.mobile-nav-name .razoyo-sticker.incentives';
-        const desktopSelector = '.navUser-item .razoyo-sticker.incentives';
-        const incentivesMenuSelector = '.user-incentives-menu';
+        const mobileSelector = '.navPages-list--user .navPages-item .razoyo-sticker.incentives';
+        const desktopSelector = '.navUser-item .navUser-nav-name .razoyo-sticker.incentives';
+        const incentivesMenuSelector = '.user-incentives-menu'; 
+        const incentivesMobileMenuSelector = '.navPage-subMenu-item.user-incentives-menu'; 
         const incentivesAccountSelector = '.earned-incentives-account';
         const retryCount = 2;
         let tryCount = 1;
@@ -426,29 +424,40 @@ export default class EarnedIncentives {
                     document.querySelector(incentivesMenuSelector).classList.remove('hidden');
                     if(document.querySelector(incentivesAccountSelector) != null)
                         document.querySelector(incentivesAccountSelector).classList.remove('hidden');
+
+                    if(document.querySelector(incentivesMobileMenuSelector) != null)
+                        document.querySelector(incentivesMobileMenuSelector).classList.remove('hidden');                    
                 } 
             }
 
             if (response && response.rewards && response.rewards.count) {
                 // Mobile
-                document.querySelector(mobileSelector + ' .sticker-text').innerText = response.rewards.count;
-
+                if(document.querySelector(mobileSelector + ' .sticker-text') != null)
+                    document.querySelector(mobileSelector + ' .sticker-text').innerText = response.rewards.count;
+                    
                 // Desktop
-                document.querySelector(desktopSelector + ' .sticker-text').innerText = response.rewards.count;
+                if(document.querySelector(desktopSelector + ' .sticker-text') != null)                
+                    document.querySelector(desktopSelector + ' .sticker-text').innerText = response.rewards.count;
 
                 if(response.rewards.count != 0) {
-                    document.querySelector(mobileSelector).classList.remove('hidden');
-                    document.querySelector(desktopSelector).classList.remove('hidden');
+                    if(document.querySelector(mobileSelector) != null)    
+                        document.querySelector(mobileSelector).classList.remove('hidden');
+                    if(document.querySelector(desktopSelector) != null)
+                        document.querySelector(desktopSelector).classList.remove('hidden');
                 }
             } else {
                 // Mobile
-                document.querySelector(mobileSelector + ' .sticker-text').innerText = 0;
+                if(document.querySelector(mobileSelector + ' .sticker-text') != null)
+                    document.querySelector(mobileSelector + ' .sticker-text').innerText = 0;
 
                 // Desktop
-                document.querySelector(desktopSelector + ' .sticker-text').innerText = 0;
+                if(document.querySelector(desktopSelector + ' .sticker-text') != null)
+                    document.querySelector(desktopSelector + ' .sticker-text').innerText = 0;
 
-                document.querySelector(mobileSelector).classList.add('hidden');
-                document.querySelector(desktopSelector).classList.add('hidden');
+                if(document.querySelector(mobileSelector) != null)
+                    document.querySelector(mobileSelector).classList.add('hidden');
+                if(document.querySelector(desktopSelector) != null)
+                    document.querySelector(desktopSelector).classList.add('hidden');
             }
            },
            error(xhr, status, error) {
