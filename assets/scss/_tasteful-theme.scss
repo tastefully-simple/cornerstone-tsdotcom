@@ -1093,7 +1093,7 @@ table{
     z-index: zIndex("lower");
     &.incentives {
       z-index: 1;
-      margin-right:-5px;
+      margin-right: 10px;
     }
     &.hidden svg, &.hidden span {
         display: none;
