@@ -314,8 +314,8 @@
             "orders": "Order History",
             "returns": "Returns",
             "messages": "Messages ({num_new_messages})",
-            "wishlists": "Favorite Lists",
-      	    "your_favorites": "Favorite Lists",
+            "wishlists": "Favorites",
+      	    "your_favorites": "Favorites",
       	    "view_favorite": "View Favorite",
             "recently_viewed": "Recently Viewed",
             "settings": "Account Profile",
@@ -325,7 +325,7 @@
         },
         "mobile_nav": {
             "messages": "Messages",
-            "wishlists": "Favorite Lists"
+            "wishlists": "Favorites"
         },
         "addresses": {
             "heading": "Addresses",
@@ -500,7 +500,7 @@
             "no_items": "The items you've recently looked at on our site will appear below."
         },
         "wishlists": {
-            "heading": "Favorite Lists",
+            "heading": "Favorites",
             "tag_line": "Fill in the form below to create a new Favorite. Click the \"Create Favorite\" button when you're done.",
             "new": "New Favorite List",
             "you_have_none": "You have no Favorites, add one now.",

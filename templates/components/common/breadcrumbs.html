@@ -7,7 +7,7 @@
                        href="{{url}}"
                        {{#if @last}}aria-current="page"{{/if}}
                     >
-                        <span>{{name}}</span>
+                        <span>{{#if name "==" "Your Wishlists" }}Favorites{{else}}{{name}}{{/if}}</span>
                     </a>
                 </li>
             {{/each}}
