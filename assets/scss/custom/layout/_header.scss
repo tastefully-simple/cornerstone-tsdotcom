@@ -9,7 +9,7 @@
         padding:0;
     }
     .previewCart {
-        height:85vh;
+        max-height:85vh;
         overflow-y:scroll;
     }
     &.is-open {
