@@ -1151,7 +1151,9 @@ table{
     }
 }
 
-.previewCart-additionalCheckoutButtons, .cart-additionalCheckoutButtons{
+.previewCart-additionalCheckoutButtons, 
+.cart-additionalCheckoutButtons, 
+.previewCartCheckout-additionalCheckoutButtons{
     display: none !important;
 }
 
