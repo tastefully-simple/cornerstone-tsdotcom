@@ -1034,3 +1034,10 @@ table{
         }
     }
 }
+
+//added for hiding addl checkout buttons
+.previewCart-additionalCheckoutButtons, 
+.cart-additionalCheckoutButtons, 
+.previewCartCheckout-additionalCheckoutButtons{
+    display: none !important;
+}
