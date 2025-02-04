@@ -7,6 +7,9 @@ cart: true
 {{~inject 'customerId' customer.id}}
 {{~inject 'customerEmail' customer.email}}
 {{~inject 'cartId' cart_id}}
+<script>
+    window.themeGraphql = '{{ settings.storefront_api.token }}';
+</script>
 <div class="page">
 
     <div class="page-content cart-content" data-cart>
@@ -68,7 +71,7 @@ cart: true
                     </div>
                 {{/if}}
             {{else}}
-                <div class="cart-actions cart-content-padding-right">dfgdfg
+                <div class="cart-actions cart-content-padding-right">
                     <a class="button" href="{{urls.auth.login}}" title="{{lang 'cart.login_to_checkout'}}">{{lang 'cart.login_to_checkout'}}</a>
                 </div>
             {{/or}}

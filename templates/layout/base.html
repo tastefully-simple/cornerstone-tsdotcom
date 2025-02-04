@@ -17,6 +17,11 @@
             //Change document class from no-js to js so we can detect this in css
             document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
         </script>
+        <script>
+            window.themeGraphql = '{{ settings.storefront_api.token }}';
+            //console.log("base.html");
+            //console.log(window.themeGraphql);
+        </script>
 
         {{> components/common/polyfill-script }}
         <script>window.consentManagerTranslations = `{{{langJson 'consent_manager'}}}`;</script>
@@ -62,7 +67,8 @@
         {{~inject 'validationDictionaryJSON' (langJson 'validation_messages')}}
         {{~inject 'validationFallbackDictionaryJSON' (langJson 'validation_fallback_messages')}}
         {{~inject 'validationDefaultDictionaryJSON' (langJson 'default_messages')}}
-
+        {{~inject 'consultantManagement' theme_settings.consultant_management}}
+        
         {{!-- add fontawesome --}}
         <script src="https://kit.fontawesome.com/b258ff8a4b.js" crossorigin="anonymous"></script>
         {{> components/common/theme-settings }}

@@ -9,6 +9,12 @@
     </thead>
     <tbody class="cart-list">
         {{#each cart.items}}
+            {{assignVar 'isIncentive' '0'}}
+            {{#each category_names}}
+                {{#if this '==' 'Incentive Items'}}
+                    {{assignVar 'isIncentive' '1'}}
+                {{/if}}
+            {{/each}}
             <tr class="cart-item" data-item-row>
                 <td class="cart-item-block cart-item-figure">
                     {{#if type '==' 'GiftCertificate'}}
@@ -23,7 +29,7 @@
                             image=image
                             class="cart-item-image"
                             fallback_size=../theme_settings.productthumb_size
-                            lazyload=../theme_settings.lazyload_mode
+                            lazyload="lazyload"
                             default_image=../theme_settings.default_image_product
                         }}
                     {{/if}}
@@ -33,7 +39,11 @@
                         <p class="cart-item-brand">{{brand.name}}</p>
                     {{/if}}
                     <h2 class="cart-item-name">
-                        <a class="cart-item-name__label" href="{{url}}">{{name}}</a>
+                        {{#if (getVar 'isIncentive') '>' '0'}}
+                            {{name}}
+                        {{else}}
+                            <a class="cart-item-name__label" href="{{url}}">{{name}}</a>
+                        {{/if}}
                     </h2>
                     {{#if release_date}}
                         <p>({{release_date}})</p>
@@ -90,8 +100,13 @@
                     <label class="form-label cart-item-label" for="qty-{{id}}">{{lang 'products.quantity'}}</label>
                     <div class="form-increment">
                         {{#if can_modify}}
-                            <button class="button button--icon" data-cart-update data-cart-itemid="{{id}}" data-action="dec">
-                                <span class="is-srOnly">{{lang 'products.quantity_decrease'}}</span>
+                            <button class="button button--icon"
+                                    data-cart-update
+                                    data-cart-itemid="{{id}}"
+                                    data-action="dec"
+                                    {{#if (getVar 'isIncentive') '>' '0'}}disabled="true"{{/if}}
+                            >
+                                <span class="is-srOnly">{{lang 'products.quantity_decrease' name=name}}</span>
                                 <i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-keyboard-arrow-down" /></svg></i>
                             </button>
                         {{/if}}
@@ -108,10 +123,17 @@
                                pattern="[0-9]*"
                                data-cart-itemid="{{id}}"
                                data-action="manualQtyChange"
+                               aria-label="{{name}}"
+                               {{#if (getVar 'isIncentive') '>' '0'}}disabled="true"{{/if}}
                                aria-live="polite"{{#unless can_modify}} disabled{{/unless}}>
                         {{#if can_modify}}
-                            <button class="button button--icon" data-cart-update data-cart-itemid="{{id}}" data-action="inc">
-                                <span class="is-srOnly">{{lang 'products.quantity_increase'}}</span>
+                            <button class="button button--icon"
+                                    data-cart-update
+                                    data-cart-itemid="{{id}}"
+                                    data-action="inc"
+                                    {{#if (getVar 'isIncentive') '>' '0'}}disabled="true"{{/if}}
+                            >
+                                <span class="is-srOnly">{{lang 'products.quantity_increase' name=name}}</span>
                                 <i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-keyboard-arrow-up" /></svg></i>
                             </button>
                         {{/if}}

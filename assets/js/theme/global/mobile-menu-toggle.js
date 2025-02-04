@@ -24,6 +24,7 @@ function optionsFromData($element) {
  * @param {Object} [options.menuSelector]
  * @param {Object} [options.scrollViewSelector]
  */
+
 export class MobileMenuToggle {
     constructor($toggle, {
         headerSelector = '.header',
@@ -106,9 +107,15 @@ export class MobileMenuToggle {
         if (this.isOpen) {
             this.hide();
         } else {
+            this.setupIncentives();
             this.show();
         }
     }
+
+    setupIncentives(){
+        console.log("Incentives Setup");
+    }
+
 
     show() {
         this.$body.addClass('has-activeNavPages');

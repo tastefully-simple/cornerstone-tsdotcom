@@ -139,9 +139,12 @@ export class Collapsible {
             .removeClass(this.openClassName)
             .attr('aria-expanded', false);
 
-        this.$target
-            .removeClass(this.openClassName)
-            .attr('aria-hidden', true);
+        if(this.$target.selector != '#navPages-account'){
+            this.$target
+            .removeClass(this.openClassName) //right here
+            .attr('aria-hidden', true);//right here
+        }
+
 
         if (notify) {
             this.$toggle.trigger(CollapsibleEvents.close, [this]);
