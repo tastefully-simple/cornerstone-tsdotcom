@@ -301,12 +301,17 @@ export default class EarnedIncentives {
         //const entityIdString = `[${productIds.join()}]`;
         let incentiveProductIds = [];
         let apiUrl = this.context.themeSettings.consultant_management.api_url;
+        let cacheToken = this.randomIntFromInterval(1, 100000);
+
         //alternate method for checking if cart items are incentive items...
         await $.ajax({
           url: `${apiUrl}/incentives/items/${productIds.join()}`,
           method: 'GET',
           headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              cache: false,
+              'cache-token': cacheToken//,
+              //'jwt-token': jwtToken
           },
           success(response) {
             if(response && response.incentiveProductIds) {
