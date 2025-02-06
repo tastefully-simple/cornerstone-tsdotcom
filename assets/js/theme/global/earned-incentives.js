@@ -75,6 +75,10 @@ export default class EarnedIncentives {
         });
     }
 
+    randomIntFromInterval(min, max) { // min and max included 
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
     async setupIncentives(cartItemIds) {
         const incentiveProducts = await this.getIncentives(cartItemIds);
 
@@ -128,6 +132,7 @@ export default class EarnedIncentives {
     async getIncentives(cartItemIds) {
         const that = this;
         //const jwtToken = await window.jwtToken();
+        let cacheToken = this.randomIntFromInterval(1, 100000);
         const retryCount = 2;
         let tryCount = 1;
         const incentiveProducts = [];
@@ -136,7 +141,9 @@ export default class EarnedIncentives {
             url: `${apiUrl}/incentives/${that.context.customerId}/list`,
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json'//,
+                'Content-Type': 'application/json',
+                cache: false,
+                'cache-token': cacheToken//,
                 //'jwt-token': jwtToken
             },
             success(response) {
@@ -410,12 +417,15 @@ export default class EarnedIncentives {
         const incentivesAccountSelector = '.earned-incentives-account';
         const retryCount = 2;
         let tryCount = 1;
+        let cacheToken = this.randomIntFromInterval(1, 100000);
 
         $.ajax({
            url: `${apiUrl}/incentives/${customerId}/count`,
            method: 'GET',
            headers: {
-               'Content-Type': 'application/json'//,
+               'Content-Type': 'application/json',
+               cache: false,
+               'cache-token': cacheToken //,
                //'jwt-token': jwtToken
            },
            success(response) {
@@ -482,4 +492,5 @@ export default class EarnedIncentives {
            },
        });
     }
+    
 }
