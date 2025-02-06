@@ -523,7 +523,7 @@
         "marketplace_brand": "Party Palooza",
         "consultant_management": {
             "enabled": true,
-            "api_url": "https://consultant.api.tastefullysimple.com/store/4"
+            "api_url": "https://gateway.api.tastefullysimple.com/ambassador/store/1"
         }
       }
     }
