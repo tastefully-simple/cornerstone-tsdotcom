@@ -1,22 +1,21 @@
-import updateTextWithLiveData from './updateTextWithLiveData';
-import tooltipSetup from './tooltipSetup';
-
-export default ($dots, activeSlideIdx, slidesQuantity, { carouselArrowAndDotAriaLabel, carouselActiveDotAriaLabel }) => {
+export default ($dots, actualSlide, actualSlideCount, dotLabels) => {
     if (!$dots) return;
 
-    if (slidesQuantity < 2) {
+    if (actualSlideCount === 1) {
         $dots.css('display', 'none');
         return;
     }
 
     $dots.css('display', 'block');
 
-    $dots.children().each((idx, dot) => {
-        const dotLabelText = updateTextWithLiveData(carouselArrowAndDotAriaLabel, idx + 1, slidesQuantity);
-        const dotSlideStatusText = idx === activeSlideIdx ? `, ${carouselActiveDotAriaLabel}` : '';
-        const dotAriaLabel = `${dotLabelText}${dotSlideStatusText}`;
-        const $dotButton = $(dot).find('[data-carousel-dot]');
+    const { dotAriaLabel, activeDotAriaLabel } = dotLabels;
 
-        tooltipSetup($dotButton.attr('aria-label', dotAriaLabel));
+    $dots.children().each((index, dot) => {
+        const $dot = $(dot);
+        const dotSlideNumber = index + 1;
+        const dotAriaLabelComputed = index === actualSlide
+            ? `${dotAriaLabel} ${dotSlideNumber}, ${activeDotAriaLabel}`
+            : `${dotAriaLabel} ${dotSlideNumber}`;
+        $dot.find('button').attr('aria-label', dotAriaLabelComputed);
     });
 };

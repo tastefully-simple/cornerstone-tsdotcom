@@ -68,9 +68,11 @@
         {{/if}}
         {{#if customer}}
             <li class="navPages-item">
-                <a class="navPages-action navPages-action-account has-subMenu title-case" id="account-submenu-nav" href="{{urls.account.index}}" data-collapsible="navPages-account" aria-expanded="true">
+                <div class="mobile-nav-name">
+                <a class="navPages-action navPages-action-account has-subMenu title-case is-open" id="account-submenu-nav" href="{{urls.account.index}}" data-collapsible="navPages-account" aria-expanded="true">
                     Hi, {{ first (split customer.name " ") }}!
                 </a>
+                {{> components/common/earned-incentives-button}}</div>
                 <div class="navPage-subMenu is-open" id="navPages-account" aria-hidden="false" tabindex="-1">
                     <ul class="navPage-subMenu-list">
                         <li class="navPage-subMenu-item">
@@ -107,7 +109,10 @@
                             <a class="navPage-subMenu-action navPages-action" href="{{urls.account.recent_items}}">{{lang 'account.nav.recently_viewed'}}</a>
                         </li>
                         --}}
-                        <li class="avPage-subMenu-item">
+                        <li class="navPage-subMenu-item user-incentives-menu hidden">
+                            <a class="navPage-subMenu-action navPages-action" href="/earned-incentives/">Earned Incentives</a>
+                        </li>
+                        <li class="navPage-subMenu-item">
                             <a class="navPage-subMenu-action navPages-action" href="{{urls.auth.logout}}">{{lang 'common.logout'}}</a>
                         </li>
                     </ul>

@@ -490,35 +490,7 @@
     }
 }
 
-@media only screen and (max-width:800px) {
-    .header-main{
-        .navPages {
-            .navPages-item{
-                &>.navPages-action{
-                    color:#12474b;
-                    border-bottom: 2px solid #e5e5e5;
-                    font-size: 28px !important;
-                    padding: .75rem 0;
-                }
-                .navPage-subMenu-item{
-                    padding: 0;
-                    .navPage-subMenu-action{
-                        color: #296227;
-                        text-transform: uppercase !important;
-                        font-size: 24px !important;
-                    }
-                    .navPage-childList-item{
-                        .navPage-childList-action{
-                            font-size: 20px !important;
-                        }
-                    }
-                }
-            }
 
-        }
-    }
-
-}
 @media only screen and (min-width:801px) {
     .header-main {
         .navPages {
@@ -751,7 +723,7 @@
     .navPage-subMenu-item>.navPage-subMenu-action{
         border:none;
         margin-bottom:0;
-        padding: 0.75rem 0;
+        //padding: 0.75rem 0;
     }
     .navPage-subMenu-item:hover .navPage-childList{
         display: block;

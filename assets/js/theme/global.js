@@ -25,7 +25,7 @@ import tsAddToCart from './global/ts-add-to-cart';
 import tsJoinProcess from './global/ts-join-process';
 import tsCookieConfig from './global/ts-cookie-config';
 import tsSeoProcess from './global/ts-seo-process';
-
+import earnedIncentives from './global/earned-incentives';
 
 export default class Global extends PageManager {
     onReady() {
@@ -58,6 +58,7 @@ export default class Global extends PageManager {
         tsJoinProcess(themeSettings);
         //tsConsultant();
         tsSeoProcess();
+        let incetives = new earnedIncentives(this.context);
 
         // Open mobile account menu by default
         const accountMenu = document.getElementById('navPages-account-main');

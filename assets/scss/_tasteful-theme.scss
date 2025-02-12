@@ -1035,9 +1035,140 @@ table{
     }
 }
 
+.incentive-item {
+    border: solid 1px black;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 10px;
+    margin-top: 12px;
+    @media only screen and (max-width: 800px) {
+        justify-content: center;
+        .incentive-item-title, .incentive-item-date, .incentive-item-add {
+            flex-basis: 100%;
+            justify-content: center;
+            text-align: center;
+        }
+    }
+}
+.incentive-item-title, .incentive-item-date {
+    display: block;
+    margin-bottom: 0px;
+    margin-top: 6px;
+}
+.incentive-item-add {
+    text-align: end;
+}
+.incentive-item-add button {
+    margin-bottom: 0px !important;
+}
+@media only screen and (min-width:801px) {
+  .incentive-item-title, .incentive-item-date, .incentive-item-add {
+      flex-basis: 30%;
+  }
+}
+
+.incentive-item-image {
+    border: 1px solid rgb(217, 220, 233);
+    border-radius: 0.25rem;
+    cursor: pointer;
+    display: block;
+    height: 2.66667rem;
+    object-fit: contain;
+    width: 2.66667rem;
+    box-sizing: border-box;
+    transition: border-color 150ms ease-out;
+    margin-bottom: 0;
+}
+
+.razoyo-sticker {
+    color: black;
+    float: left;
+    height: 28px;
+    margin-top: -4px;
+    position: relative;
+    width: 28px;
+    z-index: zIndex("lower");
+    &.incentives {
+      z-index: 1;
+      margin-right: 10px;
+    }
+    &.hidden svg, &.hidden span {
+        display: none;
+    }
+    svg {
+        fill: #ffc107;
+        height: 28px;
+        width: 28px;
+    }
+
+    .sticker-text {
+        color: black;
+        display: flex;
+        flex-direction: column;
+        float: left;
+        height: 30px;
+        justify-content: center;
+        left: 0px;
+        line-height: 1;
+        position: absolute;
+        text-align: center;
+        top: 0px;
+        width: 28px;
+        padding-top: 1px;
+    }
+}
+
+.navPage-account {
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-incentives-menu{
+    &.hidden {
+        display: none;
+    }
+}
+
+.earned-incentives-account {
+    &.hidden {
+        display: none;
+    }
+}
+
+.mobile-nav-name {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+
+    .razoyo-sticker{
+        margin-top:10px;
+    }
+}
+
 //added for hiding addl checkout buttons for digital wallet
 .previewCart-additionalCheckoutButtons, 
 .cart-additionalCheckoutButtons, 
 .previewCartCheckout-additionalCheckoutButtons{
     display: none !important;
 }
+
+//added for gaaffpro ambassador search
+div.svelte-la6ty5 label{
+    float: left;
+    font-weight: bold;
+}
+
+div.svelte-la6ty5 {
+    margin-top:15px;
+}
+
+div.svelte-la6ty5 div {
+    clear: both;
+}
+
