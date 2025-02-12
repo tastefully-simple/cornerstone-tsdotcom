@@ -132,7 +132,7 @@ export default class EarnedIncentives {
     async getIncentives(cartItemIds) {
         const that = this;
         //const jwtToken = await window.jwtToken();
-        let cacheToken = this.randomIntFromInterval(1, 100000);
+        //let cacheToken = this.randomIntFromInterval(1, 100000);
         const retryCount = 2;
         let tryCount = 1;
         const incentiveProducts = [];
@@ -142,8 +142,8 @@ export default class EarnedIncentives {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                cache: false,
-                'cache-token': cacheToken//,
+                cache: false
+                //'cache-token': cacheToken//,
                 //'jwt-token': jwtToken
             },
             success(response) {
@@ -301,7 +301,7 @@ export default class EarnedIncentives {
         //const entityIdString = `[${productIds.join()}]`;
         let incentiveProductIds = [];
         let apiUrl = this.context.themeSettings.consultant_management.api_url;
-        let cacheToken = this.randomIntFromInterval(1, 100000);
+        //let cacheToken = this.randomIntFromInterval(1, 100000);
 
         //alternate method for checking if cart items are incentive items...
         await $.ajax({
@@ -309,8 +309,8 @@ export default class EarnedIncentives {
           method: 'GET',
           headers: {
               'Content-Type': 'application/json',
-              cache: false,
-              'cache-token': cacheToken//,
+              cache: false
+              //'cache-token': cacheToken//,
               //'jwt-token': jwtToken
           },
           success(response) {
@@ -422,15 +422,15 @@ export default class EarnedIncentives {
         const incentivesAccountSelector = '.earned-incentives-account';
         const retryCount = 2;
         let tryCount = 1;
-        let cacheToken = this.randomIntFromInterval(1, 100000);
+        //let cacheToken = this.randomIntFromInterval(1, 100000);
 
         $.ajax({
            url: `${apiUrl}/incentives/${customerId}/count`,
            method: 'GET',
            headers: {
                'Content-Type': 'application/json',
-               cache: false,
-               'cache-token': cacheToken //,
+               cache: false
+               //'cache-token': cacheToken //,
                //'jwt-token': jwtToken
            },
            success(response) {
