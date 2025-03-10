@@ -45,9 +45,6 @@
         // If the body element and the id element exist
         if (document.body && document.querySelector('#postCodeInput-label')) {
             document.getElementById('postCodeInput-label').innerHTML = 'Zip/Postcode';
-            // Return so that we don't call requestAnimationFrame() again
-            console.log("waited for postCodeInput to load: " + runs);
-            return;
         }
         // If the body element isn't found, run ready() again at the next pain
         runs++;
