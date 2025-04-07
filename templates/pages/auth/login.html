@@ -51,11 +51,16 @@
 {{> layout/base}}
 
 
+
 <script type="text/javascript">
     //for retaining GAP ref when logging out
     fetch('/login.php?action=logout').then(()=>{
-      console.log("Checking for ref link on logout...");
       const ref = new URL(document.location.href).searchParams.get('ref');
-      window.location.href = ref ? "https://tastefully-simple-sandbox-2.mybigcommerce.com/products/?ref="+ref : "https://tastefully-simple-sandbox-2.mybigcommerce.com/products/";
-})</script>
+      console.log("ref " + ref)
+      if(ref){
+        console.log("reft " + ref)
+        //window.location.href = "https://tastefully-simple-sandbox-2.mybigcommerce.com/products/?ref="+ref;
+      }
+    })
+  </script>
   
