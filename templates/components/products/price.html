@@ -59,7 +59,11 @@ If you are making a change here or in price-range.html, you probably want to mak
             <span class="price-now-label" {{#unless price.non_sale_price_without_tax}}style="display: none;"{{/unless}}>
                 {{theme_settings.pdp-sale-price-label}}
             </span>
-            <span data-product-price-without-tax class="lightburgundy-text price price--withoutTax{{#if price.with_tax}} price-section--minor{{/if}}">{{price.without_tax.formatted}}</span>
+            {{#if price.without_tax.value '!=' 0}}
+                <span data-product-price-without-tax class="lightburgundy-text price price--withoutTax{{#if price.with_tax}} price-section--minor{{/if}}">{{price.without_tax.formatted}}</span>
+            {{else}}
+                <div id="card-no-price"></div>
+            {{/if}}
             {{#if schema_org}}
                 <meta itemprop="availability" itemtype="http://schema.org/ItemAvailability"
                     content="http://schema.org/{{#if product.pre_order}}PreOrder{{else if product.out_of_stock}}OutOfStock{{else if product.can_purchase '===' false}}OutOfStock{{else}}InStock{{/if}}">
