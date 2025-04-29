@@ -35,3 +35,22 @@
 {{/partial}}
 
 {{> layout/empty}}
+
+<script>
+
+    var runs = 0;
+
+    var ready = function () {
+
+        // If the body element and the id element exist
+        if (document.body && document.querySelector('#postCodeInput-label')) {
+            document.getElementById('postCodeInput-label').innerHTML = 'Zip/Postcode';
+        }
+        // If the body element isn't found, run ready() again at the next pain
+        runs++;
+        window.requestAnimationFrame(ready);
+    };
+    // Initialize our ready() function
+    window.requestAnimationFrame(ready);
+
+</script>
