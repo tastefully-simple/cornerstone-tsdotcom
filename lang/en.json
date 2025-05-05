@@ -520,7 +520,7 @@
             "create": "Create Favorite",
             "save": "Save Favorite",
             "delete_alert": "Are you sure you want to delete your Favorite(s)? This action cannot be undone.",
-            "create_new": "Create A Favorites List",
+            "create_new": "Create a Favorites List",
             "add_to_default": "Add to My Favorite",
             "enter_wishlist_name_error": "You must enter a Favorite name.",
       	     "copy_link": "Copy Link",
