@@ -82,16 +82,16 @@
                     </form>
                 </div>
                 <div>
-                    <div style="float:left;">
+                    <div style="float:left; margin-right:5px;">
                         {{#unless is_ajax}}
                             {{> components/common/share}}
                         {{/unless}}
                     </div>
-                    <div style="float:left;">
+                    
                         {{#if settings.show_wishlist}}
                             {{> components/common/recipe-wishlist-dropdown}}
                         {{/if}}
-                    </div>
+                    
                 </div>
                 <p id="cost-per-saving">Cost per Serving: <span></span></p>
                 <script>
