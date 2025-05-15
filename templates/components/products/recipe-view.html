@@ -81,9 +81,18 @@
                         {{/if}}
                     </form>
                 </div>
-                {{#unless is_ajax}}
-                    {{> components/common/share}}
-                {{/unless}}
+                <div>
+                    <div style="float:left; margin-right:5px;">
+                        {{#unless is_ajax}}
+                            {{> components/common/share}}
+                        {{/unless}}
+                    </div>
+                    
+                        {{#if settings.show_wishlist}}
+                            {{> components/common/recipe-wishlist-dropdown}}
+                        {{/if}}
+                    
+                </div>
                 <p id="cost-per-saving">Cost per Serving: <span></span></p>
                 <script>
                     if (typeof recipe.Recipe.CostPerServing !== 'undefined') {
